@@ -1,0 +1,38 @@
+package com.dollarsbank.utility;
+
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+
+import com.dollarsbank.model.Account;
+import com.google.gson.Gson;
+
+public class FileStorage {
+	private static Gson gson = new Gson();
+	
+	public static String accountToJSON(Account account) {
+		
+	}
+	
+	public static String readFromFile(String filePath) {
+		try {
+			return new String(Files.readAllBytes(Paths.get(filePath)));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	public static boolean writeToFile(String filePath, String text) {
+		try (FileWriter fw = new FileWriter(filePath); 
+				BufferedWriter writer = new BufferedWriter(fw)) {
+			writer.append(text);
+			writer.flush();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return true;
+	}
+}
