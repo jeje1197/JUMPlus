@@ -57,7 +57,7 @@ public class DollarsBankController {
 
 			Account newAccount = new Account(userId, password, initialDeposit, customer);
 			newAccount.addTransaction(String.format("Initial Deposit: $%.2f", initialDeposit));
-			accounts.add(new Account(userId, password, initialDeposit, customer));
+			accounts.add(newAccount);
 			ConsolePrinter.print("Account created!\n");
 		} catch (InvalidOptionException e) {
 			ConsolePrinter.print(ConsolePrinter.ANSI_RED, e.getMessage() + "\n");
