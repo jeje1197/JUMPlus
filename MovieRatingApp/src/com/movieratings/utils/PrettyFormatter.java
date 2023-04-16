@@ -11,6 +11,23 @@ public class PrettyFormatter {
 			}
 		}
 		
-		stringBuilder.append()
+		// Top design
+		stringBuilder.append("+==")
+			.append("=".repeat(maxLengthOfString))
+			.append("==+\n");
+		
+		for (String line: lines) {
+			stringBuilder.append("|  ")
+				.append(line)
+				.append(" ".repeat(maxLengthOfString - line.length() + 2))
+				.append("|\n");
+		}
+		
+		// Bottom design
+		stringBuilder.append("+==")
+			.append("=".repeat(maxLengthOfString))
+			.append("==+");
+		
+		return stringBuilder.toString();
 	}
 }
