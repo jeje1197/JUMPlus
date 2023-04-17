@@ -7,6 +7,16 @@ import com.movieratings.model.Movie;
 
 public class MovieCalculator {
 	
+	public static int longestMovieName(List<Movie> movies) {
+		int longestName = 0;
+		for (Movie movie: movies) {
+			if (movie.getName().length() > longestName) {
+				longestName = movie.getName().length();
+			}
+		}
+		return longestName;
+	}
+	
 	public static double getAverage(Movie movie, List<AccountUser> users) {
 		double sum = 0;
 		int numberOfRatings = 0;

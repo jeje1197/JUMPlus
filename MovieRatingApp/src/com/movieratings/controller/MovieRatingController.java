@@ -78,7 +78,7 @@ public class MovieRatingController {
 	}
 
 	public static void register() {
-		ColorPrinter.println(ColorPrinter.BLUE, PrettyFormatter.format(new String[] {
+		ColorPrinter.println(ColorPrinter.CYAN, PrettyFormatter.format(new String[] {
 				"REGISTER"
 		}));
 
@@ -107,7 +107,7 @@ public class MovieRatingController {
 	}
 
 	public static void login() {
-		ColorPrinter.println(ColorPrinter.BLUE, PrettyFormatter.format(new String[] {
+		ColorPrinter.println(ColorPrinter.CYAN, PrettyFormatter.format(new String[] {
 				"LOGIN"
 		}));
 
@@ -148,29 +148,44 @@ public class MovieRatingController {
 				"VIEWING MOVIES"
 		}));
 
+		int lengthOfLongestName = MovieCalculator.longestMovieName(movies);
 		List<String> lines = new ArrayList<>();
-		lines.add("Movie Avg.                    Rating          # of Ratings");
+		lines.add("Movie" + " ".repeat(lengthOfLongestName + 5 - 5)
+				+ "Avg. Rating     # of Ratings");
 
 		for (int i = 0; i < movies.size(); i++) {
-			lines.add((i+1) + ". " + movies.get(i).getName() + " ".repeat(10) + 
-					MovieCalculator.getAverage(movies.get(i), users) + " ".repeat(10) + 
-					MovieCalculator.getNumberOfRatings(movies.get(i), users));
+			String movieName = movies.get(i).getName();
+			String movieAvgRating = String.valueOf(MovieCalculator.getAverage(movies.get(i), users));
+			String movieNumberOfRatings = String.valueOf(MovieCalculator.getNumberOfRatings(movies.get(i), users));
+			
+			if (movieAvgRating.equals("NaN")) {
+				movieAvgRating = "N/A";
+			} else {
+				movieAvgRating = String.format("%.1f", Double.parseDouble(movieAvgRating));
+			}
+			
+			lines.add(
+					(i+1) + ". " + movieName 
+					+ " ".repeat(lengthOfLongestName + 5 - (3 + movieName.length()))
+					+ movieAvgRating 
+					+ " ".repeat(13) 
+					+ movieNumberOfRatings
+			);
 		}
 
 		if (movies.isEmpty()) {
 			lines.add("None");
 		}
 
-		System.out.println(String.join("\n", lines));
-
-		//		ColorPrinter.println(ColorPrinter.CYAN, PrettyFormatter.format((String[])lines.toArray()));
+		ColorPrinter.println(ColorPrinter.YELLOW, PrettyFormatter.format(lines.toArray(new String[0])));
+		ConsolePrinter.println("");
 	}
 
 
 	public static void accountMenu() {
 		boolean loggedIn = true;
 		while (loggedIn) {
-			viewMovies();
+			viewMoviesWithExit();
 
 			final int selectedOption;
 			try {
@@ -196,7 +211,42 @@ public class MovieRatingController {
 	}
 	
 	public static void viewMoviesWithExit() {
+		ColorPrinter.println(ColorPrinter.CYAN, PrettyFormatter.format(new String[] {
+				"VIEWING MOVIES"
+		}));
+
+		int lengthOfLongestName = MovieCalculator.longestMovieName(movies);
+		List<String> lines = new ArrayList<>();
+		lines.add("Movie" + " ".repeat(lengthOfLongestName + 5 - 5)
+				+ "Avg. Rating     # of Ratings");
+
+		for (int i = 0; i < movies.size(); i++) {
+			String movieName = movies.get(i).getName();
+			String movieAvgRating = String.valueOf(MovieCalculator.getAverage(movies.get(i), users));
+			String movieNumberOfRatings = String.valueOf(MovieCalculator.getNumberOfRatings(movies.get(i), users));
+			
+			if (movieAvgRating.equals("NaN")) {
+				movieAvgRating = "N/A";
+			} else {
+				movieAvgRating = String.format("%.1f", Double.parseDouble(movieAvgRating));
+			}
+			
+			lines.add(
+					(i+1) + ". " + movieName 
+					+ " ".repeat(lengthOfLongestName + 5 - (3 + movieName.length()))
+					+ movieAvgRating 
+					+ " ".repeat(13) 
+					+ movieNumberOfRatings
+			);
+		}
+
+		if (movies.isEmpty()) {
+			lines.add("None");
+		}
 		
+		lines.add(movies.size() + 1 + ". EXIT");
+
+		ColorPrinter.println(ColorPrinter.YELLOW, PrettyFormatter.format(lines.toArray(new String[0])));
 	}
 
 	public static void rateMovie(Movie movie) {
