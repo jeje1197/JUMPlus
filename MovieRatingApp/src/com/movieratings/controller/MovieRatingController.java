@@ -149,13 +149,10 @@ public class MovieRatingController {
 		}));
 
 		List<String> lines = new ArrayList<>();
-		lines.add("Movie Avg.           Rating           # of Ratings");
-
-		//		List<String> movieName
-
+		lines.add("Movie Avg.                    Rating          # of Ratings");
 
 		for (int i = 0; i < movies.size(); i++) {
-			lines.add(i + ". " + movies.get(i).getName() + " ".repeat(10) + 
+			lines.add((i+1) + ". " + movies.get(i).getName() + " ".repeat(10) + 
 					MovieCalculator.getAverage(movies.get(i), users) + " ".repeat(10) + 
 					MovieCalculator.getNumberOfRatings(movies.get(i), users));
 		}
@@ -163,17 +160,75 @@ public class MovieRatingController {
 		if (movies.isEmpty()) {
 			lines.add("None");
 		}
-		
-		
 
 		System.out.println(String.join("\n", lines));
-
 
 		//		ColorPrinter.println(ColorPrinter.CYAN, PrettyFormatter.format((String[])lines.toArray()));
 	}
 
 
 	public static void accountMenu() {
+		boolean loggedIn = true;
+		while (loggedIn) {
+			viewMovies();
 
+			final int selectedOption;
+			try {
+				ColorPrinter.print(ColorPrinter.GREEN, "Choose a movie to rate (1-" + movies.size() 
+				+ "): ");
+				selectedOption = ConsoleScanner.readInt(1, movies.size() + 1);
+				ConsolePrinter.println("");
+			} catch (InvalidInputException e) {
+				ColorPrinter.println(ColorPrinter.RED, e.getMessage() + "\n");
+				continue;
+			}
+
+			if (selectedOption == movies.size() + 1) {
+				break;
+			} else {
+				Optional<Movie> selectedMovie = movies.stream()
+						.filter(movie-> movie.getId() == selectedOption)
+						.findFirst();
+
+				rateMovie(selectedMovie.get());
+			}
+		}
+	}
+	
+	public static void viewMoviesWithExit() {
+		
+	}
+
+	public static void rateMovie(Movie movie) {
+		String[] lines = new String[] {
+				"Movie: " + movie.getName(),
+				"",
+				"Rating:",
+				"0. Really Bad",
+				"1. Bad",
+				"2. Not Good",
+				"3. Okay",
+				"4. Good",
+				"5. Great",
+				"",
+				"6. EXIT",
+		};
+		ColorPrinter.println(ColorPrinter.CYAN, PrettyFormatter.format(lines));
+
+		int selectedOption = -1;
+		try {
+			ColorPrinter.print(ColorPrinter.GREEN, "Choose a rating (0-5) or enter 6 to exit: ");
+			selectedOption = ConsoleScanner.readInt(0, 6);
+			ConsolePrinter.println("");
+		} catch (InvalidInputException e) {
+			ColorPrinter.println(ColorPrinter.RED, e.getMessage() + "\n");
+			return;
+		}
+
+		if (selectedOption == 6) {
+			return;
+		}
+
+		currentUser.getMovieRatings().put(movie.getId(), selectedOption);
 	}
 }
