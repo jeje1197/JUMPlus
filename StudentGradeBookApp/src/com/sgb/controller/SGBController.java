@@ -3,6 +3,7 @@ package com.sgb.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.sgb.dao.TeacherDaoSql;
 import com.sgb.exception.InvalidInputException;
 import com.sgb.model.SchoolClass;
 import com.sgb.model.Teacher;
@@ -10,11 +11,15 @@ import com.sgb.utils.ColorPrinter;
 import com.sgb.utils.ConsolePrinter;
 import com.sgb.utils.ConsoleScanner;
 import com.sgb.utils.PrettyFormatter;
+import com.sgb.utils.RegexManager;
 
 public class SGBController {
-	private static List<SchoolClass> classes = new ArrayList<>();
-	private static List<Teacher> teachers = new ArrayList<>();
-	private static Teacher currentAccount = null;
+
+	// DAOs
+	private static TeacherDaoSql teacherDao = new TeacherDaoSql();
+
+	// Application State
+	private static Teacher currentTeacher = null;
 
 
 	public static void mainMenu() {
@@ -60,15 +65,59 @@ public class SGBController {
 	}
 
 	private static void register() {
+		ColorPrinter.println(ColorPrinter.CYAN, PrettyFormatter.format(new String[] {"REGISTER"}));
 
+		String email = null, 
+				password = null;
+		try {
+
+			ColorPrinter.print(ColorPrinter.GREEN, "Enter your email: ");
+			email = ConsoleScanner.readString(RegexManager.EMAIL, "Invalid email format. Valid format ex:'email@yahoo.com'");
+
+			ColorPrinter.print(ColorPrinter.GREEN, "Enter your password: ");
+			password = ConsoleScanner.readString(RegexManager.PASSWORD, "Invalid password format. Valid format ex:'xxxx...'");
+
+		} catch (InvalidInputException e) {
+			ColorPrinter.println(ColorPrinter.RED, e.getMessage() + "\n");
+			return;
+		}
+
+		boolean success = teacherDao.addTeacher(email, password);
+		if (success) {
+			ColorPrinter.println(ColorPrinter.YELLOW, "New Account Created!\n");
+		} else {
+			ColorPrinter.println(ColorPrinter.RED, "Failed to create account!\n");
+		}
 	}
 
 	private static void login() {
+		ColorPrinter.println(ColorPrinter.CYAN, PrettyFormatter.format(new String[] {"LOGIN"}));
 
+		String email = null, password = null;
+		try {
+
+			ColorPrinter.print(ColorPrinter.GREEN, "Enter your email: ");
+			email = ConsoleScanner.readString(RegexManager.ANY, "");
+
+			ColorPrinter.print(ColorPrinter.GREEN, "Enter your password: ");
+			password = ConsoleScanner.readString(RegexManager.ANY, "");
+
+		} catch (InvalidInputException e) {
+			ColorPrinter.println(ColorPrinter.RED, e.getMessage() + "\n");
+			return;
+		}
+
+		Teacher teacher = teacherDao.getTeacherByEmail(email, password);
+		if (teacher != null) {
+			currentTeacher = teacher;
+			ColorPrinter.println(ColorPrinter.YELLOW, "Successfully logged in!\n");
+		} else {
+			ColorPrinter.println(ColorPrinter.RED, "Failed to log in!\n");
+		}
 	}
 
 	private static boolean isLoggedIn() {
-		return currentAccount != null;
+		return currentTeacher != null;
 	}
 
 	private static void teacherMenu() {
