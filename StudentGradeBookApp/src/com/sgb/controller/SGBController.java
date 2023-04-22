@@ -5,7 +5,6 @@ import java.util.List;
 
 import com.sgb.dao.TeacherDaoSql;
 import com.sgb.exception.InvalidInputException;
-import com.sgb.model.SchoolClass;
 import com.sgb.model.Teacher;
 import com.sgb.utils.ColorPrinter;
 import com.sgb.utils.ConsolePrinter;
@@ -51,7 +50,7 @@ public class SGBController {
 			case 2:
 				SGBController.login();
 				if (SGBController.isLoggedIn()) {
-					SGBController.teacherMenu();
+					SGBController.showTeacherMenu();
 				}
 				break;
 
@@ -67,9 +66,13 @@ public class SGBController {
 	private static void register() {
 		ColorPrinter.println(ColorPrinter.CYAN, PrettyFormatter.format(new String[] {"REGISTER"}));
 
-		String email = null, 
-				password = null;
+		String name = null, 
+			   email = null, 
+			   password = null;
 		try {
+			
+			ColorPrinter.print(ColorPrinter.GREEN, "Enter your name: ");
+			name = ConsoleScanner.readString(RegexManager.NAME, "Invalid name format. Valid format ex: 'Randy Ralph'");
 
 			ColorPrinter.print(ColorPrinter.GREEN, "Enter your email: ");
 			email = ConsoleScanner.readString(RegexManager.EMAIL, "Invalid email format. Valid format ex:'email@yahoo.com'");
@@ -82,7 +85,7 @@ public class SGBController {
 			return;
 		}
 
-		boolean success = teacherDao.addTeacher(email, password);
+		boolean success = teacherDao.addTeacher(name, email, password);
 		if (success) {
 			ColorPrinter.println(ColorPrinter.YELLOW, "New Account Created!\n");
 		} else {
@@ -107,7 +110,7 @@ public class SGBController {
 			return;
 		}
 
-		Teacher teacher = teacherDao.getTeacherByEmail(email, password);
+		Teacher teacher = teacherDao.getTeacherByEmailAndPassword(email, password);
 		if (teacher != null) {
 			currentTeacher = teacher;
 			ColorPrinter.println(ColorPrinter.YELLOW, "Successfully logged in!\n");
@@ -120,7 +123,8 @@ public class SGBController {
 		return currentTeacher != null;
 	}
 
-	private static void teacherMenu() {
-
+	private static void showTeacherMenu() {
+		TeacherController.teacherMenu();
+		currentTeacher = null;
 	}
 }
