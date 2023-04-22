@@ -2,10 +2,13 @@ package com.sgb.test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.List;
+
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import com.sgb.dao.TeacherDaoSql;
+import com.sgb.model.SchoolClass;
 import com.sgb.model.Teacher;
 
 class TeacherDaoTest {
@@ -33,7 +36,14 @@ class TeacherDaoTest {
 		assertTrue(teacher.getName().equals("joseph admin") 
 				&& teacher.getEmail().equals("joseph@gmail.com"));
 	}
-	
+
+	@Test
+	void testGetAllClassesForTeacher() {
+		String teacherName = "joseph admin";
+		List<SchoolClass> classes = dao.getTeacherClasses(teacherName);
+		System.out.println("Classes for " + teacherName);
+		classes.stream().forEach(System.out::println);
+	}
 	
 
 }

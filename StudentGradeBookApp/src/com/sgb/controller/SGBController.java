@@ -1,8 +1,5 @@
 package com.sgb.controller;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.sgb.dao.TeacherDaoSql;
 import com.sgb.exception.InvalidInputException;
 import com.sgb.model.Teacher;
@@ -15,10 +12,14 @@ import com.sgb.utils.RegexManager;
 public class SGBController {
 
 	// DAOs
-	private static TeacherDaoSql teacherDao = new TeacherDaoSql();
+	public static TeacherDaoSql teacherDao = new TeacherDaoSql();
 
 	// Application State
 	private static Teacher currentTeacher = null;
+	
+	Teacher getCurrentTeacher() {
+		return currentTeacher;
+	}
 
 
 	public static void mainMenu() {
@@ -124,7 +125,7 @@ public class SGBController {
 	}
 
 	private static void showTeacherMenu() {
-		TeacherController.teacherMenu();
+		TeacherController.teacherMenu(teacherDao, currentTeacher);
 		currentTeacher = null;
 	}
 }

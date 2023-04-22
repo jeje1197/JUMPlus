@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.sgb.connection.BetterConnectionManager;
+import com.sgb.model.SchoolClass;
 import com.sgb.model.Teacher;
 
 public class TeacherDaoSql implements TeacherDao {
@@ -68,7 +69,7 @@ public class TeacherDaoSql implements TeacherDao {
 			}
 
 		} catch (SQLException e) {
-			System.err.println("Could not add teacher or to database.");
+			System.err.println("Could not add teacher to database.");
 		}
 
 		return false;
@@ -96,6 +97,38 @@ public class TeacherDaoSql implements TeacherDao {
 		}
 
 		return null;
+	}
+
+	@Override
+	public List<SchoolClass> getTeacherClasses(String teacherName) {
+		try {
+			PreparedStatement ps = connection.prepareStatement("select * from classes where teacher_name = ?");
+
+			ps.setString(1, teacherName);
+			ResultSet rs = ps.executeQuery();
+
+			List<SchoolClass> classes = new ArrayList<>();
+
+			while(rs.next()) {
+				// iterate through to get column info
+				int classId = rs.getInt("class_id");
+				String className = rs.getString("class_name");
+
+				classes.add(new SchoolClass(classId, className, teacherName));
+			}
+
+			return classes;
+
+		} catch (SQLException e) {
+			System.err.println("Could not retrieve list of teachers from database");
+		}
+
+		return null;
+	}
+
+	@Override
+	public boolean createClass(int teacherId, String className) {
+		return false;
 	}
 
 }

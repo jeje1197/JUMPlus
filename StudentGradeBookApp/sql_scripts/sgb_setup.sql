@@ -26,22 +26,21 @@ create table teacher_login (
 insert into teachers(teacher_name) values ('Randy Crushu'); 
 insert into teacher_login(login_email, login_password) values ('randy@gmail.com', 'randy1');
 
-select * from teachers;
-select * from teacher_login;
-
 select * from teacher_login
 join teachers
 on
 	teacher_login.login_id = teachers.teacher_id;
 
--- Create teachers table -- 
--- drop table if exists classes;
--- create table classes (
--- 	class_id int unique auto_increment,
---     class_name varchar(40) unique not null,
---     primary key(class_id),
---     foreign key(class_id) references students(student_id)
--- );
+-- Create classes table -- 
+drop table if exists classes;
+create table classes (
+	class_id int unique auto_increment,
+    class_name varchar(40) unique not null,
+    teacher_name varchar(40) not null,
+    primary key(class_id)
+);
+
+select * from classes;
 
 -- -- Create teachers table -- 
 -- drop table if exists students;
