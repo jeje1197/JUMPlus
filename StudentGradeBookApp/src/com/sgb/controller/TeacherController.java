@@ -11,6 +11,7 @@ import com.sgb.utils.ColorPrinter;
 import com.sgb.utils.ConsolePrinter;
 import com.sgb.utils.ConsoleScanner;
 import com.sgb.utils.PrettyFormatter;
+import com.sgb.utils.RegexManager;
 
 public class TeacherController {
 	private static TeacherDaoSql teacherDao;
@@ -20,7 +21,7 @@ public class TeacherController {
 		TeacherController.teacherDao = teacherDao;
 		TeacherController.currentTeacher = currentTeacher;
 		
-		List<SchoolClass> classes = teacherDao.getTeacherClasses(currentTeacher.getName());
+		List<SchoolClass> classes = teacherDao.getTeacherClasses(currentTeacher);
 		List<String> menuOptions = new ArrayList<>();
 		menuOptions.add("Your Classes:");
 		
@@ -31,7 +32,8 @@ public class TeacherController {
 				menuOptions.add((i + 1) + ". " + classes.get(i).getName());
 			}
 		}
-		
+
+		menuOptions.add("");
 		menuOptions.add((classes.size() + 1) + ". CREATE A NEW CLASS");
 		menuOptions.add((classes.size() + 2) + ". EXIT");
 
@@ -60,7 +62,24 @@ public class TeacherController {
 	}
 	
 	private static void createNewClass() {
+		ColorPrinter.println(ColorPrinter.CYAN, PrettyFormatter.format(new String[] {"CREATE A NEW CLASS"}));
+
+		String className = null;
+		try {
+			ColorPrinter.print(ColorPrinter.GREEN, "Enter a name for the class: ");
+			className = ConsoleScanner.readString(RegexManager.ANY, "Invalid name format. Valid format ex: 'Intro to Calc.'");
+		} catch (InvalidInputException e) {
+			ColorPrinter.println(ColorPrinter.RED, e.getMessage() + "\n");
+			return;
+		}
 		
+		boolean success = teacherDao.createClass(currentTeacher.getId(), className);
+		if (success) {
+			ColorPrinter.println(ColorPrinter.YELLOW, "New class created!\n");
+		} else {
+			ColorPrinter.println(ColorPrinter.RED, "Failed to create class!\n");
+		}
+
 	}
 	
 	private static void viewClassOptions(SchoolClass selectedClass) {

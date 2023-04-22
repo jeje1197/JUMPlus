@@ -100,11 +100,11 @@ public class TeacherDaoSql implements TeacherDao {
 	}
 
 	@Override
-	public List<SchoolClass> getTeacherClasses(String teacherName) {
+	public List<SchoolClass> getTeacherClasses(Teacher teacher) {
 		try {
-			PreparedStatement ps = connection.prepareStatement("select * from classes where teacher_name = ?");
+			PreparedStatement ps = connection.prepareStatement("select * from classes where teacher_id = ?");
 
-			ps.setString(1, teacherName);
+			ps.setInt(1, teacher.getId());
 			ResultSet rs = ps.executeQuery();
 
 			List<SchoolClass> classes = new ArrayList<>();
@@ -114,7 +114,7 @@ public class TeacherDaoSql implements TeacherDao {
 				int classId = rs.getInt("class_id");
 				String className = rs.getString("class_name");
 
-				classes.add(new SchoolClass(classId, className, teacherName));
+				classes.add(new SchoolClass(classId, className, teacher.getName()));
 			}
 
 			return classes;
@@ -128,6 +128,23 @@ public class TeacherDaoSql implements TeacherDao {
 
 	@Override
 	public boolean createClass(int teacherId, String className) {
+		try {
+			PreparedStatement pstmt = connection.prepareStatement(
+					"insert into classes (class_name, teacher_id) values (?, ?)");
+			
+			pstmt.setString(1, className);
+			pstmt.setInt(2, teacherId);
+			
+
+			int rowsUpdated = pstmt.executeUpdate();
+			if(rowsUpdated > 0) {
+				return true;
+			}
+
+		} catch (SQLException e) {
+			System.err.println("Could not add class to database.");
+		}
+
 		return false;
 	}
 

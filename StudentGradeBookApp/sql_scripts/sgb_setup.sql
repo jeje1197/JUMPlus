@@ -36,9 +36,11 @@ drop table if exists classes;
 create table classes (
 	class_id int unique auto_increment,
     class_name varchar(40) unique not null,
-    teacher_name varchar(40) not null,
+    teacher_id int not null,
     primary key(class_id)
 );
+
+select * from classes where teacher_id = 2;
 
 select * from classes;
 

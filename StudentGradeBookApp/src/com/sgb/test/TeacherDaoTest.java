@@ -39,9 +39,9 @@ class TeacherDaoTest {
 
 	@Test
 	void testGetAllClassesForTeacher() {
-		String teacherName = "joseph admin";
-		List<SchoolClass> classes = dao.getTeacherClasses(teacherName);
-		System.out.println("Classes for " + teacherName);
+		Teacher teacher = dao.getTeacherByEmailAndPassword("joseph@gmail.com", "joseph");
+		List<SchoolClass> classes = dao.getTeacherClasses(teacher);
+		System.out.println("Classes for " + teacher.getName());
 		classes.stream().forEach(System.out::println);
 	}
 	

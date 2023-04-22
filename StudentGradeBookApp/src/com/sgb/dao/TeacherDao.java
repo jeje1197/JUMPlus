@@ -15,7 +15,7 @@ public interface TeacherDao {
 	public Teacher getTeacherByEmailAndPassword(String email, String password);
 
 	/* Teacher Menu */
-	public List<SchoolClass> getTeacherClasses(String teacherName);
+	public List<SchoolClass> getTeacherClasses(Teacher teacher);
 
 	public boolean createClass(int teacherId, String className);
 
