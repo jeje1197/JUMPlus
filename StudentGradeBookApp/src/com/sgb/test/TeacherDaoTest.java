@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 
 import com.sgb.dao.TeacherDaoSql;
 import com.sgb.model.SchoolClass;
+import com.sgb.model.Student;
 import com.sgb.model.Teacher;
 
 class TeacherDaoTest {
@@ -45,5 +46,16 @@ class TeacherDaoTest {
 		classes.stream().forEach(System.out::println);
 	}
 	
-
+	@Test
+	void testCreateClassForTeacher() {
+		assertTrue(dao.createClass(1, "Intermediate Testing"));
+	}
+	
+	@Test
+	void testGetAllStudentsInClass() {
+		List<Student> students = dao.getAllStudentsInClass(1);
+		System.out.println("Students in class");
+		students.stream().forEach(System.out::println);
+	}
+	
 }

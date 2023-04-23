@@ -175,19 +175,22 @@ public class TeacherDaoSql implements TeacherDao {
 	}
 
 	@Override
-	public List<Student> getAllStudentsInClass() {
+	public List<Student> getAllStudentsInClass(int classId) {
 		try {
-			Statement stmt = connection.createStatement();
-			ResultSet rs = stmt.executeQuery("select * from students ...");
+			PreparedStatement ps = connection.prepareStatement("select * from student_classes "
+					+ "join students on student_classes.student_id = students.student_id "
+					+ "where class_id = ?");
+
+			ps.setInt(1, classId);
+			ResultSet rs = ps.executeQuery();
 
 			List<Student> students = new ArrayList<>();
 
 			while(rs.next()) {
-				int id = rs.getInt("student_id");
-				String name = rs.getString("student_name");
+				int studentId = rs.getInt("student_id");
+				String studentName = rs.getString("student_name");
 
-				Student student = new Student(id, name);
-				students.add(student);
+				students.add(new Student(studentId, studentName));
 			}
 
 			return students;
@@ -220,7 +223,7 @@ public class TeacherDaoSql implements TeacherDao {
 			return averageAndMedian;
 
 		} catch (SQLException e) {
-			System.err.println("Could not retrieve list of teachers from database");
+			System.err.println("Could not retrieve average and median grade from database");
 		}
 
 		return null;
@@ -248,7 +251,7 @@ public class TeacherDaoSql implements TeacherDao {
 			return students;
 
 		} catch (SQLException e) {
-			System.err.println("Could not retrieve list of teachers from database");
+			System.err.println("Could not retrieve sorted list of students from database");
 		}
 
 		return null;

@@ -25,7 +25,7 @@ public interface TeacherDao {
 
 	public List<Student> getAllStudents();
 	
-	public List<Student> getAllStudentsInClass();
+	public List<Student> getAllStudentsInClass(int classId);
 
 	
 	
