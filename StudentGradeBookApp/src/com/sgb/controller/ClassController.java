@@ -80,7 +80,7 @@ public class ClassController {
 		
 	}
 	
-	private static void viewStudentOptions() {
+	private static void viewStudentOptions(Student student) {
 		
 	}
 	
