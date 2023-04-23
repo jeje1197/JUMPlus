@@ -4,7 +4,6 @@ create database student_gradebook;
 
 use student_gradebook;
 
-
 -- Create teachers table -- 
 drop table if exists teachers;
 create table teachers (
@@ -25,6 +24,8 @@ create table teacher_login (
 
 insert into teachers(teacher_name) values ('Randy Crushu'); 
 insert into teacher_login(login_email, login_password) values ('randy@gmail.com', 'randy1');
+insert into teachers(teacher_name) values ('Joseph Admin'); 
+insert into teacher_login(login_email, login_password) values ('joseph@gmail.com', 'joseph');
 
 select * from teacher_login
 join teachers
@@ -40,21 +41,37 @@ create table classes (
     primary key(class_id)
 );
 
-select * from classes where teacher_id = 2;
-
+insert into classes (class_name, teacher_id) values ('Intro to Java', 2);
 select * from classes;
 
--- -- Create teachers table -- 
--- drop table if exists students;
--- create table students (
--- 	student_id int unique auto_increment,
---     student_name varchar(40) unique not null,
---     student_grad int not null,
---     primary key(student_id)
--- );
+-- Create students table -- 
+drop table if exists students;
+create table students (
+	student_id int unique auto_increment,
+    student_name varchar(40) unique not null,
+    primary key(student_id)
+);
 
+insert into students (student_name) values ("Joseph Evans");
+insert into students (student_name) values ("Elijah Busick");
+insert into students (student_name) values ("Lebron James");
+insert into students (student_name) values ("Stephen Curry");
+insert into students (student_name) values ("De'Aaron Fox");
+insert into students (student_name) values ("Cliff");
+insert into students (student_name) values ("Sean Bryson");
 
-select * from teacher_login 
-join teachers on teacher_login.login_id = teachers.teacher_id
-where teacher_login.login_email = 'joseph@gmail.com' and teacher_login.login_password = 'joseph';
+select * from students order by student_id;
 
+-- Create student_classes table --
+drop table if exists student_classes;
+create table student_classes (
+	student_id int not null,
+    class_id int not null,
+    grade int not null,
+    primary key(student_id, class_id)
+);
+
+insert into student_classes (class_id, student_id, grade) values (1, 5, 80);
+insert into student_classes (class_id, student_id, grade) values (1, 6, 95);
+
+select * from student_classes;

@@ -23,17 +23,20 @@
     <fullyQualifiedTypeName name="com.sgb.utils.ConsolePrinter"/>
     <fullyQualifiedTypeName name="com.sgb.exception.InvalidInputException"/>
     <fullyQualifiedTypeName name="com.sgb.controller.SGBController"/>
-    <fullyQualifiedTypeName name="com.sgb.model.SchoolClass"/>
     <fullyQualifiedTypeName name="com.sgb.connection.BetterConnectionManager.ConnManagerWithProperties"/>
     <fullyQualifiedTypeName name="java.sql.Connection"/>
-    <fullyQualifiedTypeName name="java.util.List"/>
-    <fullyQualifiedTypeName name="com.sgb.model.Teacher"/>
     <fullyQualifiedTypeName name="java.sql.Statement"/>
     <fullyQualifiedTypeName name="java.sql.ResultSet"/>
-    <fullyQualifiedTypeName name="java.util.ArrayList"/>
     <fullyQualifiedTypeName name="java.sql.SQLException"/>
     <fullyQualifiedTypeName name="java.sql.PreparedStatement"/>
     <fullyQualifiedTypeName name="com.sgb.utils.RegexManager"/>
-    <fullyQualifiedTypeName name="com.sgb.dao.TeacherDaoSql"/>
     <fullyQualifiedTypeName name="java.lang.ArrayStoreException"/>
+    <fullyQualifiedTypeName name="org.junit.jupiter.api.BeforeAll"/>
+    <fullyQualifiedTypeName name="com.sgb.dao.TeacherDao"/>
+    <fullyQualifiedTypeName name="com.sgb.dao.TeacherDaoSql"/>
+    <fullyQualifiedTypeName name="java.util.ArrayList"/>
+    <fullyQualifiedTypeName name="java.util.List"/>
+    <fullyQualifiedTypeName name="com.sgb.model.Teacher"/>
+    <fullyQualifiedTypeName name="com.sgb.model.SchoolClass"/>
+    <fullyQualifiedTypeName name="com.sgb.model.Student"/>
 </qualifiedTypeNameHistroy>

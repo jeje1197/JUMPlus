@@ -3,6 +3,7 @@ package com.sgb.dao;
 import java.util.List;
 
 import com.sgb.model.SchoolClass;
+import com.sgb.model.Student;
 import com.sgb.model.Teacher;
 
 public interface TeacherDao {
@@ -18,5 +19,9 @@ public interface TeacherDao {
 	public List<SchoolClass> getTeacherClasses(Teacher teacher);
 
 	public boolean createClass(int teacherId, String className);
+	
+	public List<Student> getAllStudents();
+	
+	public List<Student> getAllStudentsInClass();
 
 }

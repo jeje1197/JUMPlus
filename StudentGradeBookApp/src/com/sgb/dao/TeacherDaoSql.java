@@ -10,6 +10,7 @@ import java.util.List;
 
 import com.sgb.connection.BetterConnectionManager;
 import com.sgb.model.SchoolClass;
+import com.sgb.model.Student;
 import com.sgb.model.Teacher;
 
 public class TeacherDaoSql implements TeacherDao {
@@ -146,6 +147,56 @@ public class TeacherDaoSql implements TeacherDao {
 		}
 
 		return false;
+	}
+
+	@Override
+	public List<Student> getAllStudents() {
+		try {
+			Statement stmt = connection.createStatement();
+			ResultSet rs = stmt.executeQuery("select * from students");
+
+			List<Student> students = new ArrayList<>();
+
+			while(rs.next()) {
+				int id = rs.getInt("student_id");
+				String name = rs.getString("student_name");
+
+				Student student = new Student(id, name);
+				students.add(student);
+			}
+
+			return students;
+
+		} catch (SQLException e) {
+			System.err.println("Could not retrieve list of students from database");
+		}
+
+		return null;
+	}
+
+	@Override
+	public List<Student> getAllStudentsInClass() {
+		try {
+			Statement stmt = connection.createStatement();
+			ResultSet rs = stmt.executeQuery("select * from students ...");
+
+			List<Student> students = new ArrayList<>();
+
+			while(rs.next()) {
+				int id = rs.getInt("student_id");
+				String name = rs.getString("student_name");
+
+				Student student = new Student(id, name);
+				students.add(student);
+			}
+
+			return students;
+
+		} catch (SQLException e) {
+			System.err.println("Could not retrieve list of students from database");
+		}
+
+		return null;
 	}
 
 }
