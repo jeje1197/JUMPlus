@@ -19,9 +19,24 @@ public interface TeacherDao {
 	public List<SchoolClass> getTeacherClasses(Teacher teacher);
 
 	public boolean createClass(int teacherId, String className);
-	
+
+
+	/* Class Menu */
+
 	public List<Student> getAllStudents();
 	
 	public List<Student> getAllStudentsInClass();
+
+	
+	
+	public List<Integer> getAverageAndMedianForClass(int classId);
+	
+	public List<Student> getStudentsInClassSorted(int classId);
+	
+	public boolean addStudentToClass(int classId, int studentId);
+	
+	public boolean removeStudentFromClass(int classId, int studentId);
+	
+	public boolean updateStudentGradeInClass(int classId, int studentId, int grade);
 
 }

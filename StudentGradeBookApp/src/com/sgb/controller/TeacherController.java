@@ -83,6 +83,6 @@ public class TeacherController {
 	}
 	
 	private static void viewClassOptions(SchoolClass selectedClass) {
-		
+		ClassController.classMenu(selectedClass);
 	}
 }

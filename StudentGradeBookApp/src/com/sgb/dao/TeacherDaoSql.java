@@ -199,4 +199,124 @@ public class TeacherDaoSql implements TeacherDao {
 		return null;
 	}
 
+	@Override
+	public List<Integer> getAverageAndMedianForClass(int classId) {
+		try {
+			PreparedStatement ps = connection.prepareStatement("select avg(grade) as 'average',"
+					+ " from student_classes "
+					+ "join students on student_classes.student_id = students.student_id "
+					+ "where class_id = ?");
+
+			ps.setInt(1, classId);
+			ResultSet rs = ps.executeQuery();
+
+			List<Integer> averageAndMedian = new ArrayList<>();
+
+			while(rs.next()) {
+				int studentId = rs.getInt("average");
+				averageAndMedian.add(studentId);
+			}
+
+			return averageAndMedian;
+
+		} catch (SQLException e) {
+			System.err.println("Could not retrieve list of teachers from database");
+		}
+
+		return null;
+	}
+
+	@Override
+	public List<Student> getStudentsInClassSorted(int classId) {
+		try {
+			PreparedStatement ps = connection.prepareStatement("select * from student_classes "
+					+ "join students on student_classes.student_id = students.student_id "
+					+ "where class_id = ? order by student_name, grade");
+
+			ps.setInt(1, classId);
+			ResultSet rs = ps.executeQuery();
+
+			List<Student> students = new ArrayList<>();
+
+			while(rs.next()) {
+				int studentId = rs.getInt("student_id");
+				String studentName = rs.getString("student_name");
+
+				students.add(new Student(studentId, studentName));
+			}
+
+			return students;
+
+		} catch (SQLException e) {
+			System.err.println("Could not retrieve list of teachers from database");
+		}
+
+		return null;
+	}
+
+	@Override
+	public boolean addStudentToClass(int classId, int studentId) {
+		try {
+			PreparedStatement pstmt = connection.prepareStatement(
+					"insert into student_classes (class_id, student_id, grade) values (?, ?, ?)");
+			
+			pstmt.setInt(1, classId);
+			pstmt.setInt(2, studentId);
+			pstmt.setInt(3, 0);
+
+			int rowsUpdated = pstmt.executeUpdate();
+			if(rowsUpdated > 0) {
+				return true;
+			}
+
+		} catch (SQLException e) {
+			System.err.println("Could not add student to class in database.");
+		}
+
+		return false;
+	}
+
+	@Override
+	public boolean removeStudentFromClass(int classId, int studentId) {
+		try {
+			PreparedStatement pstmt = connection.prepareStatement(
+					"delete from student_classes where class_id = ? and student_id = ?");
+			
+			pstmt.setInt(1, classId);
+			pstmt.setInt(2, studentId);
+
+			int rowsUpdated = pstmt.executeUpdate();
+			if(rowsUpdated > 0) {
+				return true;
+			}
+
+		} catch (SQLException e) {
+			System.err.println("Could not remove student from class in database.");
+		}
+
+		return false;
+	}
+
+	@Override
+	public boolean updateStudentGradeInClass(int classId, int studentId, int grade) {
+		try {
+			PreparedStatement pstmt = connection.prepareStatement(
+					"update student_classes set grade = ? where class_id = ? and student_id = ?");
+			
+			pstmt.setInt(1, grade);
+			pstmt.setInt(2, classId);
+			pstmt.setInt(3, studentId);
+
+			int rowsUpdated = pstmt.executeUpdate();
+			if(rowsUpdated > 0) {
+				return true;
+			}
+
+		} catch (SQLException e) {
+			System.err.println("Could not update grade for student in database.");
+		}
+
+		return false;
+	}
+
 }

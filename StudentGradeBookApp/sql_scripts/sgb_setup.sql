@@ -75,3 +75,10 @@ insert into student_classes (class_id, student_id, grade) values (1, 5, 80);
 insert into student_classes (class_id, student_id, grade) values (1, 6, 95);
 
 select * from student_classes;
+
+-- delete from student_classes where class_id = 1 and student_id = 5;
+select * from student_classes
+join students on student_classes.student_id = students.student_id
+where class_id = 1 order by student_name, grade;
+
+select * from student_classes where class_id = 1;
