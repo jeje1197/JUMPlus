@@ -114,17 +114,18 @@ public class ClassController {
 		ColorPrinter.println(ColorPrinter.CYAN, 
 				PrettyFormatter.format(menuOptions.toArray(String[]::new)));
 
-		int studentId = -1;
+		int selectedOption = -1;
 		try {
 			ColorPrinter.print(ColorPrinter.GREEN, "Select the student you want to add: ");
-			studentId = ConsoleScanner.readInt(1, unenrolledStudents.size());
+			selectedOption = ConsoleScanner.readInt(1, unenrolledStudents.size());
 
 		} catch (InvalidInputException e) {
 			ColorPrinter.println(ColorPrinter.RED, e.getMessage() + "\n");
 			return;
 		}
 
-		boolean success = teacherDao.addStudentToClass(currentClass.getId(), studentId);
+		boolean success = teacherDao.addStudentToClass(currentClass.getId(), 
+				unenrolledStudents.get(selectedOption - 1).getStudentId());
 		if (success) {
 			ColorPrinter.println(ColorPrinter.YELLOW, "Student added to class!\n");
 		} else {
