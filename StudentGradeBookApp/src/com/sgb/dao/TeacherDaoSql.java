@@ -16,9 +16,7 @@ import com.sgb.model.Teacher;
 public class TeacherDaoSql implements TeacherDao {
 	private Connection connection = BetterConnectionManager.ConnManagerWithProperties.getConnection();
 
-	public TeacherDaoSql() {
-		
-	}
+	public TeacherDaoSql() {}
 	
 	@Override
 	public List<Teacher> getAllTeachers() {
@@ -235,23 +233,27 @@ public class TeacherDaoSql implements TeacherDao {
 	@Override
 	public List<Integer> getAverageAndMedianForClass(int classId) {
 		try {
-			PreparedStatement ps = connection.prepareStatement("select avg(grade) as 'average',"
-					+ " from student_classes "
-					+ "join students on student_classes.student_id = students.student_id "
-					+ "where class_id = ?");
+			PreparedStatement ps = connection.prepareStatement("select grade from student_classes "
+					+ "where class_id = ? order by grade asc");
 
 			ps.setInt(1, classId);
 			ResultSet rs = ps.executeQuery();
-
-			List<Integer> averageAndMedian = new ArrayList<>();
+			List<Integer> grades = new ArrayList<>();
 
 			while(rs.next()) {
-				int studentId = rs.getInt("average");
-				averageAndMedian.add(studentId);
+				int grade = rs.getInt("grade");
+				grades.add(grade);
 			}
-
-			return averageAndMedian;
-
+			
+			if (grades.isEmpty()) {
+				return grades;
+			}
+			
+			int average = grades.stream().reduce(0, (a, b) -> a + b) / grades.size();
+			int median = grades.size() % 2 == 1 ? 
+					grades.get(grades.size() / 2) :
+				(grades.get(grades.size()/2 - 1) + grades.get(grades.size()/2)) / 2;
+			return List.of(average, median);
 		} catch (SQLException e) {
 			System.err.println("Could not retrieve average and median grade from database");
 		}
