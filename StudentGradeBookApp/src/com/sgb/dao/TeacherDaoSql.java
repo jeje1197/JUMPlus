@@ -158,11 +158,11 @@ public class TeacherDaoSql implements TeacherDao {
 			List<Student> students = new ArrayList<>();
 
 			while(rs.next()) {
-				int id = rs.getInt("student_id");
-				String name = rs.getString("student_name");
+				int studentId = rs.getInt("student_id");
+				String studentName = rs.getString("student_name");
+				int grade = rs.getInt("grade");
 
-				Student student = new Student(id, name);
-				students.add(student);
+				students.add(new Student(studentId, studentName, grade));
 			}
 
 			return students;
@@ -189,8 +189,38 @@ public class TeacherDaoSql implements TeacherDao {
 			while(rs.next()) {
 				int studentId = rs.getInt("student_id");
 				String studentName = rs.getString("student_name");
+				int grade = rs.getInt("grade");
 
-				students.add(new Student(studentId, studentName));
+				students.add(new Student(studentId, studentName, grade));
+			}
+
+			return students;
+
+		} catch (SQLException e) {
+			System.err.println("Could not retrieve list of students from database");
+		}
+
+		return null;
+	}
+	
+	@Override
+	public List<Student> getAllStudentsNotInClass(int classId) {
+		try {
+			PreparedStatement ps = connection.prepareStatement("select * from students "
+					+ "where student_id not in ("
+					+ "select student_id from student_classes "
+					+ "where class_id = ?)");
+
+			ps.setInt(1, classId);
+			ResultSet rs = ps.executeQuery();
+
+			List<Student> students = new ArrayList<>();
+
+			while(rs.next()) {
+				int studentId = rs.getInt("student_id");
+				String studentName = rs.getString("student_name");
+
+				students.add(new Student(studentId, studentName, 0));
 			}
 
 			return students;
@@ -244,8 +274,9 @@ public class TeacherDaoSql implements TeacherDao {
 			while(rs.next()) {
 				int studentId = rs.getInt("student_id");
 				String studentName = rs.getString("student_name");
+				int grade = rs.getInt("grade");
 
-				students.add(new Student(studentId, studentName));
+				students.add(new Student(studentId, studentName, grade));
 			}
 
 			return students;

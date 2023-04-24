@@ -6,7 +6,7 @@ public class SchoolClass {
 	String teacherName;
 
 	public SchoolClass(int id, String name, String teacherName) {
-		super();
+		this.id = id;
 		this.name = name;
 		this.teacherName = teacherName;
 	}

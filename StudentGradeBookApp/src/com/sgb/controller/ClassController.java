@@ -11,6 +11,7 @@ import com.sgb.utils.ColorPrinter;
 import com.sgb.utils.ConsolePrinter;
 import com.sgb.utils.ConsoleScanner;
 import com.sgb.utils.PrettyFormatter;
+import com.sgb.utils.RegexManager;
 
 public class ClassController {
 	private static TeacherDaoSql teacherDao;
@@ -22,21 +23,23 @@ public class ClassController {
 		
 		List<Student> students = teacherDao.getAllStudentsInClass(schoolClass.getId());
 		List<String> menuOptions = new ArrayList<>();
-		menuOptions.add("Viewing Class: + " + schoolClass.getName());
+		menuOptions.add("Viewing Class: " + schoolClass.getName());
 		menuOptions.add("-".repeat(menuOptions.get(0).length()));
 		
 		String averageGrade = "";
 		String medianGrade = "";
 		
-		menuOptions.add("Avg: " + averageGrade + " Median: " + medianGrade);
+		menuOptions.add("Avg: " + averageGrade + "%      Median: " + medianGrade + "%");
 		menuOptions.add("");
 		
+		menuOptions.add("Students");
+		menuOptions.add("-".repeat(menuOptions.get(0).length()));
 		if (students.isEmpty()) {
 			menuOptions.add("None");
 		} else {
 			for (int i = 0; i < students.size(); i++) {
 				menuOptions.add((i + 1) + ". " + students.get(i).getName() + " Grade: "
-						+ students.get(i).getName() + "%");
+						+ students.get(i).getGrade() + "%");
 			}
 		}
 
@@ -52,7 +55,7 @@ public class ClassController {
 			int selectedOption = -1;
 			try {
 				ColorPrinter.print(ColorPrinter.GREEN, "Choose an option: ");
-				selectedOption = ConsoleScanner.readInt(1, students.size() + 2);
+				selectedOption = ConsoleScanner.readInt(1, students.size() + 3);
 				ConsolePrinter.println("");
 			} catch (InvalidInputException e) {
 				ColorPrinter.println(ColorPrinter.RED, e.getMessage() + "\n");
@@ -60,10 +63,11 @@ public class ClassController {
 			}
 
 			if (selectedOption == students.size() + 1) { // View Sorted
+				ConsolePrinter.println("");
 				ClassController.viewSorted();
 			} else if (selectedOption == students.size() + 2) { // Add new student
 				ClassController.addStudent();
-			} else if (selectedOption == students.size() + 3) { // View Sorted
+			} else if (selectedOption == students.size() + 3) { // Return
 				break;
 			} else { // Selected a student
 				ClassController.viewStudentOptions(students.get(selectedOption - 1));
@@ -73,17 +77,65 @@ public class ClassController {
 	}
 	
 	private static void viewSorted() {
+		List<Student> students = teacherDao.getStudentsInClassSorted(currentClass.getId());
+		List<String> menuOptions = new ArrayList<>();
+		menuOptions.add("Students (Sorted by name & grade)");
+		menuOptions.add("-".repeat(menuOptions.get(0).length()));
+		if (students.isEmpty()) {
+			menuOptions.add("None");
+		} else {
+			for (int i = 0; i < students.size(); i++) {
+				menuOptions.add((i + 1) + ". " + students.get(i).getName() + " Grade: "
+						+ students.get(i).getGrade() + "%");
+			}
+		}
 		
+		ColorPrinter.println(ColorPrinter.YELLOW, 
+				PrettyFormatter.format(menuOptions.toArray(String[]::new)));
+		ConsolePrinter.println("");
 	}
 	
 	private static void addStudent() {
+		ColorPrinter.println(ColorPrinter.CYAN, PrettyFormatter.format(new String[] {"ADD STUDENT"}));
 		
+		List<Student> unenrolledStudents = teacherDao.getAllStudentsNotInClass(currentClass.getId());
+		List<String> menuOptions = new ArrayList<>();
+		
+		menuOptions.add("Students Not Enrolled");
+		menuOptions.add("-".repeat(menuOptions.get(0).length()));
+		if (unenrolledStudents.isEmpty()) {
+			menuOptions.add("None");
+		} else {
+			for (int i = 0; i < unenrolledStudents.size(); i++) {
+				menuOptions.add((i + 1) + ". " + unenrolledStudents.get(i).getName());
+			}
+		}
+
+		ColorPrinter.println(ColorPrinter.CYAN, 
+				PrettyFormatter.format(menuOptions.toArray(String[]::new)));
+
+		int studentId = -1;
+		try {
+			ColorPrinter.print(ColorPrinter.GREEN, "Select the student you want to add: ");
+			studentId = ConsoleScanner.readInt(1, unenrolledStudents.size());
+
+		} catch (InvalidInputException e) {
+			ColorPrinter.println(ColorPrinter.RED, e.getMessage() + "\n");
+			return;
+		}
+
+		boolean success = teacherDao.addStudentToClass(currentClass.getId(), studentId);
+		if (success) {
+			ColorPrinter.println(ColorPrinter.YELLOW, "Student added to class!\n");
+		} else {
+			ColorPrinter.println(ColorPrinter.RED, "Failed to add student to class!\n");
+		}
 	}
-	
+
 	private static void viewStudentOptions(Student student) {
 		
 	}
-	
+
 	private static void updateGrade() {
 		
 	}
