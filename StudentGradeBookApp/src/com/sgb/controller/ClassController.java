@@ -26,8 +26,17 @@ public class ClassController {
 		menuOptions.add("-".repeat(menuOptions.get(0).length()));
 
 		List<Integer> averageAndMedian = teacherDao.getAverageAndMedianForClass(schoolClass.getId());
-		String averageGrade = averageAndMedian.get(0).toString();
-		String medianGrade = averageAndMedian.get(1).toString();
+
+		String averageGrade;
+		String medianGrade;
+
+		if (averageAndMedian.isEmpty()) {
+			averageGrade = "0";
+			medianGrade = "0";
+		} else {
+			averageGrade = averageAndMedian.get(0).toString();
+			medianGrade = averageAndMedian.get(1).toString();
+		}
 
 		menuOptions.add("Avg: " + averageGrade + "%      Median: " + medianGrade + "%");
 		menuOptions.add("");
@@ -177,7 +186,7 @@ public class ClassController {
 			ColorPrinter.println(ColorPrinter.RED, e.getMessage() + "\n");
 			return;
 		}
-		
+
 		boolean success = teacherDao.updateStudentGradeInClass(currentClass.getId(), 
 				student.getStudentId(), newGrade);
 		if (success) {

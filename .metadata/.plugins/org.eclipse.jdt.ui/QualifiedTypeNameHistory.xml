@@ -17,9 +17,6 @@
     <fullyQualifiedTypeName name="com.movieratings.utils.PrettyFormatter"/>
     <fullyQualifiedTypeName name="com.movieratings.utils.MovieCalculator"/>
     <fullyQualifiedTypeName name="com.movieratings.utils.ConsolePrinter"/>
-    <fullyQualifiedTypeName name="com.sgb.utils.ColorPrinter"/>
-    <fullyQualifiedTypeName name="com.sgb.utils.PrettyFormatter"/>
-    <fullyQualifiedTypeName name="com.sgb.utils.ConsoleScanner"/>
     <fullyQualifiedTypeName name="com.sgb.utils.ConsolePrinter"/>
     <fullyQualifiedTypeName name="com.sgb.exception.InvalidInputException"/>
     <fullyQualifiedTypeName name="com.sgb.controller.SGBController"/>
@@ -33,10 +30,14 @@
     <fullyQualifiedTypeName name="java.lang.ArrayStoreException"/>
     <fullyQualifiedTypeName name="org.junit.jupiter.api.BeforeAll"/>
     <fullyQualifiedTypeName name="com.sgb.dao.TeacherDao"/>
-    <fullyQualifiedTypeName name="com.sgb.dao.TeacherDaoSql"/>
     <fullyQualifiedTypeName name="java.util.ArrayList"/>
     <fullyQualifiedTypeName name="java.util.List"/>
     <fullyQualifiedTypeName name="com.sgb.model.Teacher"/>
     <fullyQualifiedTypeName name="com.sgb.model.SchoolClass"/>
+    <fullyQualifiedTypeName name="com.sgb.dao.TeacherDaoSql"/>
+    <fullyQualifiedTypeName name="com.sgb.controller.ClassController"/>
     <fullyQualifiedTypeName name="com.sgb.model.Student"/>
+    <fullyQualifiedTypeName name="com.sgb.utils.ConsoleScanner"/>
+    <fullyQualifiedTypeName name="com.sgb.utils.ColorPrinter"/>
+    <fullyQualifiedTypeName name="com.sgb.utils.PrettyFormatter"/>
 </qualifiedTypeNameHistroy>
