@@ -1,0 +1,59 @@
+#home {
+    margin-top: 2rem;
+    margin-left: 3rem;
+    margin-right: 3rem;
+    display: flex;
+    justify-content: space-around;
+}
+
+#title-and-buttons-container {
+    align-self: center;
+}
+
+#title-and-buttons-container h1 {
+    color: white;
+}
+
+#button-container {
+    display: flex;
+    flex-direction: column;
+    background-color: gray;
+    border-radius: 13px;
+    padding-top: 0.3rem;
+    /* margin-left: 2px;
+    margin-right: 2px;
+    margin-bottom: 1px; */
+    justify-self: center;
+}
+
+#testimonial {
+    color: white;
+}
+
+#testimonial div {
+    padding-top: 0.15rem;
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+    padding-bottom: 0.25rem;
+}
+
+#testimonial p:first-child {
+    font-size: 30px;
+}
+
+#testimonial p:nth-child(2) {
+    font-size: 25px;
+    text-align: right;
+    display: flex;
+    justify-content: flex-end;
+}
+
+#testimonial p:nth-child(2) span {
+    align-self: center;
+    margin-top: 2px;
+}
+
+#testimonial p:last-child {
+    font-size: 18px;
+    text-align: right;
+}
