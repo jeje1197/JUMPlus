@@ -1,0 +1,40 @@
+#account-home {
+    display: flex;
+    flex-direction: column;
+    padding-left: 5%;
+    padding-right: 5%;
+}
+
+#account-home h3{
+    margin-top: 10px;
+    text-align: center;
+}
+
+#account-options {
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#account-options div {
+    width: 100%;
+    display: flex;
+    flex-flow: wrap;
+}
+
+#account-options button {
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+#account-home h5 {
+    text-align: center;
+}
+
+#recent-transactions {
+    min-width: 80%;
+    max-width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 2.75rem;
+}
