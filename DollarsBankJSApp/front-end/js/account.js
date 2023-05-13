@@ -51,14 +51,6 @@ function setupOnclickListeners() {
     logoutButton.onclick = logout
 }
 
-// function loadCustomerInfo() {
-//     const customerNameDisplay = document.getElementById('customer-name')
-//     const customerEmailDisplay = document.getElementById('customer-email')
-
-//     customerNameDisplay.innerText = programMemory.currentAccount.name
-//     customerEmailDisplay.innerText = programMemory.currentAccount.email
-// }
-
 function deposit(event) {
     event.preventDefault()
     const depositAmount = Number(document.getElementById('deposit-amount').value)
@@ -67,6 +59,7 @@ function deposit(event) {
         alert('Cannot make deposit. Deposit amount must be greater than $0.00')
     } else {
         programMemory.currentAccount.balance += depositAmount
+        programMemory.currentAccount.addTransaction(`Deposit $${depositAmount}`)
         storeProgramState()
         alert(`Successfully deposited ${depositAmount}!`)
         window.location.reload()
@@ -81,6 +74,7 @@ function withdraw(event) {
         alert(`Cannot make withdrawl. Withdrawl amount must be greater than $0.00 and less than ${programMemory.currentAccount.balance}`)
     } else {
         programMemory.currentAccount.balance -= withdrawAmount
+        programMemory.currentAccount.addTransaction(`Withdrew $${withdrawAmount}`)
         storeProgramState()
         alert(`Successfully deposited ${withdrawAmount}!`)
         window.location.reload()

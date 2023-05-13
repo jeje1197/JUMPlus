@@ -108,93 +108,93 @@
       </div>
     </div>
 
-  <!-- Deposit Modal -->
-  <div class="modal fade" id="depositModal" tabindex="-1" role="dialog" aria-labelledby="loginModalCenterTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLongTitle">Deposit</h5>
-        </div>
+    <!-- Deposit Modal -->
+    <div class="modal fade" id="depositModal" tabindex="-1" role="dialog" aria-labelledby="loginModalCenterTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">Deposit</h5>
+          </div>
 
-        <form action="/">
-          <div class="modal-body">
-            <div class="input-group mb-3">
-              <div class="input-group-prepend">
-                <span class="input-group-text">
-                <i class="fas fa-user-alt" style="font-size: 18px"></i>
-                </span>
+          <form action="/">
+            <div class="modal-body">
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">
+                  <i class="fas fa-user-alt" style="font-size: 18px"></i>
+                  </span>
+                </div>
+                <input
+                  id="deposit-amount"
+                  type="number"
+                  class="form-control" 
+                  aria-label="Default" 
+                  aria-describedby="inputGroup-sizing-default"
+                  placeholder="Amount"
+                  required
+                />
               </div>
-              <input
-                id="deposit-amount"
-                type="number"
-                class="form-control" 
-                aria-label="Default" 
-                aria-describedby="inputGroup-sizing-default"
-                placeholder="Amount"
-                required
-              />
-            </div>
 
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-            <button
-              id="deposit-submit-button"
-              type="submit" 
-              class="btn btn-primary"
-              data-dismiss="modal">
-              Confirm
-            </button>
-          </div>
-        </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+              <button
+                id="deposit-submit-button"
+                type="submit" 
+                class="btn btn-primary"
+                data-dismiss="modal">
+                Confirm
+              </button>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
-  </div>
 
-  <!-- Withdraw Modal -->
-  <div class="modal fade" id="withdrawModal" tabindex="-1" role="dialog" aria-labelledby="loginModalCenterTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLongTitle">Withdraw</h5>
-        </div>
+    <!-- Withdraw Modal -->
+    <div class="modal fade" id="withdrawModal" tabindex="-1" role="dialog" aria-labelledby="loginModalCenterTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">Withdraw</h5>
+          </div>
 
-        <form action="/">
-          <div class="modal-body">
-            <div class="input-group mb-3">
-              <div class="input-group-prepend">
-                <span class="input-group-text">
-                <i class="fas fa-user-alt" style="font-size: 18px"></i>
-                </span>
+          <form action="/">
+            <div class="modal-body">
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">
+                  <i class="fas fa-user-alt" style="font-size: 18px"></i>
+                  </span>
+                </div>
+                <input
+                  id="withdraw-amount"
+                  type="number"
+                  class="form-control" 
+                  aria-label="Default" 
+                  aria-describedby="inputGroup-sizing-default"
+                  placeholder="Amount"
+                  required
+                />
               </div>
-              <input
-                id="withdraw-amount"
-                type="number"
-                class="form-control" 
-                aria-label="Default" 
-                aria-describedby="inputGroup-sizing-default"
-                placeholder="Amount"
-                required
-              />
-            </div>
 
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-            <button
-              id="withdraw-submit-button"
-              type="submit" 
-              class="btn btn-primary"
-              data-dismiss="modal">
-              Confirm
-            </button>
-          </div>
-        </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+              <button
+                id="withdraw-submit-button"
+                type="submit" 
+                class="btn btn-primary"
+                data-dismiss="modal">
+                Confirm
+              </button>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
-  </div>
 
-    <TransferModal accountDetails={accountDetails} />
+    <!-- <TransferModal accountDetails={accountDetails} /> -->
   </div>
 
   <!-- Footer -->
