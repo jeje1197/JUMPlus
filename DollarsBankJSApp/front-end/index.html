@@ -21,124 +21,125 @@
 
 <body>
     <!-- Header -->
-    <div id="header">
-        <div id="welcome-msg">Welcome to DollarsBank!</div>
-        <ul>
-        <li>
-            <i class="fas fa-envelope-square" style="font-size: 24px; color: white"></i>
-            dollarsbank@global.com
-        </li>
-        <li>
-            <i class="fas fa-phone" style="font-size: 24px; color: white"></i>
-            1 202 555 0191
-        </li>
-        </ul>
+  <div id="header">
+      <div id="welcome-msg">Welcome to DollarsBank!</div>
+      <ul>
+      <li>
+          <i class="fas fa-envelope-square" style="font-size: 24px; color: white"></i>
+          dollarsbank@global.com
+      </li>
+      <li>
+          <i class="fas fa-phone" style="font-size: 24px; color: white"></i>
+          1 202 555 0191
+      </li>
+      </ul>
+  </div>
+
+  <div id="home">
+    <div id="title-and-buttons-container">
+      <h1>Dollars Bank</h1>
+      <div id="button-container">
+          <i class="fas fa-user-alt" style="
+            font-size: 18px;
+            margin-left: 8px;
+            margin-bottom: 2px;
+          "></i>
+        <a class="btn btn-danger" data-toggle="modal" data-target="#loginModal">
+          Login
+        </a>
+        <!-- <button type="button" class="btn btn-danger">Register</button> -->
+      </div>
+    </div>
+    <div id="testimonial">
+      <img src="images/rickroll.png" alt="Money Meme"></img>
+      <div style="background-color: blue">
+        <p>Pioneers of Banking Worldwide!</p>
+        <p>
+          Rated &nbsp;
+          <span class="fa fa-star checked my-rating" style="font-size: 18px; color: yellow;"></span>
+          <span class="fa fa-star checked my-rating" style="font-size: 18px; color: yellow;"></span>
+          <span class="fa fa-star checked my-rating" style="font-size: 18px; color: yellow;"></span>
+          <span class="fa fa-star checked my-rating" style="font-size: 18px; color: yellow;"></span>
+          <span class="fa fa-star checked my-rating" style="font-size: 18px; color: yellow;"></span>
+          &nbsp; by our global customers
+          </p>
+        <p>Enjoy banking with us!</p>
+      </div>
+      <hr/>
     </div>
 
-    <div id="home">
-      <div id="title-and-buttons-container">
-        <h1>Dollars Bank</h1>
-        <div id="button-container">
-            <i class="fas fa-user-alt" style="
-              font-size: 18px;
-              margin-left: 8px;
-              margin-bottom: 2px;
-            "></i>
-          <a class="btn btn-danger" data-toggle="modal" data-target="#loginModal">
-            Login
-          </a>
-          <!-- <button type="button" class="btn btn-danger">Register</button> -->
-        </div>
-      </div>
-      <div id="testimonial">
-        <img src="images/rickroll.png" alt="Money Meme"></img>
-        <div style="background-color: blue">
-          <p>Pioneers of Banking Worldwide!</p>
-          <p>
-            Rated &nbsp;
-            <span class="fa fa-star checked my-rating" style="font-size: 18px; color: yellow;"></span>
-            <span class="fa fa-star checked my-rating" style="font-size: 18px; color: yellow;"></span>
-            <span class="fa fa-star checked my-rating" style="font-size: 18px; color: yellow;"></span>
-            <span class="fa fa-star checked my-rating" style="font-size: 18px; color: yellow;"></span>
-            <span class="fa fa-star checked my-rating" style="font-size: 18px; color: yellow;"></span>
-            &nbsp; by our global customers
-            </p>
-          <p>Enjoy banking with us!</p>
-        </div>
-        <hr/>
-      </div>
+      <!-- Login Modal -->
+    <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalCenterTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">Login</h5>
+          </div>
 
-        <!-- Login Modal -->
-      <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalCenterTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLongTitle">Login</h5>
-            </div>
-  
-            
-            <div class="modal-body">
-              <form>
-                <!-- Username Input Field -->
-                <div class="input-group mb-3">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text">
-                    <i class="fas fa-user-alt" style="font-size: 18px"></i>
-                    </span>
-                  </div>
-                  <input
-                    id="login-username"
-                    type="text"
-                    class="form-control" 
-                    aria-label="Default" 
-                    aria-describedby="inputGroup-sizing-default"
-                    placeholder="Username"
-                    required
-                  />
+          
+          <div class="modal-body">
+            <form>
+              <!-- Username Input Field -->
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">
+                  <i class="fas fa-user-alt" style="font-size: 18px"></i>
+                  </span>
                 </div>
-  
-                <!-- Password Input Field -->
-                <div class="input-group mb-3">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text">
-                    <i class="fas fa-lock" style="font-size: 18px"></i>
-                    </span>
-                  </div>
-                  <input
-                    id="login-password"
-                    type="text" 
-                    class="form-control"
-                    aria-label="Default"
-                    aria-describedby="inputGroup-sizing-default"
-                    placeholder="Password"
-                    required
-                  />
-                </div>
+                <input
+                  id="login-username"
+                  type="text"
+                  class="form-control" 
+                  aria-label="Default" 
+                  aria-describedby="inputGroup-sizing-default"
+                  placeholder="Username"
+                  required
+                />
               </div>
 
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                <button
-                  id="login-button"
-                  type="button"
-                  class="btn btn-primary"
-                  data-toggle="modal"
-                  data-target="#loginModal"
-                >
-                  Sign In
-                </button>
-              </form>
+              <!-- Password Input Field -->
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">
+                  <i class="fas fa-lock" style="font-size: 18px"></i>
+                  </span>
+                </div>
+                <input
+                  id="login-password"
+                  type="text" 
+                  class="form-control"
+                  aria-label="Default"
+                  aria-describedby="inputGroup-sizing-default"
+                  placeholder="Password"
+                  required
+                />
+              </div>
             </div>
+
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+              <button
+                id="login-button"
+                type="button"
+                class="btn btn-primary"
+                data-toggle="modal"
+                data-target="#loginModal"
+              >
+                Sign In
+              </button>
+            </form>
           </div>
         </div>
       </div>
     </div>
+  </div>
 
-    <!-- Footer -->
-    <div id="footer">
-      Copyright &copy; DollarsBank 2023
-    </div>
+  <!-- Footer -->
+  <div id="footer">
+    Copyright &copy; DollarsBank 2023
+  </div>
 
-    <script src="js/index.js"></script>
+  <script src="js/classes/customer_account.js"></script>
+  <script src="js/index.js"></script>
 </body>
 </html>

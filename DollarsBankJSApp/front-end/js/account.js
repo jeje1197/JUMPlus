@@ -1,6 +1,12 @@
-function onLoad() {
-    alert("Username: " + localStorage.getItem('username') 
-    + "Password: " + localStorage.getItem('password'))
+var programMemory = undefined
+
+function preload() {
+    const jsonData = localStorage.getItem('programMemory')
+    programMemory = JSON.parse(jsonData)
+
+    if (!programMemory.currentAccount) {
+        window.href = "./index.html"
+    }
 }
 
-// onLoad()
+preload()
