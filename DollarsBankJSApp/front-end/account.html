@@ -21,59 +21,62 @@
 <body>
     <!-- Header -->
     <div id="header">
-        <div id="welcome-msg">Welcome to DollarsBank!</div>
-        <ul>
-        <li>
-            <i class="fas fa-envelope-square" style="font-size: 24px; color: white"></i>
-            dollarsbank@global.com
-        </li>
-        <li>
-            <i class="fas fa-phone" style="font-size: 24px; color: white"></i>
-            1 202 555 0191
-        </li>
-        </ul>
+      <div id="welcome-msg">Welcome to DollarsBank!</div>
+      <ul>
+      <li>
+          <i class="fas fa-envelope-square" style="font-size: 24px; color: white"></i>
+          dollarsbank@global.com
+      </li>
+      <li>
+          <i class="fas fa-phone" style="font-size: 24px; color: white"></i>
+          1 202 555 0191
+      </li>
+      </ul>
     </div>
 
     <!-- Account Homepage -->
     <div id="account-home">
-        <h1 id="account-welcome">Welcome, name!</h1>
-        <h5 id="account-balance">Account Balance: $...</h5>
+      <h1 id="account-welcome">Welcome, name!</h1>
+      <h5 id="account-balance">Account Balance: $...</h5>
 
-        <div id="account-options">
-          <h3>What would you like to do?</h3>
-          <div>
-            <button type="button" class="btn btn-info" data-toggle="modal" data-target="#depositModal">
-              Deposit
-            </button>
-            <button type="button" class="btn btn-info" data-toggle="modal" data-target="#withdrawModal">
-              Withdraw
-            </button>
-            <button type="button" class="btn btn-info" data-toggle="modal" data-target="#transferModal">
-              Transfer
-            </button>
-            <button type="button" class="btn btn-info" data-toggle="modal" data-target="#customerInfoModal">
-              View Customer Info
-            </button>
-            <button type="button" class="btn btn-info" onclick={handleLogout}>Logout</button>
-          </div>
+      <div id="account-options">
+        <h3>What would you like to do?</h3>
+        <div>
+          <button type="button" class="btn btn-info" data-toggle="modal" data-target="#depositModal">
+            Deposit
+          </button>
+          <button type="button" class="btn btn-info" data-toggle="modal" data-target="#withdrawModal">
+            Withdraw
+          </button>
+          <button type="button" class="btn btn-info" data-toggle="modal" data-target="#transferModal">
+            Transfer
+          </button>
+          <button type="button" class="btn btn-info" data-toggle="modal" data-target="#customerInfoModal">
+            View Customer Info
+          </button>
+          <button id="logout-button" type="button" class="btn btn-info">Logout</button>
         </div>
+      </div>
 
-        <div id="recent-transactions" class="card">
-          <div class="card-header">
-            Recent Transactions
-          </div>
-          <div class="card-body">
-            <h5 class="card-title">Checking Account</h5>
-            <ul class="list-group list-group-flush">
-              {
-                accountDetails.transactions ? accountDetails.transactions.map((transaction, key) => {
-                  return (<li key={key} class="list-group-item">{ transaction }</li>)
-                }) 
-                : <li class="list-group-item"> No Transactions </li>
-              }
-            </ul>
-          </div>
+      <div id="recent-transactions" class="card">
+        <div class="card-header">
+          Recent Transactions
         </div>
+        <div class="card-body">
+          <h5 class="card-title">Checking Account</h5>
+          <ul id="transaction-list" class="list-group list-group-flush">
+            {
+              accountDetails.transactions ? accountDetails.transactions.map((transaction, key) => {
+                return (<li key={key} class="list-group-item">{ transaction }</li>)
+              }) 
+              : <li class="list-group-item"> No Transactions </li>
+            }
+          </ul>
+        </div>
+      </div>
+      
+      <!-- Customer Info Modal -->
+
         <!-- <CustomerInfoModal name={accountDetails.name} email={accountDetails.email} phone={accountDetails.phone}/>
         <DepositModal accountDetails={accountDetails} />
         <WithdrawModal accountDetails={accountDetails} />
