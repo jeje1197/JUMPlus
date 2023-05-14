@@ -197,7 +197,66 @@
       </div>
     </div>
 
-    <!-- <TransferModal accountDetails={accountDetails} /> -->
+    <!-- Transfer Modal -->
+    <div class="modal fade" id="transferModal" tabindex="-1" role="dialog" aria-labelledby="loginModalCenterTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">Transfer Funds</h5>
+          </div>
+
+          <form action="/">
+            <div class="modal-body">
+              <!-- From Account Select Element -->
+              <div class="form-group">
+                <label for="transfer-from-select-element">From</label>
+                <select class="form-control" id="transfer-from-select-element">
+                  <option>Checking</option>
+                  <option>Savings</option>
+                </select>
+              </div>
+
+              <!-- To Account Select Element -->
+              <div class="form-group">
+                <label for="transfer-to-select-element">To</label>
+                <select class="form-control" id="transfer-to-select-element">
+                  <option>Checking</option>
+                  <option>Savings</option>
+                </select>
+              </div>
+
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">
+                  <i class="fas fa-user-alt" style="font-size: 18px"></i>
+                  </span>
+                </div>
+                <input
+                  id="transfer-amount"
+                  type="number"
+                  class="form-control" 
+                  aria-label="Default" 
+                  aria-describedby="inputGroup-sizing-default"
+                  placeholder="Amount"
+                  required
+                />
+              </div>
+
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+              <button
+                id="transfer-submit-button"
+                type="submit" 
+                class="btn btn-primary"
+                data-dismiss="modal">
+                Confirm
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
   </div>
 
   <!-- Footer -->

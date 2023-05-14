@@ -48,11 +48,13 @@ function updateDisplay() {
 function setupOnclickListeners() {
     const depositSubmitButton = document.getElementById('deposit-submit-button')
     const withdrawSubmitButton = document.getElementById('withdraw-submit-button')
+    const transferSubmitButton = document.getElementById('transfer-submit-button')
     const switchAccountButton = document.getElementById('switch-account-button')
     const logoutButton = document.getElementById('logout-button')
 
     depositSubmitButton.onclick = deposit
     withdrawSubmitButton.onclick = withdraw
+    transferSubmitButton.onclick = transferBetweenAccounts
     switchAccountButton.onclick = switchAccount
     logoutButton.onclick = logout
 }
@@ -85,6 +87,47 @@ function withdraw(event) {
         alert(`Successfully deposited ${withdrawAmount}!`)
         window.location.reload()
     }
+}
+
+function transferBetweenAccounts(event) {
+    event.preventDefault()
+    const fromAccount = document.getElementById('transfer-from-select-element').value
+    const toAccount = document.getElementById('transfer-to-select-element').value
+    const transferAmount = Number(document.getElementById('transfer-amount').value)
+
+    if (fromAccount === toAccount) {
+        alert(`Cannot transfer money to same account. ${fromAccount} -> ${toAccount}`)
+        return;
+    } else if (transferAmount <= 0 || transferAmount > programMemory.currentAccount.balance) {
+        alert(`Transfer amount must be greater than $0.00 and $${programMemory.currentAccount.balance}`)
+        return;
+    }
+
+    let checkingAccount = undefined
+    let savingsAccount = undefined
+
+    if (programMemory.currentAccount.type === "Checking") {
+        checkingAccount = programMemory.currentAccount
+        savingsAccount = programMemory.currentAccount.linkedAccount
+    } else {
+        savingsAccount = programMemory.currentAccount
+        checkingAccount = programMemory.previousAccount
+    }
+
+    if (fromAccount === "Checking") {
+        checkingAccount.balance -= transferAmount
+        savingsAccount.balance += transferAmount
+        addTransaction(checkingAccount, `Transferred $${transferAmount} to Savings Account`)
+        addTransaction(savingsAccount, `Received $${transferAmount} from Checking Account transfer`)
+    } else {
+        savingsAccount.balance -= transferAmount
+        checkingAccount.balance += transferAmount
+        addTransaction(savingsAccount, `Transferred $${transferAmount} to Checking Account`)
+        addTransaction(checkingAccount, `Received $${transferAmount} from Savings Account tranfer`)
+    }
+    storeProgramState()
+    alert(`Successfully transferred $${transferAmount} from ${fromAccount} account to ${toAccount} account!`)
+    window.location.reload()
 }
 
 function addTransaction(account, message) {
