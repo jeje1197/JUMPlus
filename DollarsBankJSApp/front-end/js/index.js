@@ -3,7 +3,7 @@ var programMemory = undefined;
 
 function preload() {
     programMemory = {
-        accounts: [new Account(500, "Big Joe", "bigjoe@gmail.com", "bigjoe", "password")],
+        accounts: [new Account("Checking", 500, "Big Joe", "bigjoe@gmail.com", "bigjoe", "password", true)],
         currentAccount: undefined
     }
     

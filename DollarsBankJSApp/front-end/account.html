@@ -51,6 +51,9 @@
         <button type="button" class="btn btn-info" data-toggle="modal" data-target="#transferModal">
           Transfer
         </button>
+        <button id="switch-account-button" type="button" class="btn btn-info">
+          Switch Account
+        </button>
         <button type="button" class="btn btn-info" data-toggle="modal" data-target="#customerInfoModal">
           View Customer Info
         </button>
@@ -63,7 +66,7 @@
         Recent Transactions
       </div>
       <div class="card-body">
-        <h5 class="card-title">Checking Account</h5>
+        <h5 id="account-type" class="card-title">Checking Account</h5>
         <ul id="transaction-list" class="list-group list-group-flush">
           {
             accountDetails.transactions ? accountDetails.transactions.map((transaction, key) => {

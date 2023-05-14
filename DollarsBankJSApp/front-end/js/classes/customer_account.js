@@ -1,5 +1,6 @@
 class Account {
-    constructor(balance, name, email, username, password) {
+    constructor(type, balance, name, email, username, password, linkedAccount) {
+        this.type = type
         this.accountNumber = Math.floor(Math.random() * 100000);
         this.balance = balance
         this.name = name
@@ -7,7 +8,7 @@ class Account {
         this.username = username
         this.password = password
         this.transactions = []
-        this.linkedAccount = undefined
+        this.linkedAccount = linkedAccount ? new Account("Savings", 25, this.name, this.email, this.username, this.password, false) : undefined
     }
 
     getAccountNumber() {
