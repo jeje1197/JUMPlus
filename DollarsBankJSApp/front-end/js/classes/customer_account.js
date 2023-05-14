@@ -7,6 +7,7 @@ class Account {
         this.username = username
         this.password = password
         this.transactions = []
+        this.linkedAccount = undefined
     }
 
     getAccountNumber() {

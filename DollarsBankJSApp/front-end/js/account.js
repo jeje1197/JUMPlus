@@ -25,7 +25,7 @@ function updateDisplay() {
     // Load transaction list
     if (programMemory.currentAccount.transactions.length > 0) {
         transactionList.innerHTML = programMemory.currentAccount.transactions.map((transaction) => {
-            return `<li class="list-group-item">{ ${transaction} }</li>`
+            return `<li class="list-group-item">${transaction}</li>`
         })
     } else {
         transactionList.innerHTML = `<li class="list-group-item"> No Transactions </li>`
@@ -59,7 +59,7 @@ function deposit(event) {
         alert('Cannot make deposit. Deposit amount must be greater than $0.00')
     } else {
         programMemory.currentAccount.balance += depositAmount
-        programMemory.currentAccount.addTransaction(`Deposit $${depositAmount}`)
+        addTransaction(programMemory.currentAccount, `Deposit $${depositAmount}`)
         storeProgramState()
         alert(`Successfully deposited ${depositAmount}!`)
         window.location.reload()
@@ -74,11 +74,15 @@ function withdraw(event) {
         alert(`Cannot make withdrawl. Withdrawl amount must be greater than $0.00 and less than ${programMemory.currentAccount.balance}`)
     } else {
         programMemory.currentAccount.balance -= withdrawAmount
-        programMemory.currentAccount.addTransaction(`Withdrew $${withdrawAmount}`)
+        addTransaction(programMemory.currentAccount, `Withdrew $${withdrawAmount}`)
         storeProgramState()
         alert(`Successfully deposited ${withdrawAmount}!`)
         window.location.reload()
     }
+}
+
+function addTransaction(account, message) {
+    account.transactions.push(`[${hashCode(new String(account.accountNumber))}-${account.transactions.length + 1}] ` + message + " on " + new Date())
 }
 
 function logout() {
