@@ -1,45 +1,67 @@
 {
-    "inventory": [
-      {
-        "item_id": "001",
-        "name": "Sofa",
-        "category": "Living Room",
-        "quantity": 5,
-        "price": 599.99,
-        "color": "Gray"
-      },
-      {
-        "item_id": "002",
-        "name": "Dining Table",
-        "category": "Dining Room",
-        "quantity": 3,
-        "price": 799.99,
-        "color": "Brown"
-      },
-      {
-        "item_id": "003",
-        "name": "Bed",
-        "category": "Bedroom",
-        "quantity": 2,
-        "price": 999.99,
-        "color": "White"
-      },
-      {
-        "item_id": "004",
-        "name": "Desk",
-        "category": "Home Office",
-        "quantity": 4,
-        "price": 299.99,
-        "color": "Black"
-      },
-      {
-        "item_id": "005",
-        "name": "Bookshelf",
-        "category": "Study Room",
-        "quantity": 7,
-        "price": 199.99,
-        "color": "Oak"
-      }
-    ]
-  }
-  
+  "users": [
+    {
+      "id": 1
+    },
+    {
+      "id": 2
+    },
+    {
+      "id": 3
+    },
+    {
+      "id": 4
+    },
+    {
+      "id": 5
+    },
+    {
+      "id": 6
+    },
+    {
+      "id": 7
+    }
+  ],
+  "inventory": [
+    {
+      "item_id": "001",
+      "name": "Sofa",
+      "category": "Living Room",
+      "quantity": 5,
+      "price": 599.99,
+      "color": "Gray"
+    },
+    {
+      "item_id": "002",
+      "name": "Dining Table",
+      "category": "Dining Room",
+      "quantity": 3,
+      "price": 799.99,
+      "color": "Brown"
+    },
+    {
+      "item_id": "003",
+      "name": "Bed",
+      "category": "Bedroom",
+      "quantity": 2,
+      "price": 999.99,
+      "color": "White"
+    },
+    {
+      "item_id": "004",
+      "name": "Desk",
+      "category": "Home Office",
+      "quantity": 4,
+      "price": 299.99,
+      "color": "Black"
+    },
+    {
+      "item_id": "005",
+      "name": "Bookshelf",
+      "category": "Study Room",
+      "quantity": 7,
+      "price": 199.99,
+      "color": "Oak"
+    }
+  ]
+}
