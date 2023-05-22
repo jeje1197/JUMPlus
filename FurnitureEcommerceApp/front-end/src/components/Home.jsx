@@ -29,7 +29,10 @@ const Home = () => {
   useEffect(() => {
     const newUser = UserManager.createNewUser('joseph', 'password')
     console.log(newUser)
+
     FurnitureApi.addUser(newUser)
+    .then((result) => result)
+    .catch((error) => console.log(error))
 
     FurnitureApi.getUsers()
     .then((users) => console.log(users))
