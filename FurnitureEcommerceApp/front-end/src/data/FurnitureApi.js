@@ -72,7 +72,7 @@ const FurnitureApi = {
         const endpoint = FurnitureApi.URL + '/users/' + id
 
         const postOption = {
-            method: 'POST',
+            method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
             },
@@ -97,7 +97,6 @@ const FurnitureApi = {
         }
 
         user.orders.push(order)
-        
         FurnitureApi.updateUserById(id, user)
         return true
     }

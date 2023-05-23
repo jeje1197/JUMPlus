@@ -4,7 +4,11 @@
       "username": "joseph",
       "password": "password",
       "cart": [],
-      "orders": [],
+      "orders": [
+        {
+          "item": "The Legend of Zelda Bed"
+        }
+      ],
       "id": 1
     }
   ],

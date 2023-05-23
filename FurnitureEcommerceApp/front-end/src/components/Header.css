@@ -1,6 +1,9 @@
+#header nav {
+    position: relative;
+}
+
 #search-and-login {
     display: flex;
-
 }
 
 #login-button {
