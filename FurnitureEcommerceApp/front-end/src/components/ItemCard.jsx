@@ -1,4 +1,4 @@
-import './ItemCard.css'
+import './css/ItemCard.css'
 
 const ItemCard = ({ item }) => {
     const { image, title, description } = item

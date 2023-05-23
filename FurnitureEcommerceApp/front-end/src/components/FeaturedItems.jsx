@@ -1,7 +1,7 @@
 import React from 'react'
 import ItemCard from './ItemCard'
 
-import './FeaturedItems.css'
+import './css/FeaturedItems.css'
 
 const FeaturedItems = ({ items }) => {
   return (

@@ -1,9 +1,9 @@
-import React from 'react'
-
 const Footer = () => {
   return (
-    <div>
-      Page Footer
+    <div id="footer">
+      <nav className="navbar navbar-expand-lg navbar-light bg-light">
+        <p>Copyright @ Top Furniture</p>
+      </nav>
     </div>
   )
 }

@@ -1,13 +1,16 @@
-import React from 'react'
+const Shop = ({ user }) => {
+    return (
+        <div id="shop">
+            <h3>Welcome, {user?.username}!</h3>
 
-const Shop = () => {
-  return (
-    <div>
-      Welcome user!
+            <h5>Shop for all the latest items</h5>
 
-      Shop for all the latest items
-    </div>
-  )
+            <div>
+                <h5>Categories</h5>
+            </div>
+            
+        </div>
+    )
 }
 
 export default Shop

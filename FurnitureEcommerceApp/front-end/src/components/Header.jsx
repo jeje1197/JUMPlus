@@ -1,20 +1,18 @@
-import React from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 
-import './Header.css'
+import './css/Header.css'
 
-const Header = () => {
+const Header = ({ user }) => {
   const navigate = useNavigate()
   const goToLoginPage = () => {
     navigate("/login")
   }
   
-
   return (
     <div id="header">
       <nav className="navbar navbar-expand-lg navbar-light bg-light fixed-top">
         <div className="container-fluid">
-          <Link className="navbar-brand" to="/">JUMP's Furniture</Link>
+          <Link className="navbar-brand" to="/">TOP Furniture</Link>
           <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon"></span>
           </button>
@@ -43,9 +41,13 @@ const Header = () => {
                 <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
                 <button className="btn btn-outline-success" type="submit">Search</button>
               </form>
-              <button id="login-button" className="btn btn-primary"
-                onClick={goToLoginPage}
-              >Sign In</button>
+              {!user ? 
+                (<button id="login-button" className="btn btn-primary"
+                onClick={goToLoginPage}>Sign In</button>)
+                :
+                (<button id="login-button" className="btn btn-primary"
+                onClick={goToLoginPage}>Logout</button>)
+              }
             </div>
           </div>
         </div>

@@ -1,8 +1,7 @@
 import { FurnitureApi } from '../data/FurnitureApi'
-
 import { useNavigate } from 'react-router-dom'
 
-const Login = ({ userData }) => {
+const Login = ({ setUser }) => {
   const navigate = useNavigate()
 
   const handleLogin = async (event) => {
@@ -12,13 +11,13 @@ const Login = ({ userData }) => {
     const password = document.getElementById("login-password").value
 
     const user = await FurnitureApi.login(username, password)
-
     if (!user) {
       alert('Incorrect username or password')
       return
     }
 
-    navigate('/account')
+    setUser(user)
+    navigate('/shop')
   }
   return (
     <div id="login">

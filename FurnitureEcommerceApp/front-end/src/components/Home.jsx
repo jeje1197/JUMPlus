@@ -5,7 +5,7 @@ import f3 from '../images/furniture_3.jpg'
 import Carousel from './Carousel'
 import FeaturedItems from './FeaturedItems'
 
-import './Home.css'
+import './css/Home.css'
 import { FurnitureApi } from '../data/FurnitureApi'
 import { UserManager } from '../data/User'
 
