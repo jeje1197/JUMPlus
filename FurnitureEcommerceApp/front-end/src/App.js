@@ -8,12 +8,15 @@ import Register from './components/Register';
 
 import './App.css';
 import { useEffect, useState } from 'react';
-import Shop from './components/Shop';
 import SearchResults from './components/SearchResults';
 
 function App() {
   const [user, setUser] = useState(undefined)
   const [searchValue, setSearchValue] = useState("")
+  const [redirect, setRedirect] = useState({
+    shouldRedirect: false,
+    toURL: ""
+  })
 
   useEffect(() => {
   }, [user])
@@ -21,12 +24,12 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        <Header user={user} setUser={setUser} setSearchValue={setSearchValue}/>
+        <Header user={user} setUser={setUser} setSearchValue={setSearchValue} setRedirect={setRedirect}/>
 
         <Routes>
           <Route exact path="/" element={ <Home user={user}/> }/>
           <Route path="/register" element={ <Register /> }/>
-          <Route path="/login" element={ <Login setUser={setUser}/> }/>
+          <Route path="/login" element={ <Login setUser={setUser} redirect={redirect} setRedirect={setRedirect}/> }/>
 
           <Route path="/items" element={ <SearchResults user={user} searchValue={searchValue}/> }/>
 

@@ -5,7 +5,48 @@
       "lastName": "Evans",
       "username": "jevans",
       "password": "password",
-      "cart": [],
+      "cart": [
+        {
+          "item_id": "001",
+          "name": "Sofa",
+          "category": "Living Room",
+          "quantity": 5,
+          "price": 599.99,
+          "color": "Gray"
+        },
+        {
+          "item_id": "001",
+          "name": "Sofa",
+          "category": "Living Room",
+          "quantity": 5,
+          "price": 599.99,
+          "color": "Gray"
+        },
+        {
+          "item_id": "001",
+          "name": "Sofa",
+          "category": "Living Room",
+          "quantity": 5,
+          "price": 599.99,
+          "color": "Gray"
+        },
+        {
+          "item_id": "002",
+          "name": "Dining Table",
+          "category": "Dining Room",
+          "quantity": 3,
+          "price": 799.99,
+          "color": "Brown"
+        },
+        {
+          "item_id": "002",
+          "name": "Dining Table",
+          "category": "Dining Room",
+          "quantity": 3,
+          "price": 799.99,
+          "color": "Brown"
+        }
+      ],
       "orders": [],
       "id": 1
     }

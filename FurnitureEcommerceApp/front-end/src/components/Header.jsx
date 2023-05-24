@@ -2,7 +2,8 @@ import { Link, useNavigate } from 'react-router-dom'
 
 import './css/Header.css'
 
-const Header = ({ user, setUser, setSearchValue }) => {
+const Header = ({ user, setUser, setSearchValue, setRedirect }) => {
+  console.log("rerendered")
   const navigate = useNavigate()
 
   const goToLoginPage = () => {
@@ -26,6 +27,21 @@ const Header = ({ user, setUser, setSearchValue }) => {
     setSearchValue(searchValue)
     navigate(endpoint)
   }
+
+  // If user is signed in, go directly to page
+  // Otherwise require user to sign in, then redirect
+  // to page
+  const handleRedirectToLogin = (toURL) => {
+    if (!user) {
+      setRedirect({
+        shouldRedirect: true,
+        toURL
+      })
+      navigate("/login")
+    } else {
+      navigate(toURL)
+    }
+  } 
   
   return (
     <div id="header">
@@ -41,10 +57,20 @@ const Header = ({ user, setUser, setSearchValue }) => {
                 <Link className="nav-link" aria-current="page" to="/items">Shop</Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" to="/cart">My Cart</Link>
+                <Link className="nav-link"
+                  onClick={(event) => {
+                    event.preventDefault();
+                    handleRedirectToLogin("/cart")
+                  }}
+                >My Cart {user && `(${user.cart.length})`}</Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" to="/orders">My Orders</Link>
+                <Link className="nav-link"
+                  onClick={(event) => {
+                    event.preventDefault();
+                    handleRedirectToLogin("/orders")
+                  }}
+                >My Orders</Link>
               </li>
             </ul>
 

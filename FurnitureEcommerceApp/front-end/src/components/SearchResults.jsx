@@ -29,7 +29,7 @@ const SearchResults = ({ user, searchValue }) => {
 
   return (
     <div id="search-results">
-        <h3>Items Found: ({items.length})</h3>
+        <h3>Items Found {`(${items.length})`}</h3>
         <hr />
         {   items.length !== 0 ?
             <ItemContainer user={user} items={items}/>

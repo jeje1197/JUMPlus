@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 
 import './css/Login.css'
 
-const Login = ({ setUser }) => {
+const Login = ({ setUser, redirect, setRedirect }) => {
   const navigate = useNavigate()
 
   const handleLogin = async (event) => {
@@ -16,7 +16,16 @@ const Login = ({ setUser }) => {
     if (user) {
       setUser(user)
       alert("Successfully logged in!")
-      navigate('/items')
+
+      if (redirect.shouldRedirect) {
+        setRedirect({
+          shouldRedirect: false,
+          toURL: redirect.toURL
+        })
+        navigate(redirect.toURL)
+      } else {
+        navigate("/items")
+      }
     } else {
       alert("Incorrect username or password.")
     }
