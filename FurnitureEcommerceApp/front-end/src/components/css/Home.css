@@ -5,3 +5,7 @@
 .carousel-image {
     height: 400px;
 }
+
+#home h3 {
+    margin-top: 1em;
+}

@@ -1,13 +1,13 @@
 import React from 'react'
 import ItemCard from './ItemCard'
 
-import './css/FeaturedItems.css'
+import './css/ItemContainer.css'
 
-const ItemContainer = ({ items }) => {
+const ItemContainer = ({ user, items }) => {
   return (
     <div id="featured-items">
       {items.map(
-        (item, index) => <ItemCard key={index} item={item} />
+        (item, index) => <ItemCard key={index} user={user} item={item} />
       )}
     </div>
   )

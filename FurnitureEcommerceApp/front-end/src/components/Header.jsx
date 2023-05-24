@@ -41,7 +41,10 @@ const Header = ({ user, setUser, setSearchValue }) => {
                 <Link className="nav-link" aria-current="page" to="/items">Shop</Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link">My Cart</Link>
+                <Link className="nav-link" to="/cart">My Cart</Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/orders">My Orders</Link>
               </li>
             </ul>
 

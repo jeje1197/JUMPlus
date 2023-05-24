@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { FurnitureApi } from '../data/FurnitureApi'
-import ItemContainer from './FeaturedItems'
+import ItemContainer from './ItemContainer'
 
 import './css/SearchResults.css'
 
@@ -11,6 +11,9 @@ const SearchResults = ({ user, searchValue }) => {
     const setDefaultSearchValue = () => {
         const queryParameters = new URLSearchParams(window.location.search)
         searchValue = queryParameters.get("search")
+        if (!searchValue) {
+            searchValue = ""
+        }
     }
     setDefaultSearchValue()
 
@@ -28,7 +31,11 @@ const SearchResults = ({ user, searchValue }) => {
     <div id="search-results">
         <h3>Items Found: ({items.length})</h3>
         <hr />
-        <ItemContainer items={items}/>
+        {   items.length !== 0 ?
+            <ItemContainer user={user} items={items}/>
+            :
+            <h4>No Results</h4>
+        }
     </div>
   )
 }

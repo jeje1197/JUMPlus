@@ -13,10 +13,9 @@ import SearchResults from './components/SearchResults';
 
 function App() {
   const [user, setUser] = useState(undefined)
-  const [searchValue, setSearchValue] = useState('')
+  const [searchValue, setSearchValue] = useState("")
 
   useEffect(() => {
-
   }, [user])
 
   return (
@@ -29,7 +28,6 @@ function App() {
           <Route path="/register" element={ <Register /> }/>
           <Route path="/login" element={ <Login setUser={setUser}/> }/>
 
-          <Route path="/shop" element={ <Shop user={user}/> }/>
           <Route path="/items" element={ <SearchResults user={user} searchValue={searchValue}/> }/>
 
         </Routes>

@@ -16,7 +16,7 @@ const Login = ({ setUser }) => {
     if (user) {
       setUser(user)
       alert("Successfully logged in!")
-      navigate('/shop')
+      navigate('/items')
     } else {
       alert("Incorrect username or password.")
     }

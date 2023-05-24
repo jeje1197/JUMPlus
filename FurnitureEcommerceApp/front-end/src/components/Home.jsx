@@ -3,7 +3,7 @@ import f1 from '../images/furniture_1.jpg'
 import f2 from '../images/furniture_2.jpg'
 import f3 from '../images/furniture_3.jpg'
 import Carousel from './Carousel'
-import ItemContainer from './FeaturedItems'
+import ItemContainer from './ItemContainer'
 
 import './css/Home.css'
 import { FurnitureApi } from '../data/FurnitureApi'
@@ -25,7 +25,9 @@ const Home = ({ user }) => {
     <div id="home">
       <Carousel images={carouselImages}/>
 
-      <ItemContainer items={featuredItems} />
+      <h3>Featured Items</h3>
+      <hr />
+      <ItemContainer user={user} items={featuredItems} />
     </div>
   )
 }
