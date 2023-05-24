@@ -2,7 +2,7 @@ import { Link, useNavigate } from 'react-router-dom'
 
 import './css/Header.css'
 
-const Header = ({ user, setUser }) => {
+const Header = ({ user, setUser, setSearchValue }) => {
   const navigate = useNavigate()
 
   const goToLoginPage = () => {
@@ -17,6 +17,15 @@ const Header = ({ user, setUser }) => {
     setUser(undefined)
     navigate("/")
   }
+
+  const search = async (event) => {
+    event.preventDefault()
+
+    const searchValue = document.getElementById('search-box').value
+    const endpoint = '/items?search=' + searchValue
+    setSearchValue(searchValue)
+    navigate(endpoint)
+  }
   
   return (
     <div id="header">
@@ -29,26 +38,16 @@ const Header = ({ user, setUser }) => {
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item">
-                <Link className="nav-link active" aria-current="page" to="">Home</Link>
+                <Link className="nav-link" aria-current="page" to="/items">Shop</Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link">Link</Link>
-              </li>
-              <li className="nav-item dropdown">
-                <a className="nav-link dropdown-toggle" href="/" id="navbarDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                  Dropdown
-                </a>
-                <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <li><button className="dropdown-item">Action</button></li>
-                  <li><button className="dropdown-item">Another action</button></li>
-                  <li><hr className="dropdown-divider" /></li>
-                  <li><button className="dropdown-item">Something else here</button></li>
-                </ul>
+                <Link className="nav-link">My Cart</Link>
               </li>
             </ul>
+
             <div id="search-and-login">
-              <form className="d-flex">
-                <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
+              <form className="d-flex" onSubmit={search}>
+                <input id="search-box"className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
                 <button className="btn btn-outline-success" type="submit">Search</button>
               </form>
               {!user ? 

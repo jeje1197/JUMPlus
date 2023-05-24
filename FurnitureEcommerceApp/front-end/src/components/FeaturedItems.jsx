@@ -3,7 +3,7 @@ import ItemCard from './ItemCard'
 
 import './css/FeaturedItems.css'
 
-const FeaturedItems = ({ items }) => {
+const ItemContainer = ({ items }) => {
   return (
     <div id="featured-items">
       {items.map(
@@ -13,4 +13,4 @@ const FeaturedItems = ({ items }) => {
   )
 }
 
-export default FeaturedItems
+export default ItemContainer

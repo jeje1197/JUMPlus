@@ -3,12 +3,12 @@ import f1 from '../images/furniture_1.jpg'
 import f2 from '../images/furniture_2.jpg'
 import f3 from '../images/furniture_3.jpg'
 import Carousel from './Carousel'
-import FeaturedItems from './FeaturedItems'
+import ItemContainer from './FeaturedItems'
 
 import './css/Home.css'
 import { FurnitureApi } from '../data/FurnitureApi'
 
-const Home = () => {
+const Home = ({ user }) => {
   const carouselImages = [f1, f2, f3]
   const [featuredItems, setFeaturedItems] = useState([])
 
@@ -16,7 +16,7 @@ const Home = () => {
     const getFeaturedItems = async () => {
       setFeaturedItems(await FurnitureApi.getItems())
     }
-    
+
     getFeaturedItems()
   }, [])
 
@@ -25,7 +25,7 @@ const Home = () => {
     <div id="home">
       <Carousel images={carouselImages}/>
 
-      <FeaturedItems items={featuredItems} />
+      <ItemContainer items={featuredItems} />
     </div>
   )
 }
