@@ -14,13 +14,13 @@ function App() {
   const [user, setUser] = useState(undefined)
 
   useEffect(() => {
-
+    
   }, [user])
 
   return (
     <div className="App">
       <BrowserRouter>
-        <Header user={user}/>
+        <Header user={user} setUser={setUser}/>
 
         <Routes>
           <Route exact path="/" element={ <Home /> }/>

@@ -1,15 +1,15 @@
 import './css/ItemCard.css'
 
 const ItemCard = ({ item }) => {
-    const { image, title, description } = item
+    const { image, name, price } = item
 
     return (
         <div className="card item-card" style={{width: "18rem"}}>
             <div className="card-body">
-                <img className="card-img-top" src={image} alt="Card cap"/>
-                <h5 className="card-title">{title}</h5>
-                <p className="card-text">{description}</p>
-                <button href="#" className="btn btn-primary">Add To Cart</button>
+                <h4 className="card-title">{name}</h4>
+                <img className="card-img-top" src={image} alt="Card caption"/>
+                <p className="card-text">${price}</p>
+                <button className="btn btn-primary">Add To Cart</button>
             </div>
         </div>
   )

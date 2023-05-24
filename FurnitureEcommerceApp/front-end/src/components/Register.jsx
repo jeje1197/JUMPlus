@@ -25,7 +25,7 @@ const Register = () => {
 
     const result = await FurnitureApi.addUser(userData)
     if (result) {
-      alert("Successfully registered account. Login to use your account.")
+      alert("Successfully registered account! Login to use your account.")
       navigate('/login')
     } else {
       alert("Username already exists. Please choose a different username.")

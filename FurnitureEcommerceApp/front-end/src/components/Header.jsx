@@ -2,7 +2,7 @@ import { Link, useNavigate } from 'react-router-dom'
 
 import './css/Header.css'
 
-const Header = ({ user }) => {
+const Header = ({ user, setUser }) => {
   const navigate = useNavigate()
 
   const goToLoginPage = () => {
@@ -11,6 +11,11 @@ const Header = ({ user }) => {
 
   const goToRegisterPage = () => {
     navigate("/register")
+  }
+
+  const logout = () => {
+    setUser(undefined)
+    navigate("/")
   }
   
   return (
@@ -58,7 +63,7 @@ const Header = ({ user }) => {
                 :
                 (
                   <button id="login-button" className="btn btn-primary"
-                  onClick={goToLoginPage}>Logout</button>
+                  onClick={logout}>Logout</button>
                 )
               }
             </div>

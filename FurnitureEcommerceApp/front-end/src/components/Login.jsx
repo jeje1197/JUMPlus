@@ -14,10 +14,11 @@ const Login = ({ setUser }) => {
 
     const user = await FurnitureApi.login(username, password)
     if (user) {
+      setUser(user)
       alert("Successfully logged in!")
       navigate('/shop')
     } else {
-      alert("Incorrect username or password")
+      alert("Incorrect username or password.")
     }
   }
 

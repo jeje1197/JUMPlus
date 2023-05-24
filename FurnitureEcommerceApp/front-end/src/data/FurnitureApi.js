@@ -1,6 +1,32 @@
 const FurnitureApi = {
     URL: 'http://localhost:3500',
 
+    // Get all items from the db
+    getItems: async () => {
+        const endpoint = FurnitureApi.URL + '/items'
+        let items = []
+        
+        await fetch(endpoint)
+        .then((response) => response.json())
+        .then((json) => items = json)
+        .catch((error) => console.log(error))
+        
+        return items
+    },
+
+    // Gets all items that contain a substring
+    getItemsByQueryString: async (query_string) => {
+        const endpoint = FurnitureApi.URL + '/items?q=' + query_string
+        let items = []
+        
+        await fetch(endpoint)
+        .then((response) => response.json())
+        .then((json) => items = json)
+        .catch((error) => console.log(error))
+        
+        return items
+    },
+
     // Working
     // Return a list of users
     getUsers: async () => {
