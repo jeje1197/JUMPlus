@@ -1,4 +1,18 @@
 /* Reset properties changed by bootstrap */
+#register form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#register form label {
+    margin-right: 10px;
+}
+
 fieldset, legend {
     all: revert;
+}
+
+fieldset {
+    width: fit-content;
 }

@@ -30,7 +30,6 @@ const Home = () => {
     <div id="home">
       <Carousel images={carouselImages}/>
 
-
       <FeaturedItems items={featuredItems} />
     </div>
   )

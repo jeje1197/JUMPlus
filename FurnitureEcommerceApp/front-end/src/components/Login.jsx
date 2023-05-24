@@ -1,71 +1,38 @@
 import { FurnitureApi } from '../data/FurnitureApi'
 import { useNavigate } from 'react-router-dom'
 
+import './css/Login.css'
+
 const Login = ({ setUser }) => {
   const navigate = useNavigate()
 
   const handleLogin = async (event) => {
     event.preventDefault()
 
-    const username = document.getElementById("login-username").value
-    const password = document.getElementById("login-password").value
+    const username = document.getElementById('login-username').value
+    const password = document.getElementById('login-password').value
 
     const user = await FurnitureApi.login(username, password)
-    if (!user) {
-      alert('Incorrect username or password')
-      return
+    if (user) {
+      alert("Successfully logged in!")
+      navigate('/shop')
+    } else {
+      alert("Incorrect username or password")
     }
-
-    setUser(user)
-    navigate('/shop')
   }
+
   return (
     <div id="login">
-      <form action="/">
-        {/* Username Input Field */}
-        <div className="input-group mb-3">
-          <div className="input-group-prepend">
-            <span className="input-group-text">
-              <i className="fas fa-user-alt" style={{ fontSize: "18px" }}></i>
-            </span>
-          </div>
-          <input
-            id="login-username"
-            type="text"
-            className="form-control"
-            aria-label="Default"
-            aria-describedby="inputGroup-sizing-default"
-            placeholder="Username"
-            required
-          />
-        </div>
-
-        {/* Password Input Field */}
-        <div className="input-group mb-3">
-          <div className="input-group-prepend">
-            <span className="input-group-text">
-              <i className="fas fa-lock" style={{ fontSize: "18px" }}></i>
-            </span>
-          </div>
-          <input
-            id="login-password"
-            type="text"
-            className="form-control"
-            aria-label="Default"
-            aria-describedby="inputGroup-sizing-default"
-            placeholder="Password"
-            required
-          />
-        </div>
-
-        <button
-          type="submit"
-          className="btn btn-primary"
-          onClick={handleLogin}
-        >
-          Sign In
-        </button>
-      </form>
+      <form onSubmit={handleLogin}>
+      <fieldset>
+        <legend>Login</legend>
+        <label htmlFor="login-username">Username</label>
+        <input type="text" id="login-username" name="uname" /><br /><br />
+        <label htmlFor="login-password">Password</label>
+        <input type="password" id="login-password" name="pw"/><br /><br />
+        <input type="submit" value="Submit"/>
+      </fieldset>
+    </form>
     </div>
   )
 }

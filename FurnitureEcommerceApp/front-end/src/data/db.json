@@ -1,14 +1,12 @@
 {
   "users": [
     {
-      "username": "joseph",
+      "firstName": "Joseph",
+      "lastName": "Evans",
+      "username": "jevans",
       "password": "password",
       "cart": [],
-      "orders": [
-        {
-          "item": "The Legend of Zelda Bed"
-        }
-      ],
+      "orders": [],
       "id": 1
     }
   ],

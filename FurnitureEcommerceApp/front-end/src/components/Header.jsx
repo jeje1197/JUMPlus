@@ -4,8 +4,13 @@ import './css/Header.css'
 
 const Header = ({ user }) => {
   const navigate = useNavigate()
+
   const goToLoginPage = () => {
     navigate("/login")
+  }
+
+  const goToRegisterPage = () => {
+    navigate("/register")
   }
   
   return (
@@ -42,11 +47,19 @@ const Header = ({ user }) => {
                 <button className="btn btn-outline-success" type="submit">Search</button>
               </form>
               {!user ? 
-                (<button id="login-button" className="btn btn-primary"
-                onClick={goToLoginPage}>Sign In</button>)
+                (
+                  <>
+                    <button id="login-button" className="btn btn-primary"
+                    onClick={goToLoginPage}>Sign In</button>
+                    <button id="login-button" className="btn btn-primary"
+                    onClick={goToRegisterPage}>Sign Up</button>
+                  </>
+                )
                 :
-                (<button id="login-button" className="btn btn-primary"
-                onClick={goToLoginPage}>Logout</button>)
+                (
+                  <button id="login-button" className="btn btn-primary"
+                  onClick={goToLoginPage}>Logout</button>
+                )
               }
             </div>
           </div>
