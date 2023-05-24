@@ -1,0 +1,4 @@
+/* Reset properties changed by bootstrap */
+fieldset, legend {
+    all: revert;
+}
