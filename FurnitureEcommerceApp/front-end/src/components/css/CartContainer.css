@@ -1,0 +1,7 @@
+#cart-items {
+    display: flex;
+    padding: 4em;
+    justify-content: space-evenly;
+    flex-flow: wrap;
+    row-gap: 2em;
+}

@@ -9,6 +9,7 @@ import Register from './components/Register';
 import './App.css';
 import { useEffect, useState } from 'react';
 import SearchResults from './components/SearchResults';
+import Cart from './components/Cart';
 
 function App() {
   const [user, setUser] = useState(undefined)
@@ -27,11 +28,12 @@ function App() {
         <Header user={user} setUser={setUser} setSearchValue={setSearchValue} setRedirect={setRedirect}/>
 
         <Routes>
-          <Route exact path="/" element={ <Home user={user}/> }/>
+          <Route exact path="/" element={ <Home user={user} setUser={setUser} setRedirect={setRedirect}/> }/>
           <Route path="/register" element={ <Register /> }/>
           <Route path="/login" element={ <Login setUser={setUser} redirect={redirect} setRedirect={setRedirect}/> }/>
 
-          <Route path="/items" element={ <SearchResults user={user} searchValue={searchValue}/> }/>
+          <Route path="/items" element={ <SearchResults user={user} setUser={setUser} setRedirect={setRedirect} searchValue={searchValue}/> }/>
+          <Route path="/cart" element={ <Cart user={user} setUser={setUser} setRedirect={setRedirect}/> }/>
 
         </Routes>
  

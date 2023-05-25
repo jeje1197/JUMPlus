@@ -1,9 +1,9 @@
 import { Link, useNavigate } from 'react-router-dom'
 
 import './css/Header.css'
+import { useEffect } from 'react'
 
 const Header = ({ user, setUser, setSearchValue, setRedirect }) => {
-  console.log("rerendered")
   const navigate = useNavigate()
 
   const goToLoginPage = () => {
@@ -37,11 +37,12 @@ const Header = ({ user, setUser, setSearchValue, setRedirect }) => {
         shouldRedirect: true,
         toURL
       })
+      alert("You must login first.")
       navigate("/login")
     } else {
       navigate(toURL)
     }
-  } 
+  }
   
   return (
     <div id="header">
