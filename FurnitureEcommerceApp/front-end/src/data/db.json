@@ -5,7 +5,24 @@
       "lastName": "Evans",
       "username": "jevans",
       "password": "password",
-      "cart": [],
+      "cart": [
+        {
+          "item_id": "001",
+          "name": "Sofa",
+          "category": "Living Room",
+          "quantity": 5,
+          "price": 599.99,
+          "color": "Gray"
+        },
+        {
+          "item_id": "005",
+          "name": "Bookshelf",
+          "category": "Study Room",
+          "quantity": 7,
+          "price": 199.99,
+          "color": "Oak"
+        }
+      ],
       "orders": [],
       "id": 1
     }

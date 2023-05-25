@@ -7,7 +7,7 @@ const ItemContainer = ({ user, setUser, items }) => {
   return (
     <div id="featured-items">
       {items.map(
-        (item, index) => <ItemCard key={index} user={user} setUser={setUser} item={item} />
+        (item) => <ItemCard key={item.item_id} user={user} setUser={setUser} item={item} />
       )}
     </div>
   )

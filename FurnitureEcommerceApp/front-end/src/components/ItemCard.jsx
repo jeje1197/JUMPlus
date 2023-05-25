@@ -17,8 +17,8 @@ const ItemCard = ({ user, setUser, item, inCart, setRedirect }) => {
             return
         }
         user.cart.push(item)
-        await FurnitureApi.updateUserById(user.id, user)
         setUser(user)
+        await FurnitureApi.updateUserById(user.id, user)
     }
 
     const removeFromCart = async () => {
@@ -27,9 +27,16 @@ const ItemCard = ({ user, setUser, item, inCart, setRedirect }) => {
             return
         }
         
-        user.cart.push(item)
-        await FurnitureApi.updateUserById(user.id, user)
+        let indexFound = -1
+        for (let i = 0; i < user.cart.length; i++) {
+            if (user.cart[i].name === item.name) {
+                indexFound = i
+                break
+            }
+        }
+        user.cart.splice(indexFound, 1)
         setUser(user)
+        await FurnitureApi.updateUserById(user.id, user)
     }
 
     return (
@@ -39,7 +46,7 @@ const ItemCard = ({ user, setUser, item, inCart, setRedirect }) => {
                 <img className="card-img-top" src={image} alt="Card caption"/>
                 <p className="card-text">${price}</p>
                 { inCart ?
-                    <button className="btn btn-primary" onClick={addToCart}>Remove From Cart</button>
+                    <button className="btn btn-primary" onClick={removeFromCart}>Remove From Cart</button>
                     :
                     <button className="btn btn-primary" onClick={addToCart}>Add To Cart</button>
                 }
