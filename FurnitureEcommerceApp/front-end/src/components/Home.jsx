@@ -8,7 +8,7 @@ import ItemContainer from './ItemContainer'
 import './css/Home.css'
 import { FurnitureApi } from '../data/FurnitureApi'
 
-const Home = ({ user, setUser }) => {
+const Home = ({ user, setUser, setRedirect }) => {
   const carouselImages = [f1, f2, f3]
   const [featuredItems, setFeaturedItems] = useState([])
 
@@ -27,7 +27,7 @@ const Home = ({ user, setUser }) => {
 
       <h3>Featured Items</h3>
       <hr />
-      <ItemContainer user={user} setUser={setUser} items={featuredItems} />
+      <ItemContainer user={user} setUser={setUser} setRedirect={setRedirect} items={featuredItems} />
     </div>
   )
 }

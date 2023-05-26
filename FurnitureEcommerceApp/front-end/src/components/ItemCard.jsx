@@ -17,12 +17,13 @@ const ItemCard = ({ user, setUser, item, inCart, setRedirect }) => {
             return
         }
         user.cart.push(item)
-        setUser(user)
+        setUser({...user})
         await FurnitureApi.updateUserById(user.id, user)
     }
 
     const removeFromCart = async () => {
         if (!user) {
+            alert("You must login first.")
             navigate('/login')
             return
         }
@@ -35,7 +36,7 @@ const ItemCard = ({ user, setUser, item, inCart, setRedirect }) => {
             }
         }
         user.cart.splice(indexFound, 1)
-        setUser(user)
+        setUser({...user})
         await FurnitureApi.updateUserById(user.id, user)
     }
 
@@ -44,7 +45,7 @@ const ItemCard = ({ user, setUser, item, inCart, setRedirect }) => {
             <div className="card-body">
                 <h4 className="card-title">{name}</h4>
                 <img className="card-img-top" src={image} alt="Card caption"/>
-                <p className="card-text">${price}</p>
+                <h5 className="card-text">${price}</h5>
                 { inCart ?
                     <button className="btn btn-primary" onClick={removeFromCart}>Remove From Cart</button>
                     :

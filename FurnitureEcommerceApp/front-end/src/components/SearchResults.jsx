@@ -4,7 +4,7 @@ import ItemContainer from './ItemContainer'
 
 import './css/SearchResults.css'
 
-const SearchResults = ({ user, setUser, searchValue }) => {
+const SearchResults = ({ user, setUser, searchValue, setRedirect }) => {
     const [items, setItems] = useState([])
 
     // Set up default search value if navigated to directly
@@ -32,7 +32,7 @@ const SearchResults = ({ user, setUser, searchValue }) => {
         <h3>Items Found {`(${items.length})`}</h3>
         <hr />
         {   items.length !== 0 ?
-            <ItemContainer user={user} setUser={setUser} items={items}/>
+            <ItemContainer user={user} setUser={setUser} setRedirect={setRedirect} items={items}/>
             :
             <h4>No Results</h4>
         }

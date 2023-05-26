@@ -1,7 +1,6 @@
 import { Link, useNavigate } from 'react-router-dom'
 
 import './css/Header.css'
-import { useEffect } from 'react'
 
 const Header = ({ user, setUser, setSearchValue, setRedirect }) => {
   const navigate = useNavigate()
@@ -63,7 +62,7 @@ const Header = ({ user, setUser, setSearchValue, setRedirect }) => {
                     event.preventDefault();
                     handleRedirectToLogin("/cart")
                   }}
-                >My Cart {user && `(${user.cart.length})`}</Link>
+                >My Cart {user ? `(${user.cart.length})` : null}</Link>
               </li>
               <li className="nav-item">
                 <Link className="nav-link"

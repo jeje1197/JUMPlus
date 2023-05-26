@@ -4,9 +4,9 @@ const Footer = () => {
   return (
     <div id="footer">
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
-        <div className="container-fluid">
-          Copyright @ Top Furniture
-        </div>
+        <span className="navbar mx-auto">
+          Copyright @ TOP Furniture
+        </span>
       </nav>
     </div>
   )

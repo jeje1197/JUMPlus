@@ -5,3 +5,7 @@
 #purchase-items {
     
 }
+
+#cart-buttons button {
+    margin: 5px;
+}

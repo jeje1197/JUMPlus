@@ -10,6 +10,8 @@ import './App.css';
 import { useEffect, useState } from 'react';
 import SearchResults from './components/SearchResults';
 import Cart from './components/Cart';
+import OrderSummary from './components/OrderSummary';
+import Orders from './components/Orders';
 
 function App() {
   const [user, setUser] = useState(undefined)
@@ -34,7 +36,8 @@ function App() {
 
           <Route path="/items" element={ <SearchResults user={user} setUser={setUser} setRedirect={setRedirect} searchValue={searchValue}/> }/>
           <Route path="/cart" element={ <Cart user={user} setUser={setUser} setRedirect={setRedirect}/> }/>
-
+          <Route path="/order-summary" element={ <OrderSummary user={user} /> }/>
+          <Route path="/orders" element={ <Orders user={user} /> }/>
         </Routes>
  
         <Footer />
