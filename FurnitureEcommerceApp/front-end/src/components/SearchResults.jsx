@@ -29,13 +29,10 @@ const SearchResults = ({ user, setUser, searchValue, setRedirect }) => {
 
   return (
     <div id="search-results">
-        <h3>Items Found {`(${items.length})`}</h3>
+        <h3>Search Results {`(${items.length})`}</h3>
         <hr />
-        {   items.length !== 0 ?
-            <ItemContainer user={user} setUser={setUser} setRedirect={setRedirect} items={items}/>
-            :
-            <h4>No Results</h4>
-        }
+        
+        <ItemContainer user={user} setUser={setUser} setRedirect={setRedirect} items={items}/> 
     </div>
   )
 }

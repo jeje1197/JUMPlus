@@ -45,7 +45,7 @@ const ItemCard = ({ user, setUser, item, inCart, setRedirect }) => {
             <div className="card-body">
                 <h4 className="card-title">{name}</h4>
                 <img className="card-img-top" src={image} alt="Card caption"/>
-                <h5 className="card-text">${price}</h5>
+                <h5 className="card-text">${price.toFixed(2)}</h5>
                 { inCart ?
                     <button className="btn btn-primary" onClick={removeFromCart}>Remove From Cart</button>
                     :
