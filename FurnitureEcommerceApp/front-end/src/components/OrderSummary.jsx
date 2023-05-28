@@ -1,13 +1,14 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 const OrderSummary = ({ user, setRedirect }) => {
   const navigate = useNavigate()
+  let orderId = -1
   let order = undefined
 
   const getOrder = () => {
     const queryParameters = new URLSearchParams(window.location.search)
-    const orderId = queryParameters.get("id")
+    orderId = Number(queryParameters.get("id"))
 
     if (!user) {
       return
@@ -26,13 +27,13 @@ const OrderSummary = ({ user, setRedirect }) => {
     if (!user) {
       setRedirect({
         shouldRedirect: true,
-        toURL: "/cart"
+        toURL: "/order-summary?id=" + orderId
       })
       alert("You must login first.")
       navigate('/login')
       return
     }
-  }, [user, navigate, setRedirect])
+  }, [user, navigate, setRedirect, orderId])
 
   return (
     <div id="order-summary">
@@ -46,8 +47,8 @@ const OrderSummary = ({ user, setRedirect }) => {
             <hr />
             <ul>
             {
-              order.items.map((item) => {
-                  return <p>{item.name}</p>
+              order.items.map((item, index) => {
+                return <p key={index}>{item.name}</p>
               })
             }
             </ul>
