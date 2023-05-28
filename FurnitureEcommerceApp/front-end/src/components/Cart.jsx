@@ -45,8 +45,13 @@ const Cart = ({ user, setUser, setRedirect }) => {
   }
 
   const completeOrder = async () => {
+    if (user.cart.length === 0) {
+      alert("Cannot complete order. No items in cart.")
+      return
+    }
     const order = {
       orderId: user.orders.length + 1,
+      date:new Date(),
       items: user.cart,
       priceBeforeDiscount,
       discount,

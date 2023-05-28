@@ -36,8 +36,8 @@ function App() {
 
           <Route path="/items" element={ <SearchResults user={user} setUser={setUser} setRedirect={setRedirect} searchValue={searchValue}/> }/>
           <Route path="/cart" element={ <Cart user={user} setUser={setUser} setRedirect={setRedirect}/> }/>
-          <Route path="/order-summary" element={ <OrderSummary user={user} /> }/>
-          <Route path="/orders" element={ <Orders user={user} /> }/>
+          <Route path="/order-summary" element={ <OrderSummary user={user} setRedirect={setRedirect}/> }/>
+          <Route path="/orders" element={ <Orders user={user} setRedirect={setRedirect}/> }/>
         </Routes>
  
         <Footer />

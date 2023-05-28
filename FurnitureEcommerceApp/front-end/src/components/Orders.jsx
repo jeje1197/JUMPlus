@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 import './css/Orders.css'
+import OrderContainer from './OrderContainer'
 
 const Orders = ({ user, setRedirect }) => {
   const navigate = useNavigate()
@@ -19,16 +20,10 @@ const Orders = ({ user, setRedirect }) => {
     
   return (
     <div id="orders">
-        <h3>Your Orders</h3>
+      <h3>Your Orders</h3>
+      <hr />
       {
-        user.orders.map((order) => {
-            return (
-              <>
-                <div>Order Information</div>
-                <div>View Order</div>
-              </>
-            )
-        })
+        <OrderContainer user={user}/>
       }
     </div>
   )
