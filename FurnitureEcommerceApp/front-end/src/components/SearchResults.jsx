@@ -25,7 +25,7 @@ const SearchResults = ({ user, setUser, searchValue, setRedirect }) => {
         }
 
         loadItems()
-    }, [searchValue])
+    }, [user, searchValue])
 
   return (
     <div id="search-results">

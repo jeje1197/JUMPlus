@@ -10,7 +10,7 @@ const ItemCard = ({ user, setUser, item, inCart, setRedirect }) => {
         if (!user) {
             setRedirect({
                 shouldRedirect: true,
-                toURL: window.location.href
+                toURL: window.location.pathname
             })
             alert("You must login first.")
             navigate('/login')
