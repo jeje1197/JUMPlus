@@ -79,7 +79,8 @@ const Header = ({ user, setUser, setSearchValue, setRedirect }) => {
                 <input id="search-box"className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
                 <button className="btn btn-outline-success" type="submit">Search</button>
               </form>
-              {!user ? 
+            </div>
+            {!user ? 
                 (
                   <>
                     <button id="login-button" className="btn btn-primary"
@@ -94,7 +95,6 @@ const Header = ({ user, setUser, setSearchValue, setRedirect }) => {
                   onClick={logout}>Logout</button>
                 )
               }
-            </div>
           </div>
         </div>
       </nav>

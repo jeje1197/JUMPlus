@@ -5,6 +5,7 @@
 
 #search-and-login {
     display: flex;
+    justify-content: center;
 }
 
 #login-button {
