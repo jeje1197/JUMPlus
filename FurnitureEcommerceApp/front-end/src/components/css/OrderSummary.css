@@ -5,16 +5,16 @@
 #order-summary h3:nth-of-type(2){
     margin-top: 1em;
     margin-bottom: 3em;
-    background-color: white;
+    background-color: wheat;
     padding: 0.7em;
-    border: 5px solid black;
+    border: 3px solid black;
 }
 
 #order-summary table, th, td {
-    background-color: white;
+    background-color: wheat;
     border: 1px solid;
 }
 
 #order-summary table {
-    border: 5px solid; 
+    border: 3px solid; 
 }

@@ -5,3 +5,7 @@
     flex-flow: wrap;
     row-gap: 2em;
 }
+
+#cart-items h5 {
+    color: white;
+}

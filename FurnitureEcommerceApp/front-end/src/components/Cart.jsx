@@ -28,7 +28,7 @@ const Cart = ({ user, setUser, setRedirect }) => {
       discount = priceBeforeDiscount * discountRate
     }
     subtotal = priceBeforeDiscount + discount
-    
+
     // Calculate and apply tax
     tax = subtotal * taxRate
     total = subtotal + tax
@@ -40,7 +40,7 @@ const Cart = ({ user, setUser, setRedirect }) => {
 
   const clearCart = async () => {
     user.cart = []
-    setUser({...user})
+    setUser({ ...user })
     await FurnitureApi.updateUserById(user.id, user)
   }
 
@@ -51,7 +51,7 @@ const Cart = ({ user, setUser, setRedirect }) => {
     }
     const order = {
       orderId: user.orders.length + 1,
-      date:new Date(),
+      date: new Date(),
       items: user.cart,
       priceBeforeDiscount,
       discount,
@@ -62,7 +62,7 @@ const Cart = ({ user, setUser, setRedirect }) => {
 
     user.orders.push(order)
     user.cart = []
-    setUser({...user})
+    setUser({ ...user })
 
     const endpoint = '/order-summary?id=' + order.orderId
     navigate(endpoint)
@@ -79,30 +79,58 @@ const Cart = ({ user, setUser, setRedirect }) => {
       navigate('/login')
     }
   }, [user, navigate, setRedirect])
-    
+
   return (
-      <div id="cart">
-        <h3>My Cart</h3>
-        <hr />
+    <div id="cart">
+      <h3>Cart Summary</h3>
 
-        {user && <CartContainer user={user} setUser={setUser} setRedirect={setRedirect}/>}
-        <hr />
-        
-        <div id="purchase-items">
-          <h3>Checkout Items</h3>
-          <p>Number of items: {user?.cart?.length}</p>
-          <p>Initial Price: ${priceBeforeDiscount.toFixed(2)}</p>
-          <p>Discounts: ${discount.toFixed(2)}</p>
-          <p>Subtotal: ${subtotal.toFixed(2)}</p>
-          <p>Tax: ${tax.toFixed(2)}</p>
-          <p>Total: ${total.toFixed(2)}</p>
+      {user && <CartContainer user={user} setUser={setUser} setRedirect={setRedirect} />}
 
-          <div id="cart-buttons">
-            <button className="btn btn-primary" onClick={clearCart}>Clear Cart</button>
-            <button className="btn btn-primary" onClick={completeOrder}>Complete Order</button>
-          </div>
+      <div id="purchase-items">
+
+      
+        <table className="table table-bordered">
+          <thead>
+            <tr>
+              <th scope="col">Order #</th>
+              <th scope="col">Items</th>
+              <th scope="col">Pretotal</th>
+              <th scope="col">Discount</th>
+              <th scope="col">Subtotal</th>
+              <th scope="col">Tax</th>
+              <th scope="col">Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">{user.orders.length}</th>
+              <td>
+                { user.cart.length !== 0 ?
+                  (<ul>
+                    {
+                      user.cart.map((item) => <li key={item.item_id}>{item.name}</li>)
+                    }
+                  </ul>)
+                  :
+                  (<p>None</p>)
+                }
+                
+              </td>
+              <td>${priceBeforeDiscount.toFixed(2)}</td>
+              <td>${discount.toFixed(2)}</td>
+              <td>${subtotal.toFixed(2)}</td>
+              <td>${tax.toFixed(2)}</td>
+              <td>${total.toFixed(2)}</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div id="cart-buttons">
+          <button className="btn btn-primary" onClick={clearCart}>Clear Cart</button>
+          <button className="btn btn-primary" onClick={completeOrder}>Complete Order</button>
         </div>
       </div>
+    </div>
   )
 }
 
