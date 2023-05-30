@@ -35,18 +35,18 @@ const Register = () => {
   return (
     <div id="register">
       <form onSubmit={handleRegister}>
-      <fieldset>
-        <legend>Create Account</legend>
+      {/* <fieldset> */}
+        <h2>Create Account</h2>
         <label htmlFor="register-firstname">First Name</label>
-        <input type="text" id="register-firstname" name="fname"/><br /><br />
+        <input type="text" id="register-firstname" name="fname"/><br />
         <label htmlFor="register-lastname">Last Name</label>
-        <input type="text" id="register-lastname" name="lname"/><br /><br />
+        <input type="text" id="register-lastname" name="lname"/><br />
         <label htmlFor="register-username">Username</label>
-        <input type="text" id="register-username" name="uname" /><br /><br />
+        <input type="text" id="register-username" name="uname" /><br />
         <label htmlFor="register-password">Password</label>
         <input type="password" id="register-password" name="pw"/><br /><br />
         <input type="submit" value="Submit"/>
-      </fieldset>
+      {/* </fieldset> */}
     </form>
     </div>
   )

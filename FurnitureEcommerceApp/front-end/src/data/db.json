@@ -52,6 +52,44 @@
           "subtotal": 799.99,
           "tax": 79.99900000000001,
           "total": 879.989
+        },
+        {
+          "orderId": 3,
+          "date": "2023-05-28T22:09:31.754Z",
+          "items": [
+            {
+              "item_id": "004",
+              "name": "Desk",
+              "category": "Home Office",
+              "quantity": 4,
+              "price": 299.99,
+              "color": "Black"
+            }
+          ],
+          "priceBeforeDiscount": 299.99,
+          "discount": 0,
+          "subtotal": 299.99,
+          "tax": 29.999000000000002,
+          "total": 329.98900000000003
+        },
+        {
+          "orderId": 4,
+          "date": "2023-05-30T07:25:21.661Z",
+          "items": [
+            {
+              "item_id": "003",
+              "name": "Bed",
+              "category": "Bedroom",
+              "quantity": 2,
+              "price": 999.99,
+              "color": "White"
+            }
+          ],
+          "priceBeforeDiscount": 999.99,
+          "discount": 0,
+          "subtotal": 999.99,
+          "tax": 99.99900000000001,
+          "total": 1099.989
         }
       ],
       "id": 1

@@ -84,7 +84,7 @@ const Header = ({ user, setUser, setSearchValue, setRedirect }) => {
                   <>
                     <button id="login-button" className="btn btn-primary"
                     onClick={goToLoginPage}>Sign In</button>
-                    <button id="login-button" className="btn btn-primary"
+                    <button id="sign-in-button" className="btn btn-primary"
                     onClick={goToRegisterPage}>Sign Up</button>
                   </>
                 )

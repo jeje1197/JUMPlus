@@ -34,14 +34,16 @@ const Login = ({ setUser, redirect, setRedirect }) => {
   return (
     <div id="login">
       <form onSubmit={handleLogin}>
-      <fieldset>
-        <legend>Login</legend>
+        
+        <h2>Login</h2>
+      {/* <fieldset> */}
+        {/* <legend>Login</legend> */}
         <label htmlFor="login-username">Username</label>
-        <input type="text" id="login-username" name="uname" /><br /><br />
+        <input type="text" id="login-username" name="uname" /><br />
         <label htmlFor="login-password">Password</label>
         <input type="password" id="login-password" name="pw"/><br /><br />
         <input type="submit" value="Submit"/>
-      </fieldset>
+      {/* </fieldset> */}
     </form>
     </div>
   )

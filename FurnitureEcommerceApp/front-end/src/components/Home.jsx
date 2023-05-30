@@ -23,7 +23,8 @@ const Home = ({ user, setUser, setRedirect }) => {
 
   return (
     <div id="home">
-      <Carousel images={carouselImages}/>
+      {/* <Carousel images={carouselImages}/> */}
+      
 
       <h3>Featured Items</h3>
       <hr />

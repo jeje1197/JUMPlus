@@ -4,6 +4,14 @@
   text-align: center;
   min-height: 100%;
   background-color: rgb(250, 183, 158);
+  background-image: url('./images/furniture_wallpaper.jpg');
+  background-color: #cccccc;
+  background-repeat: no-repeat;
+  background-size: auto;
+}
+
+.App ::content {
+  flex-grow: 1;
 }
 
 .wrapper {

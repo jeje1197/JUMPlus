@@ -1,5 +1,7 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
+
+import './css/OrderSummary.css'
 
 const OrderSummary = ({ user, setRedirect }) => {
   const navigate = useNavigate()
@@ -37,27 +39,41 @@ const OrderSummary = ({ user, setRedirect }) => {
 
   return (
     <div id="order-summary">
-      { 
+      {
         order ?
           <>
-            <h3>Completed Order</h3>
-            <hr />
-
-            <h5>Items</h5>
-            <hr />
-            <ul>
-            {
-              order.items.map((item, index) => {
-                return <p key={index}>{item.name}</p>
-              })
-            }
-            </ul>
-            
-            <p>Initial Price: ${order.priceBeforeDiscount.toFixed(2)}</p>
-            <p>Discounts: ${order.discount.toFixed(2)}</p>
-            <p>Subtotal: ${order.subtotal.toFixed(2)}</p>
-            <p>Tax: ${order.tax.toFixed(2)}</p>
-            <p>Total: ${order.total.toFixed(2)}</p>
+          <h3>Thank You </h3>
+          <h3>Completed Order</h3>
+          <table className="table table-bordered">
+            <thead>
+              <tr>
+                <th scope="col">Order #</th>
+                <th scope="col">Items</th>
+                <th scope="col">Pretotal</th>
+                <th scope="col">Discount</th>
+                <th scope="col">Subtotal</th>
+                <th scope="col">Tax</th>
+                <th scope="col">Total</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr key={order.orderId}>
+                <th scope="row">{order.orderId}</th>
+                <td>
+                  <ul>
+                    {
+                      order.items.map((item) => <li key={item.item_id}>{item.name}</li>)
+                    }
+                  </ul>
+                </td>
+                <td>${order.priceBeforeDiscount.toFixed(2)}</td>
+                <td>${order.discount.toFixed(2)}</td>
+                <td>${order.subtotal.toFixed(2)}</td>
+                <td>${order.tax.toFixed(2)}</td>
+                <td>${order.total.toFixed(2)}</td>
+              </tr>
+            </tbody>
+          </table>
           </>
           :
           <h3>No Order Found</h3>

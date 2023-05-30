@@ -6,7 +6,7 @@ const OrderContainer = ({ user }) => {
         <table className="table table-bordered">
           <thead>
             <tr>
-              <th scope="col">#</th>
+              <th scope="col">Order #</th>
               <th scope="col">Items</th>
               <th scope="col">Pretotal</th>
               <th scope="col">Discount</th>

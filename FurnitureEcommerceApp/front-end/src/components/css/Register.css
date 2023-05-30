@@ -1,18 +1,46 @@
 /* Reset properties changed by bootstrap */
+
+
+#register {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
 #register form {
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: fit-content;
+    padding-left: 3em;
+    padding-right: 3em;
+    padding-bottom: 2em;
+    background: rgb(230, 195, 230);
+    border-radius: 25px;
+    border: 5px solid rgb(131, 131, 131);
+    /* border-image: linear-gradient(to right, grey 25%, yellow 25%, yellow 50%,red 50%, red 75%, teal 75%) 5 round; */
+    background-clip: padding-box, content-box;
+}
+
+
+#register form h2 {
+    color: rgb(44, 43, 43);
+    margin-top: 1em;
+    margin-left: 2em;
+    margin-right: 2em;
+    margin-bottom: 1.5em;
 }
 
 #register form label {
     margin-right: 10px;
 }
 
-fieldset, legend {
+/* fieldset, legend {
     all: revert;
 }
 
 fieldset {
     width: fit-content;
-}
+} */
