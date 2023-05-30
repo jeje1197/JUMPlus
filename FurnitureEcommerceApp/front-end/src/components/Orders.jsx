@@ -21,6 +21,7 @@ const Orders = ({ user, setRedirect }) => {
   return (
     <div id="orders">
       <h3>Your Orders</h3>
+      {/* <hr /> */}
       {
         <OrderContainer user={user}/>
       }

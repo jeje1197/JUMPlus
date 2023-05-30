@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom'
 
 import './css/OrderSummary.css'
 
+import confetti from 'https://cdn.skypack.dev/canvas-confetti';
+
 const OrderSummary = ({ user, setRedirect }) => {
   const navigate = useNavigate()
   let orderId = -1
@@ -24,6 +26,15 @@ const OrderSummary = ({ user, setRedirect }) => {
     }
   }
   getOrder()
+
+
+
+  const myIntervalId = setInterval(() => {
+    confetti()
+    if (window.location.pathname !== "/order-summary") {
+      clearInterval(myIntervalId)
+    }
+  }, 5000)
 
   useEffect(() => {
     if (!user) {

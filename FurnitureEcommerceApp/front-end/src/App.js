@@ -27,19 +27,21 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        <Header user={user} setUser={setUser} setSearchValue={setSearchValue} setRedirect={setRedirect}/>
+        <Header user={user} setUser={setUser} setSearchValue={setSearchValue} setRedirect={setRedirect} />
 
-        <Routes>
-          <Route exact path="/" element={ <Home user={user} setUser={setUser} setRedirect={setRedirect}/> }/>
-          <Route path="/register" element={ <Register /> }/>
-          <Route path="/login" element={ <Login setUser={setUser} redirect={redirect} setRedirect={setRedirect}/> }/>
+        {/* <div id="app-body-wrapper"> */}
+          <Routes>
+            <Route exact path="/" element={<Home user={user} setUser={setUser} setRedirect={setRedirect} />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/login" element={<Login setUser={setUser} redirect={redirect} setRedirect={setRedirect} />} />
 
-          <Route path="/items" element={ <SearchResults user={user} setUser={setUser} setRedirect={setRedirect} searchValue={searchValue}/> }/>
-          <Route path="/cart" element={ <Cart user={user} setUser={setUser} setRedirect={setRedirect}/> }/>
-          <Route path="/order-summary" element={ <OrderSummary user={user} setRedirect={setRedirect}/> }/>
-          <Route path="/orders" element={ <Orders user={user} setRedirect={setRedirect}/> }/>
-        </Routes>
- 
+            <Route path="/items" element={<SearchResults user={user} setUser={setUser} setRedirect={setRedirect} searchValue={searchValue} />} />
+            <Route path="/cart" element={<Cart user={user} setUser={setUser} setRedirect={setRedirect} />} />
+            <Route path="/order-summary" element={<OrderSummary user={user} setRedirect={setRedirect} />} />
+            <Route path="/orders" element={<Orders user={user} setRedirect={setRedirect} />} />
+          </Routes>
+        {/* </div> */}
+
         <Footer />
       </BrowserRouter>
     </div>

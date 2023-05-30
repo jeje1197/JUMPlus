@@ -10,9 +10,9 @@
   background-size: auto;
 }
 
-.App ::content {
+/* .App :chil {
   flex-grow: 1;
-}
+} */
 
 .wrapper {
   padding: 20px;

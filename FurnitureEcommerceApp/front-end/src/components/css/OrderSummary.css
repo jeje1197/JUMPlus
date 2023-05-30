@@ -1,4 +1,20 @@
-#order-summary h3{
+#order-summary {
+    flex-grow: 1;
+}
+
+#order-summary h3:nth-of-type(2){
     margin-top: 1em;
-    margin-bottom: 0.6em;
+    margin-bottom: 3em;
+    background-color: white;
+    padding: 0.7em;
+    border: 5px solid black;
+}
+
+#order-summary table, th, td {
+    background-color: white;
+    border: 1px solid;
+}
+
+#order-summary table {
+    border: 5px solid; 
 }

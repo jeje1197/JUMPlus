@@ -90,6 +90,26 @@
           "subtotal": 999.99,
           "tax": 99.99900000000001,
           "total": 1099.989
+        },
+        {
+          "orderId": 5,
+          "date": "2023-05-30T08:15:48.932Z",
+          "items": [
+            {
+              "item_id": "002",
+              "name": "Dining Table",
+              "category": "Dining Room",
+              "quantity": 3,
+              "price": 799.99,
+              "color": "Brown",
+              "image": "https://images.unsplash.com/photo-1602872030490-4a484a7b3ba6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8ZGluaW5nJTIwcm9vbXxlbnwwfHwwfHx8MA%3D%3D&w=1000&q=80"
+            }
+          ],
+          "priceBeforeDiscount": 799.99,
+          "discount": 0,
+          "subtotal": 799.99,
+          "tax": 79.99900000000001,
+          "total": 879.989
         }
       ],
       "id": 1
@@ -283,7 +303,8 @@
       "category": "Living Room",
       "quantity": 5,
       "price": 599.99,
-      "color": "Gray"
+      "color": "Gray",
+      "image": "https://images.pexels.com/photos/3757055/pexels-photo-3757055.jpeg"
     },
     {
       "item_id": "002",
@@ -291,7 +312,8 @@
       "category": "Dining Room",
       "quantity": 3,
       "price": 799.99,
-      "color": "Brown"
+      "color": "Brown",
+      "image": "https://images.unsplash.com/photo-1602872030490-4a484a7b3ba6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8ZGluaW5nJTIwcm9vbXxlbnwwfHwwfHx8MA%3D%3D&w=1000&q=80"
     },
     {
       "item_id": "003",
@@ -299,7 +321,8 @@
       "category": "Bedroom",
       "quantity": 2,
       "price": 999.99,
-      "color": "White"
+      "color": "White",
+      "image": "https://img.rawpixel.com/s3fs-private/rawpixel_images/website_content/rm405-e07-mockup_1.jpg?w=800&dpr=1&fit=default&crop=default&q=65&vib=3&con=3&usm=15&bg=F4F4F3&ixlib=js-2.2.1&s=a228de2e6b0ef5c460b6992d5e0c42d7"
     },
     {
       "item_id": "004",
@@ -307,7 +330,8 @@
       "category": "Home Office",
       "quantity": 4,
       "price": 299.99,
-      "color": "Black"
+      "color": "Black",
+      "image": "https://images5.alphacoders.com/667/thumb-1920-667196.jpg"
     },
     {
       "item_id": "005",
@@ -315,7 +339,8 @@
       "category": "Study Room",
       "quantity": 7,
       "price": 199.99,
-      "color": "Oak"
+      "color": "Oak",
+      "image": "https://t3.ftcdn.net/jpg/03/18/52/62/360_F_318526270_1nNrGvpQhRmhwlBbLen8xQWFqjFMURoL.jpg"
     }
   ]
 }

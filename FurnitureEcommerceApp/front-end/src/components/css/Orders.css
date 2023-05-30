@@ -1,4 +1,21 @@
+#orders {
+    flex-grow: 1;
+}
+
 #orders h3{
     margin-top: 1em;
-    margin-bottom: 0.6em;
+    margin-bottom: 3em;
+    background-color: wheat;
+    padding: 0.7em;
+    border: 3px solid black;
 }
+
+#orders table, th, td {
+    background-color: wheat;
+    border: 1px solid;
+}
+
+#orders table {
+    border: 3px solid; 
+}
+
