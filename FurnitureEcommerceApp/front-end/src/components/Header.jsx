@@ -75,7 +75,7 @@ const Header = ({ user, setUser, setSearchValue, setRedirect }) => {
             </ul>
 
             <div id="search-and-login">
-              <form className="d-flex" onSubmit={search}>
+              <form className="d-flex form-inline my-2 my-lg-0" onSubmit={search}>
                 <input id="search-box"className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
                 <button className="btn btn-outline-success" type="submit">Search</button>
               </form>
