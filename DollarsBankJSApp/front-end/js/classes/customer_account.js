@@ -9,6 +9,8 @@ class Account {
         this.password = password
         this.transactions = []
         this.linkedAccount = linkedAccount ? new Account("Savings", 25, this.name, this.email, this.username, this.password, false) : undefined
+
+        this.addTransaction(`Initial deposit of $${balance}`)
     }
 
     getAccountNumber() {

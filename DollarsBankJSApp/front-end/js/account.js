@@ -95,14 +95,6 @@ function transferBetweenAccounts(event) {
     const toAccount = document.getElementById('transfer-to-select-element').value
     const transferAmount = Number(document.getElementById('transfer-amount').value)
 
-    if (fromAccount === toAccount) {
-        alert(`Cannot transfer money to same account. ${fromAccount} -> ${toAccount}`)
-        return;
-    } else if (transferAmount <= 0 || transferAmount > programMemory.currentAccount.balance) {
-        alert(`Transfer amount must be greater than $0.00 and $${programMemory.currentAccount.balance}`)
-        return;
-    }
-
     let checkingAccount = undefined
     let savingsAccount = undefined
 
@@ -112,6 +104,19 @@ function transferBetweenAccounts(event) {
     } else {
         savingsAccount = programMemory.currentAccount
         checkingAccount = programMemory.previousAccount
+    }
+
+    if (fromAccount === toAccount) {
+        alert(`Cannot transfer money to same account. ${fromAccount} -> ${toAccount}`)
+        return;
+    } 
+    
+    if (fromAccount === "Checking" && (transferAmount <= 0 || transferAmount > checkingAccount.balance)) {
+        alert(`Transfer amount must be greater than $0.00 and not exceed $${programMemory.currentAccount.balance}`)
+        return;
+    } else if (fromAccount === "Savings" && (transferAmount <= 0 || transferAmount > savingsAccount.balance)) {
+        alert(`Transfer amount must be greater than $0.00 and not exceed $${programMemory.currentAccount.balance}`)
+        return;
     }
 
     if (fromAccount === "Checking") {

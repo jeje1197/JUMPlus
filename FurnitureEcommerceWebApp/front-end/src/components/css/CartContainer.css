@@ -1,0 +1,14 @@
+#cart-items {
+    display: flex;
+    padding: 4em;
+    justify-content: space-evenly;
+    flex-flow: wrap;
+    row-gap: 2em;
+    background-color: wheat;
+    margin-bottom: 1em;
+    border: 3px solid black;
+}
+
+#cart-items h5 {
+    color: black;
+}
