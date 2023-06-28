@@ -1,0 +1,18 @@
+package com.cognixia.jump.model;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+@Entity
+public class FurnitureUser {
+	
+	@Id
+	@GeneratedValue
+	Long id;
+
+	String username;
+	String email;
+	String phone;
+	
+}

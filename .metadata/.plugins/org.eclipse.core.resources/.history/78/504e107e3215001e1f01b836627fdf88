@@ -1,0 +1,20 @@
+package com.cognixia.jump.model;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
+public class FurnitureUser {
+	
+	@Id //primary key
+	@GeneratedValue(strategy = GenerationType.IDENTITY) //auto increment
+	private Integer id;
+
+	
+	String username;
+	String email;
+	String phone;
+	
+}

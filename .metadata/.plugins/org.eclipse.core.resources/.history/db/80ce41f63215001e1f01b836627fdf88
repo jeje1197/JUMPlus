@@ -1,0 +1,42 @@
+package com.cognixia.jump.model;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.validation.constraints.NotBlank;
+
+@Entity
+public class FurnitureUser {
+	
+	@Id //primary key
+	@GeneratedValue(strategy = GenerationType.IDENTITY) //auto increment
+	private Integer id;
+
+	@Column(unique = true, nullable = false)
+	@NotBlank
+	String username;
+
+	@Column(nullable = false)
+	@NotBlank
+	private String password;
+
+	@Column(unique=true, nullable = false)
+	String email;
+	
+	@Column(nullable = false)
+	String phone;
+
+	public FurnitureUser(Integer id, String username, String password, String email, String phone) {
+		super();
+		this.id = id;
+		this.username = username;
+		this.password = password;
+		this.email = email;
+		this.phone = phone;
+	}
+	
+	
+	
+}
