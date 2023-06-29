@@ -1,5 +1,7 @@
 package com.cognixia.jump.model;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,15 +10,17 @@ import javax.persistence.Id;
 import javax.validation.constraints.NotBlank;
 
 @Entity
-public class User {
+public class User implements Serializable {
 	
+	private static final long serialVersionUID = 1L;
+
 	@Id //primary key
 	@GeneratedValue(strategy = GenerationType.IDENTITY) //auto increment
 	private Integer id;
 
 	@Column(unique = true, nullable = false)
 	@NotBlank
-	String username;
+	private String username;
 
 	@Column(nullable = false)
 	@NotBlank
