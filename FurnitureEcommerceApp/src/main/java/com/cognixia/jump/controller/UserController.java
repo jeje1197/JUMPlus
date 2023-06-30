@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.cognixia.jump.exception.ResourceAlreadyExistsException;
 import com.cognixia.jump.exception.ResourceNotFoundException;
 import com.cognixia.jump.model.User;
 import com.cognixia.jump.service.UserService;
@@ -22,6 +23,7 @@ import com.cognixia.jump.service.UserService;
 @RequestMapping("/api")
 public class UserController {
 	
+	// Autowiring is when you let Spring's IoC container create the instance for you
 	@Autowired
 	UserService service;
 	
@@ -32,11 +34,11 @@ public class UserController {
 	
 	@GetMapping("/user/{id}")
 	public User getUser(@PathVariable Integer id) throws ResourceNotFoundException {
-		return service.getUserById(0);
+		return service.getUserById(id);
 	}
 	
 	@PostMapping("/user")
-	public ResponseEntity<?> createUser(@Valid @RequestBody User user) {
+	public ResponseEntity<?> createUser(@Valid @RequestBody User user) throws ResourceAlreadyExistsException {
 		service.createUser(user);
 
 		// Using ResponseEntity allows you to send a custom status code along
@@ -48,9 +50,7 @@ public class UserController {
 	@DeleteMapping("/user/{id}")
 	public ResponseEntity<?> deleteUser(@PathVariable Integer id) throws ResourceNotFoundException {
 		service.deleteUser(id);
-		return ResponseEntity.status(200).body(null);
+		return ResponseEntity.status(200).body(true);
 	}
-	
-	
 	
 }

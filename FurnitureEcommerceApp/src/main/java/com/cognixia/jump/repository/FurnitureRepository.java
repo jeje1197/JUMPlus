@@ -1,0 +1,14 @@
+package com.cognixia.jump.repository;
+
+import java.util.Optional;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.cognixia.jump.model.Furniture;
+
+public interface FurnitureRepository extends JpaRepository<Furniture, Integer>{
+
+	public Optional<Furniture> findByName(String name);
+
+	public Optional<Furniture> findByImageUrl(String imageUrl);
+}

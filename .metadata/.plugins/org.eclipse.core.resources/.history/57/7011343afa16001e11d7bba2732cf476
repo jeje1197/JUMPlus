@@ -1,0 +1,22 @@
+package com.cognixia.jump.model;
+
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+public class Furniture {
+
+	@Id
+	@GeneratedValue
+	private Integer id;
+	
+	@Column(unique=true, nullable=false)
+	private String name;
+	
+	@Column(nullable=false)
+	private Integer quantity;
+	
+	private Double price;
+	
+	private String imageUrl;
+}

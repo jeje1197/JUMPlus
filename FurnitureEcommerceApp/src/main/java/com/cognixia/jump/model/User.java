@@ -14,11 +14,11 @@ public class User implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 
-	@Id //primary key
-	@GeneratedValue(strategy = GenerationType.IDENTITY) //auto increment
+	@Id //Set as primary key for model
+	@GeneratedValue(strategy = GenerationType.IDENTITY) // Auto increment
 	private Integer id;
 
-	@Column(unique = true, nullable = false)
+	@Column(unique = true, nullable = false) // Column must be unique and non-null
 	@NotBlank
 	private String username;
 
@@ -31,6 +31,8 @@ public class User implements Serializable {
 	
 	@Column(nullable = false)
 	private String phone;
+	
+	public User() {}
 
 	public User(Integer id, String username, String password, String email, String phone) {
 		super();

@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.cognixia.jump.exception.ResourceAlreadyExistsException;
 import com.cognixia.jump.exception.ResourceNotFoundException;
 import com.cognixia.jump.model.User;
 import com.cognixia.jump.repository.UserRepository;
@@ -22,29 +23,38 @@ public class UserService {
 	}
 	
 	public User getUserById(int id) throws ResourceNotFoundException {
-		Optional<User> found = repo.findById((long) id);
+		Optional<User> found = repo.findById(id);
 		
 		if (found.isEmpty()) {
-			throw new ResourceNotFoundException("User");
+			throw new ResourceNotFoundException("User", id);
 		}
 		
 		return found.get();
 	}
 	
-	public User createUser(User user) {
+	public User createUser(User user) throws ResourceAlreadyExistsException {
+		Optional<User> found = repo.findByUsername(user.getUsername());
+		if (found.isPresent()) {
+			throw new ResourceAlreadyExistsException("Username");
+		}
+		
+		found = repo.findByEmail(user.getEmail());
+		if (found.isPresent()) {
+			throw new ResourceAlreadyExistsException("Email");
+		}
+		
 		return repo.save(user);
 	}
 	
 	public boolean deleteUser(int id) throws ResourceNotFoundException {
-		boolean exists = repo.existsById((long) id);
+		boolean exists = repo.existsById(id);
 		
 		if (!exists) {
-			throw new ResourceNotFoundException("User");
+			throw new ResourceNotFoundException("User", id);
 		}
 		
-		repo.deleteById((long) id);
+		repo.deleteById(id);
 		return true;
 	}
-	
 	
 }
