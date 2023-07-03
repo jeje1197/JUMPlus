@@ -11,6 +11,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.cognixia.jump.model.AuthenticationRequest;
+import com.cognixia.jump.model.AuthenticationResponse;
+
 import com.cognixia.jump.util.JwtUtil;
 
 @RestController
