@@ -15,7 +15,5 @@ public class SecurityConfig {
 		.antMatchers("/**").permitAll();
 		return http.build();
 	}
-	
-	
-	
+
 }

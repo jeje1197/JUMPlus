@@ -41,8 +41,9 @@ public class User implements Serializable {
 	@Enumerated(EnumType.STRING)
 	@Column(nullable=false)
 	private Role role;
-
-
+	
+	@Column(columnDefinition = "boolean default true")
+	private boolean enabled; // true or false if the user is enabled
 
 	public User() {}
 
@@ -97,4 +98,25 @@ public class User implements Serializable {
 		this.phone = phone;
 	}
 	
+	public Role getRole() {
+		return role;
+	}
+
+	public void setRole(Role role) {
+		this.role = role;
+	}
+
+	public boolean isEnabled() {
+		return enabled;
+	}
+
+	public void setEnabled(boolean enabled) {
+		this.enabled = enabled;
+	}
+
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", username=" + username + ", password=" + password + ", email=" + email + ", phone="
+				+ phone + ", role=" + role + ", enabled=" + enabled + "]";
+	}
 }
