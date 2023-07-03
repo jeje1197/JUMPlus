@@ -7,19 +7,29 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cognixia.jump.exception.ResourceAlreadyExistsException;
+import com.cognixia.jump.exception.ResourceNotFoundException;
 import com.cognixia.jump.model.Furniture;
 import com.cognixia.jump.repository.FurnitureRepository;
 
 @Service
 public class FurnitureService {
-	
+
 	@Autowired
 	FurnitureRepository repo;
-	
+
 	public List<Furniture> getAllFurniture() {
 		return repo.findAll();
 	}
-	
+
+	public Furniture getFurnitureById(int id) throws ResourceNotFoundException {
+		Optional<Furniture> found = repo.findById(id);
+		if (found.isEmpty()) {
+			throw new ResourceNotFoundException("Furniture", id);
+		}
+
+		return found.get();
+	}
+
 	public Furniture createFurniture(Furniture furniture) throws ResourceAlreadyExistsException {
 		Optional<Furniture> found = repo.findByName(furniture.getName());
 		if (found.isPresent()) {
@@ -33,7 +43,16 @@ public class FurnitureService {
 					"'");
 		}
 		
-		
 		return repo.save(furniture);
+	}
+
+	public boolean deleteFurniture(int id) throws ResourceNotFoundException {
+		boolean exists = repo.existsById(id);
+		if (!exists) {
+			throw new ResourceNotFoundException("Furniture", id);
+		}
+
+		repo.deleteById(id);
+		return true;
 	}
 }
