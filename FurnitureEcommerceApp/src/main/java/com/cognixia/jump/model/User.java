@@ -17,7 +17,7 @@ public class User implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	public static enum Role {
-		ADMIN, USER
+		ROLE_USER, ROLE_ADMIN	// roles should start with capital ROLE_ and has to be completely in capital letters
 	}
 
 	@Id //Set as primary key for model
@@ -39,16 +39,16 @@ public class User implements Serializable {
 	private String phone;
 	
 	@Enumerated(EnumType.STRING)
-	@Column(nullable=false)
-	private Role role;
+	@Column(columnDefinition="varchar(16) default 'ROLE_USER'")
+	private Role role = Role.ROLE_USER;
 	
-	@Column(columnDefinition = "boolean default true")
-	private boolean enabled; // true or false if the user is enabled
-
+	@Column(name="enabled", columnDefinition = "boolean default true", nullable=false)
+	private Boolean enabled = true; // true or false if the user is enabled
+ 
 	public User() {}
 
 	public User(Integer id, @NotBlank String username, @NotBlank String password, String email, String phone,
-			Role role) {
+			Role role, Boolean enabled) {
 		super();
 		this.id = id;
 		this.username = username;
@@ -56,6 +56,8 @@ public class User implements Serializable {
 		this.email = email;
 		this.phone = phone;
 		this.role = role;
+		this.enabled = enabled;
+		System.out.println(role + " " + enabled);
 	}
 
 	public Integer getId() {
@@ -106,11 +108,11 @@ public class User implements Serializable {
 		this.role = role;
 	}
 
-	public boolean isEnabled() {
+	public Boolean isEnabled() {
 		return enabled;
 	}
 
-	public void setEnabled(boolean enabled) {
+	public void setEnabled(Boolean enabled) {
 		this.enabled = enabled;
 	}
 

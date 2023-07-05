@@ -45,6 +45,21 @@ public class FurnitureService {
 		
 		return repo.save(furniture);
 	}
+	
+	public boolean updateFurniture(int id, Furniture furniture) throws ResourceNotFoundException {
+		Furniture furnitureToUpdate = repo.getReferenceById(id);
+		if (furnitureToUpdate == null) {
+			throw new ResourceNotFoundException("Furniture", id);
+		}
+
+		furnitureToUpdate.setName(furniture.getName());
+		furnitureToUpdate.setQuantity(furniture.getQuantity());
+		furnitureToUpdate.setPrice(furniture.getPrice());
+		furnitureToUpdate.setImageUrl(furniture.getImageUrl());
+		
+		repo.save(furnitureToUpdate);
+		return true;
+	}
 
 	public boolean deleteFurniture(int id) throws ResourceNotFoundException {
 		boolean exists = repo.existsById(id);

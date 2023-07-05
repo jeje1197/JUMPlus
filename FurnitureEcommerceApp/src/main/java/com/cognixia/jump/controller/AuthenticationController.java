@@ -39,6 +39,7 @@ public class AuthenticationController {
 		// message when this doesn't work
 		try {
 			// make sure we have a valid user by checking their username and password
+			System.out.println("Username: " + request.getUsername() + "Password: " + request.getPassword());
 			authenticationManager.authenticate(
 					new UsernamePasswordAuthenticationToken(request.getUsername(), request.getPassword()));
 
