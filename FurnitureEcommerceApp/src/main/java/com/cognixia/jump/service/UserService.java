@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.cognixia.jump.exception.ResourceAlreadyExistsException;
@@ -17,6 +18,9 @@ public class UserService {
 	// Autowire the repository to create an instance
 	@Autowired
 	UserRepository repo;
+	
+	@Autowired
+	private BCryptPasswordEncoder passwordEncoder;
 	
 	public List<User> getUsers() {
 		return repo.findAll();
@@ -43,6 +47,7 @@ public class UserService {
 			throw new ResourceAlreadyExistsException("Email");
 		}
 		
+		user.setPassword(passwordEncoder.encode(user.getPassword()));
 		return repo.save(user);
 	}
 	

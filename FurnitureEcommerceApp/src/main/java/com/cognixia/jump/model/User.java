@@ -11,6 +11,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.NotBlank;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
 @Entity
 public class User implements Serializable {
 	
@@ -52,6 +55,7 @@ public class User implements Serializable {
 		super();
 		this.id = id;
 		this.username = username;
+		
 		this.password = password;
 		this.email = email;
 		this.phone = phone;

@@ -28,24 +28,27 @@ public class AuthenticationController {
 
 	@Autowired
 	JwtUtil jwtUtil;
-	
-	
+
+
 	// create the token at http://localhost:8080/authenticate 
 	// send the username & password and try to generate a token as a response
 	@PostMapping("/authenticate")
 	public ResponseEntity<?> createJwtToken(@RequestBody AuthenticationRequest request) throws Exception {
-		
+
 		// try to catch the exception for bad credentials, just so we can set our own
 		// message when this doesn't work
 		try {
+			
+			System.out.println("--- tok " + new UsernamePasswordAuthenticationToken(request.getUsername(), request.getPassword()) + " ---");
 			// make sure we have a valid user by checking their username and password
-			System.out.println("Username: " + request.getUsername() + "Password: " + request.getPassword());
 			authenticationManager.authenticate(
-					new UsernamePasswordAuthenticationToken(request.getUsername(), request.getPassword()));
+					new UsernamePasswordAuthenticationToken(request.getUsername(), request.getPassword())
+					);
 
 		} catch (BadCredentialsException e) {
+
 			// provide our own message on why login didn't work
-			throw new Exception("Incorrect username or password");
+			throw new Exception("Incorrect username or password" + e.getMessage());
 		}
 
 		// as long as no exception was thrown, user is valid
@@ -58,7 +61,6 @@ public class AuthenticationController {
 
 		// return the token
 		return ResponseEntity.status(201).body( new AuthenticationResponse(jwt) );
-
 	}
-	
+
 }
