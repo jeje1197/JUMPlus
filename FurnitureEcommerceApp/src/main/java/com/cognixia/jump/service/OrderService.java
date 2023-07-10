@@ -7,7 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cognixia.jump.exception.ResourceNotFoundException;
+import com.cognixia.jump.model.Furniture;
 import com.cognixia.jump.model.Order;
+import com.cognixia.jump.model.User;
 import com.cognixia.jump.repository.OrderRepository;
 
 @Service
@@ -20,12 +22,13 @@ public class OrderService {
 		return repo.findAll();
 	}
 
-	public List<Order> getAllOrdersByUser(Integer id) {
-		return repo.findAllByUserId(id);
+	public List<Order> getAllOrdersByUser(Integer userId) {
+		return repo.findAllByUserId(userId);
 	}
 
-	public Order createOrder(Order order) {
-		return repo.save(order);
+	public Order createOrder(User user, Furniture furniture) {
+		Order newOrder = new Order(null, user, furniture);
+		return repo.save(newOrder);
 	}
 	
 	public Order getOrderById(Integer id) throws ResourceNotFoundException {

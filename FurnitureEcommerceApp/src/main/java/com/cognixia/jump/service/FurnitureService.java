@@ -9,22 +9,13 @@ import org.springframework.stereotype.Service;
 import com.cognixia.jump.exception.ResourceAlreadyExistsException;
 import com.cognixia.jump.exception.ResourceNotFoundException;
 import com.cognixia.jump.model.Furniture;
-import com.cognixia.jump.model.User;
 import com.cognixia.jump.repository.FurnitureRepository;
-import com.cognixia.jump.repository.OrderRepository;
-import com.cognixia.jump.repository.UserRepository;
 
 @Service
 public class FurnitureService {
 
 	@Autowired
 	FurnitureRepository repo;
-
-	@Autowired
-	UserRepository userRepo;
-
-	@Autowired
-	OrderRepository orderRepo;
 
 	public List<Furniture> getAllFurniture() {
 		return repo.findAll();
@@ -77,21 +68,6 @@ public class FurnitureService {
 		}
 
 		repo.deleteById(id);
-		return true;
-	}
-
-	public boolean purchaseFurniture(Integer furnitureId, Integer userId) throws ResourceNotFoundException {
-		Furniture furniture = repo.getReferenceById(furnitureId);
-		User user = userRepo.getReferenceById(userId);
-		if (furniture == null || furniture.getQuantity() <= 0) {
-			throw new ResourceNotFoundException("Furniture", furnitureId);
-		}
-		
-		if (user == null) {
-			throw new ResourceNotFoundException("User", userId);
-		}
-
-		furniture.setQuantity(furniture.getQuantity() - 1);
 		return true;
 	}
 }

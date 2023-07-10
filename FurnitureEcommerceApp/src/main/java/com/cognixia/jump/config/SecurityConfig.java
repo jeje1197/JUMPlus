@@ -41,11 +41,11 @@ public class SecurityConfig {
 			.antMatchers("/swagger-ui/**").permitAll()
 	        .antMatchers("/v3/api-docs/**").permitAll()
 
-			.antMatchers("/api/furniture/**").hasRole("ADMIN")
+			.antMatchers("/api/furniture/*").hasRole("ADMIN")
 			.antMatchers(HttpMethod.GET, "/api/furniture").permitAll()
-			.antMatchers("/api/user/**").hasRole("ADMIN")
+			.antMatchers("/api/user/*").hasRole("ADMIN")
 			.antMatchers(HttpMethod.POST, "/api/user").permitAll() // Create account
-			.anyRequest().hasRole("ADMIN") // if not specified, all other end points need a user login
+			//.anyRequest().hasRole("ADMIN") // if not specified, all other end points need a user login
 			.and()
 			.sessionManagement().sessionCreationPolicy( SessionCreationPolicy.STATELESS );
 

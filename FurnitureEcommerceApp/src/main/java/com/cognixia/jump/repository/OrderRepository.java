@@ -11,6 +11,6 @@ import com.cognixia.jump.model.Order;
 @Repository
 public interface OrderRepository extends JpaRepository<Order, Integer>{
 	
-	@Query(value = "SELECT * FROM furniture.order o WHERE o.user_id = ?1", nativeQuery=true)
+	@Query(value = "SELECT * FROM orders WHERE user_id = ?1", nativeQuery=true)
 	public List<Order> findAllByUserId(Integer id);
 }

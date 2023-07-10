@@ -46,9 +46,8 @@ public class AuthenticationController {
 					);
 
 		} catch (BadCredentialsException e) {
-
 			// provide our own message on why login didn't work
-			throw new Exception("Incorrect username or password" + e.getMessage());
+			return ResponseEntity.status(201).body("Incorrect username or password");
 		}
 
 		// as long as no exception was thrown, user is valid
