@@ -3,6 +3,7 @@ package com.cognixia.jump.config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
@@ -36,8 +37,14 @@ public class SecurityConfig {
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 		http.csrf().disable()
 			.authorizeRequests()
-			.antMatchers("/authenticate").permitAll()
-			.anyRequest().authenticated() // if not specified, all other end points need a user login
+			.antMatchers("/swagger-ui/**").permitAll() 
+	        .antMatchers("/v3/api-docs/**").permitAll()
+			.antMatchers("/authenticate").permitAll() // Anyone can authenticate
+			.antMatchers("/api/furniture/**").hasRole("ADMIN")
+			.antMatchers(HttpMethod.GET, "/api/furniture").permitAll()
+			.antMatchers("/api/user/**").hasRole("ADMIN")
+			.antMatchers(HttpMethod.POST, "/api/user").permitAll() // Create account
+			.anyRequest().hasRole("ADMIN") // if not specified, all other end points need a user login
 			.and()
 			.sessionManagement().sessionCreationPolicy( SessionCreationPolicy.STATELESS );
 

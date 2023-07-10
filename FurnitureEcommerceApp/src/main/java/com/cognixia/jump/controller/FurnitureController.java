@@ -13,12 +13,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cognixia.jump.exception.ResourceAlreadyExistsException;
 import com.cognixia.jump.exception.ResourceNotFoundException;
 import com.cognixia.jump.model.Furniture;
 import com.cognixia.jump.service.FurnitureService;
+import com.cognixia.jump.service.UserService;
 
 @RestController
 @RequestMapping("/api")
@@ -48,13 +50,21 @@ public class FurnitureController {
 	public ResponseEntity<?> updateFurnitureById(@PathVariable Integer id, @Valid @RequestBody Furniture furniture) throws ResourceNotFoundException {
 		service.updateFurniture(id, furniture);
 		
-		return ResponseEntity.status(204).body(furniture);
+		return ResponseEntity.status(204).body(true);
 	}
 
 	@DeleteMapping("/furniture/{id}")
 	public ResponseEntity<?> deleteFurniture(@PathVariable Integer id) throws ResourceNotFoundException {
 		service.deleteFurniture(id);
 		return ResponseEntity.status(204).body(true);
+	}
+
+	@PostMapping("/furniture/purchase")
+	public ResponseEntity<?> purchaseFurniture(
+			@RequestParam(value = "furnitureId", required = true) Integer furnitureId,
+			@RequestParam(value = "userId", required = true) Integer userId) throws ResourceNotFoundException {
+		service.purchaseFurniture(furnitureId, userId);
+		return ResponseEntity.status(200).body(true);
 	}
 
 }

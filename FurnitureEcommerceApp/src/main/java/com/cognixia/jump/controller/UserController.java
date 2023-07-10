@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.cognixia.jump.exception.ResourceAlreadyExistsException;
 import com.cognixia.jump.exception.ResourceNotFoundException;
 import com.cognixia.jump.model.User;
+import com.cognixia.jump.service.FurnitureService;
 import com.cognixia.jump.service.UserService;
 
 @RestController
