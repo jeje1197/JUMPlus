@@ -6,9 +6,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
-import io.swagger.v3.oas.annotations.media.Schema;
-
+@Table(name = "orders")
 @Entity
 public class Order {
 	
@@ -17,14 +17,11 @@ public class Order {
 	Integer id;
 	
 	@ManyToOne
-	@JoinColumn(name = "user_id", referencedColumnName = "id")
-	@Schema(description="linked user")
+	@JoinColumn(name="user_id", referencedColumnName="id")
 	private User user;
-
 	
 	@ManyToOne
-	@JoinColumn(name = "furniture_id", referencedColumnName = "id")
-	@Schema(description="linked furniture")
+	@JoinColumn(name="furniture_id", referencedColumnName="id")
 	private Furniture furniture;
 
 	public Order(Integer id, User user, Furniture furniture) {

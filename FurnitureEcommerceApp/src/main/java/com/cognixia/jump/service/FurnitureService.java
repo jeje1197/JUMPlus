@@ -11,6 +11,7 @@ import com.cognixia.jump.exception.ResourceNotFoundException;
 import com.cognixia.jump.model.Furniture;
 import com.cognixia.jump.model.User;
 import com.cognixia.jump.repository.FurnitureRepository;
+import com.cognixia.jump.repository.OrderRepository;
 import com.cognixia.jump.repository.UserRepository;
 
 @Service
@@ -18,9 +19,12 @@ public class FurnitureService {
 
 	@Autowired
 	FurnitureRepository repo;
-	
+
 	@Autowired
 	UserRepository userRepo;
+
+	@Autowired
+	OrderRepository orderRepo;
 
 	public List<Furniture> getAllFurniture() {
 		return repo.findAll();
@@ -88,9 +92,6 @@ public class FurnitureService {
 		}
 
 		furniture.setQuantity(furniture.getQuantity() - 1);
-//		user.
-		
-		
 		return true;
 	}
 }
