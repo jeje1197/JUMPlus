@@ -1,8 +1,0 @@
-package com.cognixia.jump.model;
-
-import javax.persistence.Entity;
-
-@Entity
-public class FurnitureUser {
-	
-}
