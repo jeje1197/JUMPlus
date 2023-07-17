@@ -42,4 +42,9 @@ public class AccountExpense {
 		this.period = period;
 	}
 
+	@Override
+	public String toString() {
+		return "Expense - Name: " + name + ", Amount: $" + amount + ", Period: " + period;
+	}
+
 }

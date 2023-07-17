@@ -2,6 +2,7 @@ package com.dollarsbank.expensetracker.controller;
 
 import com.dollarsbank.expensetracker.model.Account;
 import com.dollarsbank.expensetracker.model.AccountExpense;
+import com.dollarsbank.expensetracker.model.AccountExpense.Period;
 import com.dollarsbank.expensetracker.util.ColorPrinter;
 import com.dollarsbank.expensetracker.util.ConsolePrinter;
 import com.dollarsbank.expensetracker.util.ConsoleScanner;
@@ -96,7 +97,6 @@ public class ExpenseController {
 		ColorPrinter.print(ColorPrinter.ANSI_BLUE, PrettyFormatter.format(lines));
 		
 		account.getExpenses().values().stream()
-			.filter(expense -> expense.getPeriod() == AccountExpense.Period.MONTHLY)
 			.limit(5).forEach(expense -> ColorPrinter.print(ColorPrinter.ANSI_GREEN, expense.toString()));
 	}
 

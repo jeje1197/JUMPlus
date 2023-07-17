@@ -114,10 +114,9 @@ public class MenuController {
 	}
 
 	private static void endSession() {
+		ColorPrinter.print(ColorPrinter.ANSI_GREEN, "Session terminated.\nGOODBYE!");
 		System.exit(0);
 	}
-
-
 	
 	private static void displayExpenseMenu(ExpenseController controller) {
 		while (true) {

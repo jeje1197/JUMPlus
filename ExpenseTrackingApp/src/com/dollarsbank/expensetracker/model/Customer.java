@@ -36,4 +36,8 @@ public class Customer {
 		this.password = password;
 	}
 
+	@Override
+	public String toString() {
+		return "Customer Information - Name: " + name + ", Username: " + username;
+	}
 }
