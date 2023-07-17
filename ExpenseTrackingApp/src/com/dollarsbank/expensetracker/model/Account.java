@@ -9,6 +9,12 @@ public class Account {
 	private Map<String, AccountExpense> expenses = new TreeMap<>();
 	private Double monthlyBudget;
 	private Double yearlyBudget;
+	
+	public Account(Customer customer) {
+		this.customer = customer;
+		this.monthlyBudget = 0.0;
+		this.yearlyBudget = 0.0;
+	}
 
 	public Account(Customer customer, Double monthlyBudget, Double yearlyBudget) {
 		this.customer = customer;

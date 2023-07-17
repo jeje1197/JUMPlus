@@ -6,4 +6,8 @@ public class ConsolePrinter {
 	public static void print(String text) {
 		System.out.println(ANSI_RESET + text);
 	}
+	
+	public static void newline() {
+		System.out.println("");
+	}
 }
