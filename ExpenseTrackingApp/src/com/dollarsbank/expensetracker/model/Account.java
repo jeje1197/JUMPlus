@@ -16,12 +16,6 @@ public class Account {
 		this.yearlyBudget = 0.0;
 	}
 
-	public Account(Customer customer, Double monthlyBudget, Double yearlyBudget) {
-		this.customer = customer;
-		this.monthlyBudget = monthlyBudget;
-		this.yearlyBudget = yearlyBudget;
-	}
-
 	public Customer getCustomer() {
 		return customer;
 	}

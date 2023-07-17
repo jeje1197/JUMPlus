@@ -8,8 +8,8 @@ public class ConsoleScanner {
 	private static Scanner sc = new Scanner(System.in);
 
 	public static int readInt(String prompt) throws Exception {
-		ColorPrinter.print(ColorPrinter.ANSI_GREEN, prompt);
-		String input = sc.nextLine();
+		ColorPrinter.printSameLine(ColorPrinter.ANSI_GREEN, prompt);
+		String input = sc.nextLine().trim();
 		if (input.matches("\\d+")) {
 			return Integer.parseInt(input);
 		} else {
@@ -18,8 +18,8 @@ public class ConsoleScanner {
 	}
 
 	public static int readInt(int min, int max, String prompt) throws Exception {
-		ColorPrinter.print(ColorPrinter.ANSI_GREEN, prompt);
-		String input = sc.nextLine();
+		ColorPrinter.printSameLine(ColorPrinter.ANSI_GREEN, prompt);
+		String input = sc.nextLine().trim();
 		if (input.matches("\\d+")) {
 			int val = Integer.parseInt(input);
 			if (val >= min && val <= max) return val;
@@ -28,8 +28,8 @@ public class ConsoleScanner {
 	}
 
 	public static double readDouble(String prompt) throws Exception {
-		ColorPrinter.print(ColorPrinter.ANSI_GREEN, prompt);
-		String input = sc.nextLine();
+		ColorPrinter.printSameLine(ColorPrinter.ANSI_GREEN, prompt);
+		String input = sc.nextLine().trim();
 		if (input.matches("\\d+(\\.\\d+)?")) {
 			return Double.parseDouble(input);
 		} else {
@@ -38,8 +38,8 @@ public class ConsoleScanner {
 	}
 	
 	public static double readDouble(double min, double max, String prompt) throws Exception {
-		ColorPrinter.print(ColorPrinter.ANSI_GREEN, prompt);
-		String input = sc.nextLine();
+		ColorPrinter.printSameLine(ColorPrinter.ANSI_GREEN, prompt);
+		String input = sc.nextLine().trim();
 		if (input.matches("\\d+(\\.\\d+)?")) {
 			double val = Double.parseDouble(input);
 			if (val >= min && val <= max) return val;
@@ -48,14 +48,14 @@ public class ConsoleScanner {
 	}
 	
 	public static String readString(String prompt) {
-		ColorPrinter.print(ColorPrinter.ANSI_GREEN, prompt);
-		return sc.nextLine();
+		ColorPrinter.printSameLine(ColorPrinter.ANSI_GREEN, prompt);
+		return sc.nextLine().trim();
 	}
 	
 	public static String readString(String regex, String prompt, String error) throws Exception {
-		ColorPrinter.print(ColorPrinter.ANSI_GREEN, prompt);
+		ColorPrinter.printSameLine(ColorPrinter.ANSI_GREEN, prompt);
 
-		String input = sc.nextLine();
+		String input = sc.nextLine().trim();
 		if (input.matches(regex)) {
 			return input;
 		} else {

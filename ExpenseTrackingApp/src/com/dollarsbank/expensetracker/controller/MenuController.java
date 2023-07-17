@@ -71,7 +71,7 @@ public class MenuController {
 			Customer customer = new Customer(name, email, password);
 			Account account = new Account(customer);
 			accounts.add(account);
-			ColorPrinter.print(ColorPrinter.ANSI_GREEN, "Account created!");
+			ColorPrinter.print(ColorPrinter.ANSI_YELLOW, "Account created!");
 		} catch (Exception e) {
 			ColorPrinter.print(ColorPrinter.ANSI_RED, e.getMessage());
 		} finally {
@@ -80,13 +80,11 @@ public class MenuController {
 	}
 
 	private static void login() {
-		String[] lines = {
-				"Login"
-		};
+		String[] lines = { "Login" };
 
 		ColorPrinter.print(ColorPrinter.ANSI_BLUE, PrettyFormatter.format(lines));
 		final String email = ConsoleScanner.readString("Email: ");
-		final String password = ConsoleScanner.readString("Username: ");
+		final String password = ConsoleScanner.readString("Password: ");
 		
 		try {
 			Optional<Account> found = accounts.stream()
@@ -102,19 +100,20 @@ public class MenuController {
 			}
 			
 			ExpenseController controller = new ExpenseController(found.get());
+			ColorPrinter.print(ColorPrinter.ANSI_YELLOW, "Logged in!");
+			ConsolePrinter.newline();
+
 			displayExpenseMenu(controller);
-			ColorPrinter.print(ColorPrinter.ANSI_GREEN, "Logged in!");
 		} catch (Exception e) {
 			ColorPrinter.print(ColorPrinter.ANSI_RED, e.getMessage());
 		} finally {
 			ConsolePrinter.newline();
 		}
 		
-		
 	}
 
 	private static void endSession() {
-		ColorPrinter.print(ColorPrinter.ANSI_GREEN, "Session terminated.\nGOODBYE!");
+		ColorPrinter.print(ColorPrinter.ANSI_YELLOW, "Session terminated.\nGOODBYE!");
 		System.exit(0);
 	}
 	
@@ -133,7 +132,7 @@ public class MenuController {
 
 			ColorPrinter.print(ColorPrinter.ANSI_BLUE, PrettyFormatter.format(lines));
 
-			int option;
+			int option = -1;
 			try {
 				option = ConsoleScanner.readInt(1, 8, "Choose an option 1-8:");
 			} catch (Exception e) {

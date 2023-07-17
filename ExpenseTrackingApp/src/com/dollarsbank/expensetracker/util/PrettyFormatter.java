@@ -3,14 +3,32 @@ package com.dollarsbank.expensetracker.util;
 public class PrettyFormatter {
 	
 	public static String format(String[] lines) {
-		String text = String.join("\n", lines);
 		StringBuilder stringBuilder = new StringBuilder();
-		int numDashes = 2 + text.length();
-		String topAndBottom = "+" + "-".repeat(numDashes) + "+";
-
-		stringBuilder.append(topAndBottom + "\n");
-		stringBuilder.append("| " + text + " |\n");
-		stringBuilder.append(topAndBottom);
+		
+		int maxLengthOfString = 0;
+		for (int i = 0; i < lines.length; i++) {
+			if (lines[i].length() > maxLengthOfString) {
+				maxLengthOfString = lines[i].length();
+			}
+		}
+		
+		// Top design
+		stringBuilder.append("+==")
+			.append("=".repeat(maxLengthOfString))
+			.append("==+\n");
+		
+		for (String line: lines) {
+			stringBuilder.append("|  ")
+				.append(line)
+				.append(" ".repeat(maxLengthOfString - line.length() + 2))
+				.append("|\n");
+		}
+		
+		// Bottom design
+		stringBuilder.append("+==")
+			.append("=".repeat(maxLengthOfString))
+			.append("==+");
+		
 		return stringBuilder.toString();
 	}
 }
