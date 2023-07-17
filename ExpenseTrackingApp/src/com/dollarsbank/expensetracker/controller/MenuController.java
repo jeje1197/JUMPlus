@@ -46,7 +46,7 @@ public class MenuController {
 
 	private static void createAccount() {
 		String[] lines = {
-				"Create new account\n"
+				"Create new account"
 		};
 
 		ColorPrinter.print(ColorPrinter.ANSI_BLUE, PrettyFormatter.format(lines));
@@ -58,7 +58,7 @@ public class MenuController {
 					"Please enter a valid name."
 			);
 			String email = ConsoleScanner.readString(
-					"([A-Za-z\\.])+", 
+					".+@.+\\..+", 
 					"Enter your email:",
 					"Please enter a valid email address."
 			);
@@ -80,6 +80,11 @@ public class MenuController {
 	}
 
 	private static void login() {
+		String[] lines = {
+				"Login"
+		};
+
+		ColorPrinter.print(ColorPrinter.ANSI_BLUE, PrettyFormatter.format(lines));
 		final String email = ConsoleScanner.readString("Email: ");
 		final String password = ConsoleScanner.readString("Username: ");
 		
@@ -98,6 +103,7 @@ public class MenuController {
 			
 			ExpenseController controller = new ExpenseController(found.get());
 			displayExpenseMenu(controller);
+			ColorPrinter.print(ColorPrinter.ANSI_GREEN, "Logged in!");
 		} catch (Exception e) {
 			ColorPrinter.print(ColorPrinter.ANSI_RED, e.getMessage());
 		} finally {
@@ -150,6 +156,5 @@ public class MenuController {
 			}
 		}
 	}
-	
-	
+
 }

@@ -3,14 +3,19 @@ package com.dollarsbank.expensetracker.model;
 import java.util.Date;
 
 public class AccountExpense {
+	public static enum Period {
+		MONTHLY,
+		YEARLY
+	}
+
 	private String name;
 	private double amount;
-	private Date date;
+	private Period period;
 
-	public AccountExpense(String name, double amount, Date date) {
+	public AccountExpense(String name, double amount, Period period) {
 		this.name = name;
 		this.amount = amount;
-		this.date = date;
+		this.period = period;
 	}
 
 	public String getName() {
@@ -29,12 +34,12 @@ public class AccountExpense {
 		this.amount = amount;
 	}
 
-	public Date getDate() {
-		return date;
+	public Period getPeriod() {
+		return period;
 	}
 
-	public void setDate(Date date) {
-		this.date = date;
+	public void setPeriod(Period period) {
+		this.period = period;
 	}
 
 }

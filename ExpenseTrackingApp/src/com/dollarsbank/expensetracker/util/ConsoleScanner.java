@@ -24,7 +24,7 @@ public class ConsoleScanner {
 			int val = Integer.parseInt(input);
 			if (val >= min && val <= max) return val;
 		}
-		throw new UnexpectedInputException("Expected a number.");
+		throw new UnexpectedInputException("Expected a number between " + min + " and " + max + ".");
 	}
 
 	public static double readDouble(String prompt) throws Exception {
@@ -35,6 +35,16 @@ public class ConsoleScanner {
 		} else {
 			throw new UnexpectedInputException("Expected a number.");
 		}
+	}
+	
+	public static double readDouble(double min, double max, String prompt) throws Exception {
+		ColorPrinter.print(ColorPrinter.ANSI_GREEN, prompt);
+		String input = sc.nextLine();
+		if (input.matches("\\d+(\\.\\d+)?")) {
+			double val = Double.parseDouble(input);
+			if (val >= min && val <= max) return val;
+		}
+		throw new UnexpectedInputException("Expected a number between " + min + " and " + max + ".");
 	}
 	
 	public static String readString(String prompt) {
