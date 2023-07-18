@@ -71,10 +71,10 @@ public class CreateAccount extends JPanel {
 				.filter(user -> user.getEmail().equals(state.getString("email")))
 				.findFirst();
 
-		if (found.isPresent()) return;		
-		Router.accounts.add(
-				new User(state.getString("email"), state.getString("password"))
-		);
-		JOptionPane.showMessageDialog(null, "My Goodness, this is so concise");
+		if (found.isPresent()) return;	
+		
+		User created = new User(state.getString("email"), state.getString("password"));
+		Router.accounts.add(created);
+		JOptionPane.showMessageDialog(null, "Account successfully created!\n" + created);
 	}
 }

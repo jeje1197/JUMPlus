@@ -41,4 +41,11 @@ public class User {
 		contacts.add(contact);
 	}
 
+	@Override
+	public String toString() {
+		return "User [email=" + email + ", password=" + password + ", contacts=" + contacts + "]";
+	}
+	
+	
+
 }
