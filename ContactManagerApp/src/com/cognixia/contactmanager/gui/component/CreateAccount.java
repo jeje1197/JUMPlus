@@ -38,24 +38,11 @@ public class CreateAccount extends JPanel {
 		email.setBounds(175, 200, 150, 30);
 		password.setBounds(175, 240, 150, 30);
 
-		email.getDocument().addDocumentListener(new SimpleDocumentListener() {
-			@Override
-			public void update(DocumentEvent e) {
-				state.put("email", email.getText());
-			}
-		});
-
-		password.getDocument().addDocumentListener(new SimpleDocumentListener() {
-			@Override
-			public void update(DocumentEvent e) {
-				state.put("password", password.getText());
-			}
-		});
-
 		button.setBounds(175, 280, 150, 30);
 		button.addActionListener(e -> {
+			state.put("email", email.getText());
+			state.put("password", password.getText());
 			createAccount();
-			Router.setRoute("home");
 		});
 
 		this.setSize(500, 500);
@@ -76,5 +63,6 @@ public class CreateAccount extends JPanel {
 		User created = new User(state.getString("email"), state.getString("password"));
 		Router.accounts.add(created);
 		JOptionPane.showMessageDialog(null, "Account successfully created!\n" + created);
+		Router.returnToLastRoute();
 	}
 }

@@ -1,12 +1,16 @@
 package com.cognixia.contactmanager.gui.component;
 
+import java.util.Optional;
+
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import com.cognixia.contactmanager.gui.entitycomponentsystem.ComponentState;
 import com.cognixia.contactmanager.gui.routing.Router;
+import com.cognixia.contactmanager.model.User;
 
 public class Login extends JPanel {
 	private static final long serialVersionUID = 1L;
@@ -36,7 +40,7 @@ public class Login extends JPanel {
 		button.addActionListener(e -> {
 			state.putString("email", email.getText());
 			state.putString("password", password.getText());
-			Router.setRoute("home");
+			login();
 		});
 		
 		
@@ -47,6 +51,23 @@ public class Login extends JPanel {
 		this.add(password);
 		this.add(button);
 		this.add(backButton);
+	}
+	
+	private void login() {
+		Optional<User> found = Router.accounts.stream()
+				.filter(user -> {
+					return user.getEmail().equals(state.getString("email")) &&
+							user.getPassword().equals(state.getString("password"));
+				})
+				.findFirst();
+		
+		if (!found.isPresent()) {
+			JOptionPane.showMessageDialog(null, "Invalid credentials.");
+		} else {
+			JOptionPane.showMessageDialog(null, "Successfully logged in");
+			Router.user = found.get();
+			Router.setRoute("contactMenu");
+		}
 	}
 
 }

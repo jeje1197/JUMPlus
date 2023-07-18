@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
 
+import com.cognixia.contactmanager.gui.component.ContactMenu;
 import com.cognixia.contactmanager.gui.component.CreateAccount;
 import com.cognixia.contactmanager.gui.component.Home;
 import com.cognixia.contactmanager.gui.component.Login;
@@ -23,6 +24,7 @@ public class Router {
 		gui.addComponent("home", new Home("home"));
 		gui.addComponent("createAccount", new CreateAccount("createAccount"));
 		gui.addComponent("login", new Login("login"));
+		gui.addComponent("contactMenu", new ContactMenu("contactMenu"));
 	}
 
 	public static void setRoute(String key) {
@@ -36,6 +38,10 @@ public class Router {
 	
 	public static void returnToLastRoute() {
 		setRoute(previousRoutes.pop());
+	}
+	
+	public static void popPreviousRoute() {
+		previousRoutes.pop();
 	}
 	
 	public static ComponentState getState(String componentKey) {
