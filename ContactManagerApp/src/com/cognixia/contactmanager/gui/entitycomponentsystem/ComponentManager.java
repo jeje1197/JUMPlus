@@ -12,6 +12,7 @@ public class ComponentManager {
 	private JFrame frame;
 	private String activeComponent = null;
 	private Map<String, Component> components = new HashMap<>();
+	private Map<String, ComponentState> componentStates = new HashMap<>();
 
 	public ComponentManager(int width, int height) {
 		frame = new JFrame();
@@ -27,6 +28,7 @@ public class ComponentManager {
 
 	public void addComponent(String key, Component component) {
 		components.put(key, component);
+		initComponentState(key);
 	}
 	
 	public void removeComponent(String key) {
@@ -35,6 +37,10 @@ public class ComponentManager {
 			frame.remove(0);
 			activeComponent = null;
 		}
+	}
+	
+	public String getActiveComponent() {
+		return activeComponent;
 	}
 
 	public void setActiveComponent(String key) throws InvalidComponentKeyException {
@@ -59,6 +65,18 @@ public class ComponentManager {
 		frame.revalidate();
 		frame.repaint();
 		frame.setVisible(true);
+	}
+	
+	public ComponentState getComponentState(String componentKey) {
+		return componentStates.get(componentKey);
+	}
+	
+	public ComponentState initComponentState(String componentKey) {
+		if (!componentStates.containsKey(componentKey)) {
+			componentStates.put(componentKey, new ComponentState());
+		}
+		
+		return componentStates.get(componentKey);
 	}
 
 }
