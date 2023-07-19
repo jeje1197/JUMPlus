@@ -12,7 +12,7 @@ import com.cognixia.contactmanager.gui.entitycomponentsystem.ComponentState;
 import com.cognixia.contactmanager.gui.routing.Router;
 import com.cognixia.contactmanager.model.User;
 
-public class Login extends JPanel {
+public class Login extends JPanel implements Mountable {
 	private static final long serialVersionUID = 1L;
 	ComponentState state;
 
@@ -68,6 +68,12 @@ public class Login extends JPanel {
 			Router.user = found.get();
 			Router.setRoute("contactMenu");
 		}
+	}
+
+	@Override
+	public void onMount() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

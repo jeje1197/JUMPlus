@@ -6,6 +6,7 @@ import java.util.Map;
 
 import javax.swing.JFrame;
 
+import com.cognixia.contactmanager.gui.component.Mountable;
 import com.cognixia.contactmanager.gui.entitycomponentsystem.exception.InvalidComponentKeyException;
 
 public class ComponentManager {
@@ -60,6 +61,10 @@ public class ComponentManager {
 		Component c = components.get(key);
 		activeComponent = key;
 		
+		if (c instanceof Mountable m) {
+			m.onMount();
+		}
+
 		// Add component and re-render
 		frame.add(c);
 		frame.revalidate();

@@ -7,17 +7,16 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.event.DocumentEvent;
 
-import com.cognixia.contactmanager.gui.component.listener.SimpleDocumentListener;
 import com.cognixia.contactmanager.gui.entitycomponentsystem.ComponentState;
 import com.cognixia.contactmanager.gui.routing.Router;
 import com.cognixia.contactmanager.model.User;
+import com.cognixia.contactmanager.validation.Validation;
 
-public class CreateAccount extends JPanel {
+public class CreateAccount extends JPanel implements Mountable {
 	private static final long serialVersionUID = 1L;
 	private ComponentState state;
-	
+
 	public CreateAccount(String componentKey) {
 		state = Router.initState(componentKey);
 
@@ -40,6 +39,9 @@ public class CreateAccount extends JPanel {
 
 		button.setBounds(175, 280, 150, 30);
 		button.addActionListener(e -> {
+			if (Validation.validateEmail(email.getText())) {
+				JOptionPane.showMessageDialog(null, "Enter a valid email address.");
+			}
 			state.put("email", email.getText());
 			state.put("password", password.getText());
 			createAccount();
@@ -65,4 +67,7 @@ public class CreateAccount extends JPanel {
 		JOptionPane.showMessageDialog(null, "Account successfully created!\n" + created);
 		Router.returnToLastRoute();
 	}
+
+	@Override
+	public void onMount() {}
 }

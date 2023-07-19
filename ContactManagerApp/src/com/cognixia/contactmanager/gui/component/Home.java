@@ -8,7 +8,7 @@ import javax.swing.JPanel;
 import com.cognixia.contactmanager.gui.entitycomponentsystem.ComponentState;
 import com.cognixia.contactmanager.gui.routing.Router;
 
-public class Home extends JPanel {
+public class Home extends JPanel implements Mountable {
 	private static final long serialVersionUID = 1L;
 	private ComponentState state;
 
@@ -34,5 +34,11 @@ public class Home extends JPanel {
 		this.add(title);
 		this.add(button1);
 		this.add(button2);
+	}
+
+	@Override
+	public void onMount() {
+		// TODO Auto-generated method stub
+		
 	}
 }

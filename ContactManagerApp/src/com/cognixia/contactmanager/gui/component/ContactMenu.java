@@ -1,24 +1,27 @@
 package com.cognixia.contactmanager.gui.component;
 
-
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.swing.Box;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JTextField;
 
 import com.cognixia.contactmanager.gui.entitycomponentsystem.ComponentState;
 import com.cognixia.contactmanager.gui.routing.Router;
 import com.cognixia.contactmanager.model.Contact;
+import com.cognixia.contactmanager.validation.Validation;
 
-public class ContactMenu extends JPanel {
+public class ContactMenu extends JPanel implements Mountable {
 	private static final long serialVersionUID = 1L;
 	JList<Contact> contactList;
 	JCheckBox sortAlphabetically, sortByDate;
@@ -50,6 +53,7 @@ public class ContactMenu extends JPanel {
 		JButton backButton = new JButton("Log out");
 		backButton.setBounds(25, 20, 80, 30);
 		backButton.addActionListener(e -> {
+			Router.user = null;
 			Router.returnToLastRoute();
 			Router.popPreviousRoute();
 		});
@@ -67,11 +71,11 @@ public class ContactMenu extends JPanel {
 		sortByDate.setBounds(80, 390, 120, 30);
 
 		addButton.addActionListener(e -> {
-			addContact();
+			showEditor("add");
 		});
 
 		updateButton.addActionListener(e -> {
-			updateContact();
+			showEditor("update");
 		});
 
 		deleteButton.addActionListener(e -> {
@@ -106,29 +110,105 @@ public class ContactMenu extends JPanel {
 		this.add(sortByDate);
 		this.add(backButton);
 	}
-
-	private void addContact() {
+	
+	@Override
+	public void onMount() {
+		if (Router.user == null) return;
 		DefaultListModel<Contact> model = (DefaultListModel<Contact>) contactList.getModel();
-		System.out.println(model.getSize());
-		model.addElement(new Contact("Dolly" + (model.getSize() % 3), "", ""));
+		model.addAll(Router.user.getContacts());
 	}
 
-	private void updateContact() {
+	private void showEditor(String mode) {
 		int selectedIndex = contactList.getSelectedIndex();
-		if (selectedIndex  == -1) return;
+		if (mode.equals("update") && selectedIndex == -1) {
+			JOptionPane.showMessageDialog(null, "No contact selected.");
+			return;
+		}
+
+		DefaultListModel<Contact> model = (DefaultListModel<Contact>) contactList.getModel();
+
+		JTextField nameField = new JTextField(5);
+		JTextField phoneField = new JTextField(5);
+		JTextField emailField = new JTextField(5);
+		
+		if (mode.equals("update")) {
+			Contact contactToUpdate = contactList.getModel().getElementAt(selectedIndex);
+			nameField.setText(contactToUpdate.getName());
+			phoneField.setText(contactToUpdate.getPhone());
+			emailField.setText(contactToUpdate.getEmail());
+		}
+
+		JPanel myPanel = new JPanel();
+		myPanel.add(new JLabel("Name:"));
+		myPanel.add(nameField);
+		myPanel.add(Box.createHorizontalStrut(15)); // a spacer
+		myPanel.add(new JLabel("Phone:"));
+		myPanel.add(phoneField);
+		myPanel.add(new JLabel("Email:"));
+		myPanel.add(emailField);
+
+		int result = JOptionPane.showConfirmDialog(null, myPanel, 
+				mode.equals("add") ? "Create Contact" : "Update Contact" ,
+						JOptionPane.OK_CANCEL_OPTION);
+		if (result == JOptionPane.OK_OPTION) {
+			if (mode.equals("add")) {
+				addContact(new Contact(nameField.getText(), phoneField.getText(), emailField.getText()));
+			} else if (mode.equals("update")) {
+				updateContact(new Contact(nameField.getText(), phoneField.getText(), emailField.getText()));
+			}
+		}
+	}
+	
+	private boolean validateChanges(Contact c) {
+		if (c.getName().isBlank()) {
+			JOptionPane.showMessageDialog(null, "Please enter a valid name.");
+			return false;
+		} else if (!Validation.validatePhone(c.getPhone())) {
+			JOptionPane.showMessageDialog(null, "Please enter a valid phone.");
+			return false;
+		} else if (!Validation.validateEmail(c.getEmail())) {
+			JOptionPane.showMessageDialog(null, "Please enter a valid email.");
+			return false;
+		}
+		return true;
+	}
+
+	private void addContact(Contact c) {
+		if (!validateChanges(c)) return;
+		
+		DefaultListModel<Contact> model = (DefaultListModel<Contact>) contactList.getModel();
+		model.addElement(c);
+		Router.user.getContacts().add(c);
+	}
+
+	private void updateContact(Contact c) {
+		if (!validateChanges(c)) return;
+		
+		int selectedIndex = contactList.getSelectedIndex();
+		DefaultListModel<Contact> model = (DefaultListModel<Contact>) contactList.getModel();
+		model.set(selectedIndex, c);
+		Router.user.getContacts().set(selectedIndex, c);
 	}
 
 	private void deleteContact() {
 		int selectedIndex = contactList.getSelectedIndex();
-		if (selectedIndex  == -1) return;
+		if (selectedIndex  == -1) {
+			JOptionPane.showMessageDialog(null, "No contact selected.");
+			return;
+		}
 
-		System.out.println("Delete Contact: " + selectedIndex);
 		DefaultListModel<Contact> model = (DefaultListModel<Contact>) contactList.getModel();
 		model.remove(selectedIndex);
+		Router.user.getContacts().remove(selectedIndex);
 	}
 
 	private void sortContacts() {
 		DefaultListModel<Contact> model = (DefaultListModel<Contact>) contactList.getModel();
+		if (model.isEmpty()) {
+			JOptionPane.showMessageDialog(null, "No contacts found.");
+			return;
+		}
+		
 		List<Contact> list = Arrays.stream(model.toArray())
 				.map(o -> (Contact) o).collect(Collectors.toList());
 
