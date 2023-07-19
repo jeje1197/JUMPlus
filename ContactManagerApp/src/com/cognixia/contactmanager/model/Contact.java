@@ -48,9 +48,6 @@ public class Contact {
 
 	@Override
 	public String toString() {
-		return "Contact [Name: " + name + ", Phone:" + phone + ", Email:" + email + ", Date Created: " + dateCreated + "]";
+		return "Name: " + name + " Phone: " + phone + " Email: " + email + " Date Created: " + dateCreated;
 	}
-	
-	
-	
 }

@@ -1,6 +1,7 @@
 package com.cognixia.contactmanager.gui.entitycomponentsystem;
 
 import java.awt.Component;
+import java.awt.event.WindowAdapter;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -31,7 +32,7 @@ public class ComponentManager {
 		components.put(key, component);
 		initComponentState(key);
 	}
-	
+
 	public void removeComponent(String key) {
 		components.remove(key);
 		if (activeComponent != null && activeComponent.equals(key)) {
@@ -39,17 +40,16 @@ public class ComponentManager {
 			activeComponent = null;
 		}
 	}
-	
+
 	public String getActiveComponent() {
 		return activeComponent;
 	}
 
 	public void setActiveComponent(String key) throws InvalidComponentKeyException {
-		System.out.println("Key: " + components.get(key));
 		if (!components.containsKey(key)) {
 			throw new InvalidComponentKeyException("Could not find component key: " + key);
 		}
-		
+
 		// Remove previously active component
 		// This needs to be frame.getContentPane().removeAll
 		// Not frame.removeAll() otherwise it will freeze
@@ -57,10 +57,10 @@ public class ComponentManager {
 			frame.getContentPane().removeAll();
 			activeComponent = null;
 		}
-		
+
 		Component c = components.get(key);
 		activeComponent = key;
-		
+
 		if (c instanceof Mountable m) {
 			m.onMount();
 		}
@@ -71,17 +71,20 @@ public class ComponentManager {
 		frame.repaint();
 		frame.setVisible(true);
 	}
-	
+
 	public ComponentState getComponentState(String componentKey) {
 		return componentStates.get(componentKey);
 	}
-	
+
 	public ComponentState initComponentState(String componentKey) {
 		if (!componentStates.containsKey(componentKey)) {
 			componentStates.put(componentKey, new ComponentState());
 		}
-		
+
 		return componentStates.get(componentKey);
 	}
 
+	public void addOnWindowCloseListener(WindowAdapter listener) {
+		frame.addWindowListener(listener);
+	}
 }

@@ -125,8 +125,6 @@ public class ContactMenu extends JPanel implements Mountable {
 			return;
 		}
 
-		DefaultListModel<Contact> model = (DefaultListModel<Contact>) contactList.getModel();
-
 		JTextField nameField = new JTextField(5);
 		JTextField phoneField = new JTextField(5);
 		JTextField emailField = new JTextField(5);

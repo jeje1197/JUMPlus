@@ -1,5 +1,7 @@
 package com.cognixia.contactmanager.gui.routing;
 
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
@@ -11,6 +13,7 @@ import com.cognixia.contactmanager.gui.component.Login;
 import com.cognixia.contactmanager.gui.entitycomponentsystem.ComponentManager;
 import com.cognixia.contactmanager.gui.entitycomponentsystem.ComponentState;
 import com.cognixia.contactmanager.model.User;
+import com.cognixia.contactmanager.persistence.FileStorage;
 
 public class Router {
 	private static ComponentManager gui = new ComponentManager(500, 500);
@@ -25,6 +28,20 @@ public class Router {
 		gui.addComponent("createAccount", new CreateAccount("createAccount"));
 		gui.addComponent("login", new Login("login"));
 		gui.addComponent("contactMenu", new ContactMenu("contactMenu"));
+
+		List<User> accountsFromFile = FileStorage.parse(FileStorage.readFromFile("users"));
+		if (accountsFromFile != null) {
+			accounts = accountsFromFile;
+		}
+
+		System.out.println("On load: " + accounts);
+		gui.addOnWindowCloseListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent e) {
+				FileStorage.writeToFile("users", FileStorage.JSONify(accounts));
+				e.getWindow().dispose();
+			}
+		});
 	}
 
 	public static void setRoute(String key) {
@@ -35,19 +52,19 @@ public class Router {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public static void returnToLastRoute() {
 		setRoute(previousRoutes.pop());
 	}
-	
+
 	public static void popPreviousRoute() {
 		previousRoutes.pop();
 	}
-	
+
 	public static ComponentState getState(String componentKey) {
 		return gui.getComponentState(componentKey);
 	}
-	
+
 	public static ComponentState initState(String componentKey) {
 		return gui.initComponentState(componentKey);
 	}
