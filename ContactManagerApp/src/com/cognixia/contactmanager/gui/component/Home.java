@@ -4,7 +4,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import com.cognixia.contactmanager.gui.entitycomponentsystem.ComponentState;
+import com.cognixia.contactmanager.gui.componentsystem.ComponentState;
 import com.cognixia.contactmanager.gui.routing.Router;
 
 public class Home extends JPanel implements Mountable {

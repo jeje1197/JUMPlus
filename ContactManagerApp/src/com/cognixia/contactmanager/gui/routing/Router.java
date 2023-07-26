@@ -10,8 +10,8 @@ import com.cognixia.contactmanager.gui.component.ContactMenu;
 import com.cognixia.contactmanager.gui.component.CreateAccount;
 import com.cognixia.contactmanager.gui.component.Home;
 import com.cognixia.contactmanager.gui.component.Login;
-import com.cognixia.contactmanager.gui.entitycomponentsystem.ComponentManager;
-import com.cognixia.contactmanager.gui.entitycomponentsystem.ComponentState;
+import com.cognixia.contactmanager.gui.componentsystem.ComponentManager;
+import com.cognixia.contactmanager.gui.componentsystem.ComponentState;
 import com.cognixia.contactmanager.model.User;
 import com.cognixia.contactmanager.persistence.FileStorage;
 

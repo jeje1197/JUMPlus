@@ -8,7 +8,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import com.cognixia.contactmanager.gui.entitycomponentsystem.ComponentState;
+import com.cognixia.contactmanager.gui.componentsystem.ComponentState;
 import com.cognixia.contactmanager.gui.routing.Router;
 import com.cognixia.contactmanager.model.User;
 import com.cognixia.contactmanager.validation.Validation;
@@ -60,11 +60,14 @@ public class CreateAccount extends JPanel implements Mountable {
 				.filter(user -> user.getEmail().equals(state.getString("email")))
 				.findFirst();
 
-		if (found.isPresent()) return;	
+		if (found.isPresent()) {
+			JOptionPane.showMessageDialog(null, "Email already exists.");
+			return;	
+		}
 		
 		User created = new User(state.getString("email"), state.getString("password"));
 		Router.accounts.add(created);
-		JOptionPane.showMessageDialog(null, "Account successfully created!\n" + created);
+		JOptionPane.showMessageDialog(null, "Account successfully created!");
 		Router.returnToLastRoute();
 	}
 

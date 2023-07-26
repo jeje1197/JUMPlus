@@ -8,7 +8,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import com.cognixia.contactmanager.gui.entitycomponentsystem.ComponentState;
+import com.cognixia.contactmanager.gui.componentsystem.ComponentState;
 import com.cognixia.contactmanager.gui.routing.Router;
 import com.cognixia.contactmanager.model.User;
 

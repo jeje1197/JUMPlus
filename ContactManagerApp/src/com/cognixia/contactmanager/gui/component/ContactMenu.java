@@ -16,7 +16,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 
-import com.cognixia.contactmanager.gui.entitycomponentsystem.ComponentState;
+import com.cognixia.contactmanager.gui.componentsystem.ComponentState;
 import com.cognixia.contactmanager.gui.routing.Router;
 import com.cognixia.contactmanager.model.Contact;
 import com.cognixia.contactmanager.validation.Validation;

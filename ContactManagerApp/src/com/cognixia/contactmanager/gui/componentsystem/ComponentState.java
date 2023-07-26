@@ -1,4 +1,4 @@
-package com.cognixia.contactmanager.gui.entitycomponentsystem;
+package com.cognixia.contactmanager.gui.componentsystem;
 
 import java.util.HashMap;
 import java.util.Map;
